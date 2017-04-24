@@ -38,7 +38,7 @@ public class RootController implements Initializable {
 	    parent.setTranslateX(350);
 	    
 	    KeyValue keyValue = new KeyValue(parent.translateXProperty(), 0);
-	    KeyFrame keyFrame = new KeyFrame(Duration.seconds(3), keyValue);
+	    KeyFrame keyFrame = new KeyFrame(Duration.seconds(1.5), keyValue);
 	    Timeline timeline = new Timeline();
 	    timeline.getKeyFrames().add(keyFrame);
 	    timeline.play();
