@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="287.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch17.homework0419_advance2.RootController">
+   <children>
+      <Button fx:id="btnPlay" disable="true" layoutX="16.0" layoutY="250.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="43.0" text="재생" />
+      <Button fx:id="btnPause" disable="true" layoutX="68.0" layoutY="250.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="66.0" text="일시정지" />
+      <Button fx:id="btnStop" disable="true" layoutX="145.0" layoutY="250.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="43.0" text="정지" />
+      <StackPane layoutX="14.0" layoutY="11.0" prefHeight="200.0" prefWidth="360.0">
+         <children>
+            <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="360.0" preserveRatio="false" />
+         </children>
+      </StackPane>
+      <Slider fx:id="sliderTime" layoutX="14.0" layoutY="225.0" prefHeight="14.0" prefWidth="360.0" showTickMarks="true" />
+      <Label layoutX="450.0" layoutY="240.0" text="volume" />
+      <Label fx:id="labelTime" alignment="CENTER_RIGHT" layoutX="294.0" layoutY="250.0" prefHeight="15.0" prefWidth="76.0" text="Time" />
+      <Slider fx:id="sliderVol" layoutX="381.0" layoutY="225.0" prefHeight="14.0" prefWidth="114.0" showTickMarks="true" />
+      <Button fx:id="btnOpen" layoutX="381.0" layoutY="188.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="52.0" text="open" />
+      <TableView fx:id="tableView" layoutX="381.0" layoutY="11.0" prefHeight="171.0" prefWidth="114.0">
+        <columns>
+          <TableColumn prefWidth="112.0" text="재생목록" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDelete" layoutX="445.0" layoutY="188.0" mnemonicParsing="false" text="delete" />
+      <Button fx:id="btnFast" disable="true" layoutX="200.0" layoutY="250.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="43.0" text="배속" />
+      <Button fx:id="btnSlow" disable="true" layoutX="254.0" layoutY="250.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="43.0" text="감속" />
+   </children>
+</AnchorPane>

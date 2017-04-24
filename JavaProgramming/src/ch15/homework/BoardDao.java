@@ -1,0 +1,14 @@
+package ch15.homework;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BoardDao {
+	public List<Board2> getBoardList() {
+		List<Board2> list = new ArrayList<Board2>();
+		list.add(new Board2("力格1", "郴侩1"));
+		list.add(new Board2("力格2", "郴侩2"));
+		list.add(new Board2("力格3", "郴侩3"));
+		return list;
+	}
+}

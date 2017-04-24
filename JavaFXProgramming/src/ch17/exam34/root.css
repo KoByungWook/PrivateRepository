@@ -1,0 +1,10 @@
+#root{
+    -fx-padding: 10;
+}
+
+#welcome-text{
+    -fx-font-size: 35;
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+    -fx-font-fill: linear-gradient(to bottom, blue, white);
+}

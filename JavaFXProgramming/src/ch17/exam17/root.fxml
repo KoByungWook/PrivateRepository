@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="150.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch17.exam17.RootController">
+   <children>
+      <CheckBox fx:id="cb1" layoutX="16.0" layoutY="31.0" mnemonicParsing="false" text="안경" />
+      <CheckBox fx:id="cb2" layoutX="16.0" layoutY="62.0" mnemonicParsing="false" text="모자" />
+      <ImageView fx:id="checkImageView" fitHeight="84.0" fitWidth="93.0" layoutX="75.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/geek.gif" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnClose" layoutX="185.0" layoutY="113.0" mnemonicParsing="false" text="닫기">
+      </Button>
+      <Separator layoutX="180.0" layoutY="13.0" orientation="VERTICAL" prefHeight="84.0" prefWidth="7.0" />
+      <RadioButton fx:id="rb1" userData="BubbleChart" layoutX="205.0" layoutY="21.0" mnemonicParsing="false" selected="true" text="BubbleChart">
+         <toggleGroup>
+            <ToggleGroup fx:id="rbGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rb2" userData="BarChart" layoutX="205.0" layoutY="49.0" mnemonicParsing="false" text="BarChart" toggleGroup="$rbGroup" />
+      <RadioButton fx:id="rb3" userData="AreaChart" layoutX="205.0" layoutY="76.0" mnemonicParsing="false" text="AreaChart" toggleGroup="$rbGroup" />
+      <ImageView fx:id="radioImageView" fitHeight="90.0" fitWidth="93.0" layoutX="313.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/BubbleChart.png" />
+         </image></ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,34 @@
+package ch17.exam02;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class AppMain extends Application {
+    @Override
+    public void start(Stage stage) throws Exception {
+        VBox vbox = new VBox();
+        vbox.setPrefWidth(400);
+        vbox.setPrefHeight(400);
+        
+        Label label = new Label();
+        label.setText("Hello, JavaFX, 집 가고 싶다");
+        vbox.getChildren().add(label);                                     //list 계열의 값을 리턴 Observablelist
+        
+        Button button = new Button();
+        button.setText("확인");
+        vbox.getChildren().add(button);                                     //vbox의 아이들을 얻음
+        
+        Scene scene = new Scene(vbox);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
+}
