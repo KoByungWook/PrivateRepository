@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainDisplay.MainController">
+   <center>
+      <StackPane BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+         </BorderPane.margin>
+         <children>
+            <BorderPane />
+         </children>
+      </StackPane>
+   </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="780.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="titleIcon" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="titleLabel" prefHeight="15.0" prefWidth="582.0" text="TextLabel" HBox.hgrow="ALWAYS" />
+            <Label fx:id="timeLabel" text="2017-04-25(화) 21:13:13" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>

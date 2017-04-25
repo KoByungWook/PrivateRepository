@@ -8,7 +8,7 @@ public class DataPrintExample {
 	public static void main(String[] args) {
 		Date now = new Date();
 		
-		SimpleDateFormat simpleDataFormat = new SimpleDateFormat("yyyy³â  MM¿ù ddÀÏ E¿äÀÏ HH½Ã mmºÐ");
+		SimpleDateFormat simpleDataFormat = new SimpleDateFormat("yyyyï¿½ï¿½  MMï¿½ï¿½ ddï¿½ï¿½ Eï¿½ï¿½ï¿½ï¿½ HHï¿½ï¿½ mmï¿½ï¿½");
 		System.out.println(simpleDataFormat.format(now));
 	}
 
