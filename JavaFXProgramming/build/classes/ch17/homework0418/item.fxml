@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView id="image" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox alignment="CENTER">
+         <children>
+            <Label id="teamName" prefHeight="20.0" prefWidth="120.0" text="팀명">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label id="rank" prefHeight="20.0" prefWidth="120.0" text="현재 순위">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</HBox>
