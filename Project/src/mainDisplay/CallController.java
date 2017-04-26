@@ -8,6 +8,10 @@ package mainDisplay;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -56,6 +61,8 @@ public class CallController implements Initializable {
 	private Button btnCancle;
 	@FXML
 	private Button btnOut;
+	@FXML
+	private ToggleGroup menuGruop;
 
 	/**
 	 * Initializes the controller class.
@@ -78,7 +85,20 @@ public class CallController implements Initializable {
 		btnCancle.setOnAction(e -> handleBtnNumber());
 		btnOut.setOnAction(e -> handleBtnOut());
 		
-		
+//		btn1.onActionProperty().addListener(new ChangeListener<EventHandler<ActionEvent>>() {
+//			@Override
+//			public void changed(ObservableValue<? extends EventHandler<ActionEvent>> observable, EventHandler<ActionEvent> oldValue, EventHandler<ActionEvent> newValue) {
+//				txtDisplay.appendText("1");
+//			}
+//		});
+//		
+//		btn2.pressedProperty().addListener(new ChangeListener<Boolean>() {
+//			@Override
+//			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//				txtDisplay.appendText("2");
+//			}
+//			
+//		});
 	}	
 
 	private void handleBtnNumber() {

@@ -5,7 +5,8 @@
 #innerBorderPane {
     -fx-background-image: url(images/bluesky.jpg);
     -fx-background-size: cover;
-    -fx-background-color: transparent;
+    -fx-background-color: blue;
+		-fx-background-radius: 100;
 }
 
 #titleHbox {
@@ -17,5 +18,13 @@
 	 -fx-border-radius: 50;
 	 -fx-background-radius: 50;
 	 -fx-background-color: transparent;
+}
+
+#tempLabel {
+	 -fx-font-size: 64;
+}
+
+#infoLabel {
+	 -fx-font-size: 28;
 }
     

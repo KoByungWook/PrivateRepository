@@ -14,7 +14,7 @@ public class ArrayListExample {
 		list.add("iBATIS");
 		
 		int size = list.size();
-		System.out.println("ÃÑ °´Ã¼ ¼ö: " + size);
+		System.out.println("ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½: " + size);
 		System.out.println();
 		
 		String skill = list.get(2);
@@ -27,7 +27,6 @@ public class ArrayListExample {
 		}
 		
 		System.out.println();
-		
 		list.remove(2);
 		list.remove(2);
 		list.remove("iBATIS");

@@ -12,6 +12,7 @@
 }
 
 #vbox4 {
+	 -fx-background-radius: 50;
     -fx-background-color: skyblue;
     -fx-background-image: url(images/icon.gif);
 }
