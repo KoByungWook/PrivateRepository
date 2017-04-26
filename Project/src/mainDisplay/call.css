@@ -1,0 +1,8 @@
+#txtDisplay {
+	 -fx-text-alignment:center;
+	 -fx-font-color:blue;
+}
+
+#mainDisplay {
+	 -fx-background-color: aliceblue;
+}

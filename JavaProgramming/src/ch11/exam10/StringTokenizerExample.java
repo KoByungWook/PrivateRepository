@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 public class StringTokenizerExample {
 
 	public static void main(String[] args) {
-		String text = "È«±æµ¿/ÀÌ¼öÈ«/¹Ú¿¬¼ö";
+		String text = "abcde";
 		
 		StringTokenizer st = new StringTokenizer(text, "/");
 		System.out.println(st.toString());
