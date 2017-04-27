@@ -6,7 +6,9 @@
     -fx-background-image: url(images/bluesky.jpg);
     -fx-background-size: cover;
     -fx-background-color: blue;
-		-fx-background-radius: 100;
+}
+#stackPane {
+    -fx-background-color: black;
 }
 
 #titleHbox {

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TableView prefHeight="108.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" text="번호" />
+          <TableColumn prefWidth="404.0" text="공지사항" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="10.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" text="X">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="15.0" prefWidth="441.0" text="공지" />
+        </items>
+      </ToolBar>
+   </top>
+</BorderPane>
