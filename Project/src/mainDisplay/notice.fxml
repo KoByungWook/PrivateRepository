@@ -7,12 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainDisplay.NoticeController">
    <center>
-      <TableView prefHeight="108.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+      <TableView id="tableView" fx:id="tableView" prefHeight="108.0" prefWidth="480.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="번호" />
-          <TableColumn prefWidth="404.0" text="공지사항" />
+          <TableColumn prefWidth="190.0" text="날짜" />
+          <TableColumn prefWidth="289.0" text="제목" />
         </columns>
       </TableView>
    </center>

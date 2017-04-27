@@ -5,18 +5,16 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -39,14 +37,14 @@ public class MainController implements Initializable {
     private Button btnControl;
     @FXML
     private Button btnSecurity;
-	@FXML
-	private StackPane stackPane;
-	@FXML
-	private Button btnNotice;
-	@FXML
-	private AnchorPane anchorPane;
-	@FXML
-	private Label labelNew;
+    @FXML
+    private StackPane stackPane;
+    @FXML
+    private Button btnNotice;
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private Label labelNew;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,19 +74,14 @@ public class MainController implements Initializable {
         btnControl.setOnAction(e -> handleBtnControl(e));
         btnSecurity.setOnAction(e -> handleBtnSecurity(e));
         btnSetting.setOnAction(e -> handleBtnSetting(e));
-		btnNotice.setOnAction(e -> handleBtnNotice(e));
+	btnNotice.setOnAction(e -> handleBtnNotice(e));
     }    
 
     private void handleBtnCall(ActionEvent e) {
-        System.out.println("전화 메뉴로 이동...");
-		
-		try {
-			BorderPane callPane = FXMLLoader.load(getClass().getResource("call.fxml"));
-			stackPane.getChildren().add(callPane);
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
+        try {
+            BorderPane callPane = FXMLLoader.load(getClass().getResource("call.fxml"));
+            stackPane.getChildren().add(callPane);
+        } catch (IOException ex) {}
     }
 
     private void handleBtnControl(ActionEvent e) {
@@ -103,25 +96,15 @@ public class MainController implements Initializable {
         System.out.println("설정 메뉴로 이동...");
     }
 
-	private void handleBtnNotice(ActionEvent e) {
-		try {
-			BorderPane noticePane = FXMLLoader.load(getClass().getResource("notice.fxml"));
-			
-			if(labelNew.getText().equals("N")) {
-				anchorPane.getChildren().add(noticePane);
-
-				noticePane.setLayoutX(60);
-				noticePane.setLayoutY(10);
-
-				labelNew.setText("");
-				return;
-			
-			} else if(labelNew.getText().equals("")) {
-				anchorPane.getChildren().remove(2);
-				labelNew.setText("N");
-			}
-		} catch (IOException ex) {}
-	}
+    private void handleBtnNotice(ActionEvent e) {
+        try {
+            BorderPane noticePane = FXMLLoader.load(getClass().getResource("notice.fxml"));
+            stackPane.getChildren().add(noticePane);
+            
+            noticePane.setTranslateX(-90);
+            noticePane.setTranslateY(-140);
+        } catch(Exception ex) {}
+    }
 }
 
 
