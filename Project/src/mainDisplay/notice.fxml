@@ -9,22 +9,19 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainDisplay.NoticeController">
    <center>
-      <TableView id="tableView" fx:id="tableView" prefHeight="108.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+      <TableView id="tableView" fx:id="tableView" prefHeight="108.0" prefWidth="400.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="190.0" text="날짜" />
-          <TableColumn prefWidth="289.0" text="제목" />
+          <TableColumn prefWidth="113.0" text="날짜" />
+          <TableColumn prefWidth="286.0" text="제목" />
         </columns>
       </TableView>
    </center>
    <top>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="10.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="10.0" prefWidth="400.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="X">
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Button>
-            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="15.0" prefWidth="441.0" text="공지" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" prefHeight="0.0" prefWidth="45.0" text="삭제" />
+            <Button fx:id="btnOpen" mnemonicParsing="false" prefHeight="0.0" prefWidth="45.0" text="열기" />
+            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="15.0" prefWidth="287.0" text="공지" />
         </items>
       </ToolBar>
    </top>

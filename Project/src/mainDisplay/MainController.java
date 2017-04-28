@@ -10,9 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +21,6 @@ import javafx.scene.layout.StackPane;
 
 public class MainController implements Initializable {
    
-    @FXML
     private ImageView titleIcon;
     @FXML
     private Label titleLabel;
@@ -48,11 +47,10 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        titleIcon.setImage(new Image(getClass().getResource("images/penguin.jpg").toString()));
-        titleLabel.setText("Home Automation Controller");
+        //상단 타이틀 바 아이콘 및 이름 세팅
         
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss ");
-        boolean stop = false;
+		//상단 타이틀바에 시계 출력
+		boolean stop = false;
         Thread timeThread = new Thread() {
             @Override
             public void run() {
@@ -70,11 +68,12 @@ public class MainController implements Initializable {
         timeThread.setDaemon(true);
         timeThread.start();
         
+		//각 버튼 이벤트 발생 정의
         btnCall.setOnAction(e -> handleBtnCall(e));
         btnControl.setOnAction(e -> handleBtnControl(e));
         btnSecurity.setOnAction(e -> handleBtnSecurity(e));
         btnSetting.setOnAction(e -> handleBtnSetting(e));
-	btnNotice.setOnAction(e -> handleBtnNotice(e));
+		btnNotice.setOnAction(e -> handleBtnNotice(e));
     }    
 
     private void handleBtnCall(ActionEvent e) {
@@ -101,7 +100,7 @@ public class MainController implements Initializable {
             BorderPane noticePane = FXMLLoader.load(getClass().getResource("notice.fxml"));
             stackPane.getChildren().add(noticePane);
             
-            noticePane.setTranslateX(-90);
+            noticePane.setTranslateX(-135);
             noticePane.setTranslateY(-140);
         } catch(Exception ex) {}
     }

@@ -17,83 +17,70 @@
          </BorderPane.margin>
          <children>
             <BorderPane id="innerBorderPane" fx:id="borderPane">
-               <bottom>
-                  <TilePane alignment="CENTER" hgap="60.0" prefHeight="100.0" prefRows="1" prefTileHeight="100.0" prefTileWidth="100.0" prefWidth="770.0" BorderPane.alignment="CENTER">
-                     <padding>
-                        <Insets left="35.0" right="35.0" />
-                     </padding>
-                     <children>
-                        <Button id="menuButton" fx:id="btnCall" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
-                           <graphic>
-                              <ImageView fitHeight="70.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/call4.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button id="menuButton" fx:id="btnControl" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
-                           <graphic>
-                              <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/control2.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button id="menuButton" fx:id="btnSecurity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
-                           <graphic>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/security2.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button id="menuButton" fx:id="btnSetting" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
-                           <graphic>
-                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/setting2.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                     </children>
-                  </TilePane>
-               </bottom>
                <top>
-                  <AnchorPane fx:id="anchorPane" prefHeight="286.0" prefWidth="790.0" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="anchorPane" prefHeight="470.0" prefWidth="790.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button id="menuButton" fx:id="btnNotice" layoutX="6.0" layoutY="5.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                        <Button id="menuButton" fx:id="btnNotice" layoutX="18.0" layoutY="38.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/notice2.png" />
                                  </image>
                               </ImageView>
-                           </graphic>
-                        </Button>
-                        <Label fx:id="labelNew" layoutX="15.0" layoutY="3.0" text="N" textFill="RED">
+                           </graphic></Button>
+                        <Label fx:id="labelNew" layoutX="18.0" layoutY="38.0" text="N" textFill="RED">
                            <font>
                               <Font name="Consolas Bold" size="20.0" />
                            </font>
                         </Label>
+                        <Label fx:id="timeLabel" layoutX="26.0" layoutY="16.0" text="2017-04-25(화) 21:13:13" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="16.0" />
+                           </font>
+                        </Label>
+                        <TilePane alignment="CENTER" hgap="50.0" layoutY="185.0" prefColumns="4" prefHeight="80.0" prefRows="1" prefTileHeight="100.0" prefTileWidth="100.0" prefWidth="790.0">
+                           <children>
+                              <Button id="menuButton" fx:id="btnCall" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
+                                 <graphic>
+                                    <ImageView fitHeight="70.0" fitWidth="65.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/call4.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button id="menuButton" fx:id="btnControl" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
+                                 <graphic>
+                                    <ImageView fitHeight="68.0" fitWidth="68.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/control2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button id="menuButton" fx:id="btnSecurity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
+                                 <graphic>
+                                    <ImageView fitHeight="70.0" fitWidth="70.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/security2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button id="menuButton" fx:id="btnSetting" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
+                                 <graphic>
+                                    <ImageView fitHeight="75.0" fitWidth="75.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/setting2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </TilePane>
                      </children></AnchorPane>
                </top></BorderPane>
          </children>
       </StackPane>
    </center>
-   <top>
-      <HBox id="titleHbox" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="780.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="titleIcon" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin></ImageView>
-            <Label fx:id="titleLabel" prefHeight="15.0" prefWidth="575.0" text="TextLabel" HBox.hgrow="ALWAYS" />
-            <Label fx:id="timeLabel" text="2017-04-25(화) 21:13:13" />
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </HBox>
-   </top>
 </BorderPane>

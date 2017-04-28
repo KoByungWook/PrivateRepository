@@ -3,8 +3,8 @@
     -fx-border-color:black;
 }
 #innerBorderPane {
-    -fx-background-image: url(images/bluesky.jpg);
-    -fx-background-size: cover;
+    -fx-background-image: url(images/background8.jpg);
+    -fx-background-size: stretch;
     -fx-background-color: blue;
 }
 #stackPane {
