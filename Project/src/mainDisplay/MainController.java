@@ -101,7 +101,7 @@ public class MainController implements Initializable {
             stackPane.getChildren().add(noticePane);
             
             noticePane.setTranslateX(-135);
-            noticePane.setTranslateY(-140);
+            noticePane.setTranslateY(-100);
         } catch(Exception ex) {}
     }
 }
