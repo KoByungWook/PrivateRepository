@@ -1,9 +1,10 @@
 #popupBackground {
     -fx-background-color: white;
-    -fx-border-color: black;
+    -fx-border-color: #cccccc;
+    -fx-border-radius:3;
 }
 
 .popupLabel {
-    -fx-border-color: black;
-    
+    -fx-border-color: #cccccc;
+    -fx-border-radius:3;
 }
