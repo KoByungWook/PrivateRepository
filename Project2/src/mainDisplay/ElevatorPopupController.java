@@ -12,8 +12,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class ElevatorPopupController implements Initializable {
+
     private Media media;
     private MediaPlayer mediaPlayer;
+
     @FXML
     private Button btnElevatorUp;
     @FXML
@@ -25,17 +27,17 @@ public class ElevatorPopupController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btnElevatorUp.setOnAction(e -> handleBtnElevatorUp(e));
         btnElevatorDown.setOnAction(e -> handleBtnElevatorDown(e));
-    }    
+    }
 
     private void handleBtnElevatorUp(ActionEvent e) {
         media = new Media(getClass().getResource("sounds/upElevator.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setRate(1.1);
-        
+
         Thread elevThread = new Thread() {
             @Override
             public void run() {
-                while(true) {
+                while (true) {
                     int floor = Integer.parseInt(labelDisplay.getText());
                     if (floor < 12) {
                         try {
@@ -45,7 +47,7 @@ public class ElevatorPopupController implements Initializable {
                         Platform.runLater(() -> {
                             labelDisplay.setText(String.valueOf(floor + 1));
                         });
-                    } else if(floor > 12 ) {
+                    } else if (floor > 12) {
                         try {
                             Thread.sleep(700);
                         } catch (InterruptedException ex) {
@@ -61,7 +63,7 @@ public class ElevatorPopupController implements Initializable {
                     }
                 }
             }
-            
+
         };
         elevThread.start();
     }
@@ -70,11 +72,11 @@ public class ElevatorPopupController implements Initializable {
         media = new Media(getClass().getResource("sounds/downElevator.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setRate(1.1);
-        
+
         Thread elevThread = new Thread() {
             @Override
             public void run() {
-                while(true) {
+                while (true) {
                     int floor = Integer.parseInt(labelDisplay.getText());
                     if (floor < 12) {
                         try {
@@ -84,7 +86,7 @@ public class ElevatorPopupController implements Initializable {
                         Platform.runLater(() -> {
                             labelDisplay.setText(String.valueOf(floor + 1));
                         });
-                    } else if(floor > 12 ) {
+                    } else if (floor > 12) {
                         try {
                             Thread.sleep(700);
                         } catch (InterruptedException ex) {
@@ -100,9 +102,9 @@ public class ElevatorPopupController implements Initializable {
                     }
                 }
             }
-            
+
         };
         elevThread.start();
     }
-    
+
 }

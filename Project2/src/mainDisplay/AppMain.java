@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 
 public class AppMain extends Application {
     public static Stage primaryStage;
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         AppMain.primaryStage = primaryStage;
+        
         Parent parent = FXMLLoader.load(getClass().getResource("mainDisplay.fxml"));
 
         Scene scene = new Scene(parent);
