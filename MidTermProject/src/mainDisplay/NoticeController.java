@@ -29,7 +29,7 @@ public class NoticeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Font subFont = Font.loadFont(getClass().getResource("fonts/NotoSansCJKkr-DemiLight.otf").toExternalForm(), 12);
+        Font subFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothic.ttf").toExternalForm(), 12);
         btnNoticeDelete.setFont(subFont);
         btnNoticeOpen.setFont(subFont);
         labelNoticeName.setFont(subFont);

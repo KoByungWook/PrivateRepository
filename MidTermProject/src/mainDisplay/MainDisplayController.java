@@ -8,8 +8,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -33,17 +31,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import static javafx.scene.media.MediaPlayer.Status.PLAYING;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.util.Duration;
-import sun.audio.AudioPlayer;
 
 public class MainDisplayController implements Initializable {
 
     private Socket socket;
     private Parent parent;
+	
+	private AnchorPane securityAnchorPane;
     
     private TableView<Notice> noticeTable;
     public static ObservableList<Notice> list;
@@ -114,6 +112,12 @@ public class MainDisplayController implements Initializable {
             list = FXCollections.observableArrayList();
         } catch (IOException ex) {
         }
+		//security fxml 선언
+		try {
+			securityAnchorPane = FXMLLoader.load(getClass().getResource("securitydisplay/security_main.fxml"));
+		} catch (IOException ex) {
+			
+		}
         //폰트 선언
         Font timeFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 56);
         Font dateFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 28);
@@ -361,13 +365,7 @@ public class MainDisplayController implements Initializable {
     }
 
     private void handleBtnMainMenuLock(ActionEvent e) {
-        try {
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("securitydisplay/security_main.fxml"));
-            System.out.println(anchorPane);
-            stackPane.getChildren().add(anchorPane);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+		stackPane.getChildren().add(anchorPane);
     }
 
     private void handleBtnMainMenuSetting(ActionEvent e) {
@@ -410,7 +408,7 @@ public class MainDisplayController implements Initializable {
             public void run() {
                 try {
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("localhost", 50001));
+                    socket.connect(new InetSocketAddress("192.168.3.36", 50001));
 
                     Platform.runLater(() -> {
                         btnMainConnect.setUserData("connect");

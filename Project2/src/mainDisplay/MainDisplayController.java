@@ -105,7 +105,9 @@ public class MainDisplayController implements Initializable {
         try {
             parent = FXMLLoader.load(getClass().getResource("notice.fxml"));
             list = FXCollections.observableArrayList();
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+			ex.printStackTrace();
+		}
         //폰트 선언
         Font timeFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 56);
         Font dateFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 28);
@@ -251,7 +253,8 @@ public class MainDisplayController implements Initializable {
     }
 
     private void handleBtnNotice(ActionEvent e) {
-        if (btnNotice.getUserData().equals("close")) {
+        System.out.println("되니");
+		if (btnNotice.getUserData().equals("close")) {
             try {
                 anchorPane.getChildren().add(parent);
 
@@ -360,7 +363,7 @@ public class MainDisplayController implements Initializable {
 	    public void run() {
 		try {
 		    socket = new Socket();
-		    socket.connect(new InetSocketAddress("localhost", 50001));
+		    socket.connect(new InetSocketAddress("192.168.3.36", 50001));
                     
                     Platform.runLater(() -> {
                         btnConnect.setUserData("connect");

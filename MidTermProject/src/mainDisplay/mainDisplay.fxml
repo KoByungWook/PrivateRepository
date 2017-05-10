@@ -23,7 +23,7 @@
                         <Font name="Franklin Gothic Book" size="30.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelMainTime" layoutX="654.0" text="18:22" textFill="#dddddd">
+                  <Label fx:id="labelMainTime" layoutX="625.0" text="18:22" textFill="#dddddd">
                      <font>
                         <Font name="Franklin Gothic Book" size="56.0" />
                      </font>
