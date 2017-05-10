@@ -18,7 +18,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -37,15 +36,12 @@ import javafx.stage.Popup;
 import javafx.util.Duration;
 
 public class MainDisplayController implements Initializable {
-
-    private Socket socket;
-    private Parent parent;
-
-    private AnchorPane securityAnchorPane;
-
-    private TableView<Notice> noticeTable;
+    
     public static ObservableList<Notice> list;
-
+    private Socket socket;
+    private BorderPane noticeBorderPane;
+    private AnchorPane securityAnchorPane;
+    private TableView<Notice> noticeTable;
     private Media media;
     private MediaPlayer mediaPlayer;
 
@@ -108,7 +104,7 @@ public class MainDisplayController implements Initializable {
         startClient();
         //공지 테이블 선언
         try {
-            parent = FXMLLoader.load(getClass().getResource("notice.fxml"));
+            noticeBorderPane = FXMLLoader.load(getClass().getResource("notice.fxml"));
             list = FXCollections.observableArrayList();
         } catch (IOException ex) {
         }
@@ -196,10 +192,10 @@ public class MainDisplayController implements Initializable {
     private void handleBtnMainNotice(ActionEvent e) {
         if (btnMainNotice.getUserData().equals("close")) {
             try {
-                anchorPane.getChildren().add(parent);
+                anchorPane.getChildren().add(noticeBorderPane);
 
-                parent.setTranslateX(60);
-                parent.setTranslateY(10);
+                noticeBorderPane.setTranslateX(60);
+                noticeBorderPane.setTranslateY(10);
 
                 labelMainNew.setText("");
                 btnMainNotice.setUserData("open");
@@ -207,7 +203,7 @@ public class MainDisplayController implements Initializable {
             }
             return;
         } else if (btnMainNotice.getUserData().equals("open")) {
-            anchorPane.getChildren().remove(parent);
+            anchorPane.getChildren().remove(noticeBorderPane);
             btnMainNotice.setUserData("close");
         }
     }
@@ -253,17 +249,20 @@ public class MainDisplayController implements Initializable {
             MediaPlayer frontMediaPlayer = new MediaPlayer(frontMedia);
             mediaView.setMediaPlayer(frontMediaPlayer);
             frontMediaPlayer.play();
-
+            
+            
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
             popup.show(AppMain.primaryStage);
 
+            
             popup.setOnAutoHide((event) -> {
                 frontMediaPlayer.stop();
             });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
     }
 
     private void handleBtnMainMenu(ActionEvent e) {
@@ -408,7 +407,7 @@ public class MainDisplayController implements Initializable {
             public void run() {
                 try {
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("192.168.3.36", 50001));
+                    socket.connect(new InetSocketAddress("192.168.43.213", 50001));
 
                     Platform.runLater(() -> {
                         btnMainConnect.setUserData("connect");
@@ -463,7 +462,7 @@ public class MainDisplayController implements Initializable {
                 System.out.println("내용: " + strData2);
 
                 Platform.runLater(() -> {
-                    TableView<Notice> noticeTable = (TableView) parent.lookup("#tableView");
+                    TableView<Notice> noticeTable = (TableView) noticeBorderPane.lookup("#tableView");
 
                     TableColumn tc0 = noticeTable.getColumns().get(0);
                     TableColumn tc1 = noticeTable.getColumns().get(1);
