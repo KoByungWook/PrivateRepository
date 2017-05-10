@@ -40,12 +40,12 @@ public class MainDisplayController implements Initializable {
 
     private Socket socket;
     private Parent parent;
-	
-	private AnchorPane securityAnchorPane;
-    
+
+    private AnchorPane securityAnchorPane;
+
     private TableView<Notice> noticeTable;
     public static ObservableList<Notice> list;
-    
+
     private Media media;
     private MediaPlayer mediaPlayer;
 
@@ -112,12 +112,12 @@ public class MainDisplayController implements Initializable {
             list = FXCollections.observableArrayList();
         } catch (IOException ex) {
         }
-		//security fxml 선언
-		try {
-			securityAnchorPane = FXMLLoader.load(getClass().getResource("securitydisplay/security_main.fxml"));
-		} catch (IOException ex) {
-			
-		}
+        //security fxml 선언
+        try {
+            securityAnchorPane = FXMLLoader.load(getClass().getResource("securitydisplay/security_main.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         //폰트 선언
         Font timeFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 56);
         Font dateFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 28);
@@ -211,7 +211,7 @@ public class MainDisplayController implements Initializable {
             btnMainNotice.setUserData("close");
         }
     }
-    
+
     private void handleBtnMainElevator(ActionEvent e) {
         Popup popup = new Popup();
         try {
@@ -227,22 +227,22 @@ public class MainDisplayController implements Initializable {
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
             popup.show(AppMain.primaryStage);
-            
+
         } catch (IOException ex) {
         }
     }
-    
+
     private void handleBtnMainOpenDoor(ActionEvent e) {
-        if(mediaPlayer != null) {
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
-        }  
+        }
         media = new Media(getClass().getResource("sounds/openDoor.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
 
         setLabelMainSlide("현관문이 열렸습니다");
     }
-    
+
     private void handleBtnMainInterphone(ActionEvent e) {
         Popup popup = new Popup();
         try {
@@ -265,7 +265,7 @@ public class MainDisplayController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
+
     private void handleBtnMainMenu(ActionEvent e) {
         if (btnMainMenu.getUserData().equals("close")) {
             btnMainMenu.setUserData("open");
@@ -355,21 +355,21 @@ public class MainDisplayController implements Initializable {
             stopClient();
         }
     }
-    
+
     private void handleBtnMainMenuCall(ActionEvent e) {
-        
+
     }
 
     private void handleBtnMainMenuControl(ActionEvent e) {
-        
+
     }
 
     private void handleBtnMainMenuLock(ActionEvent e) {
-		stackPane.getChildren().add(anchorPane);
+        stackPane.getChildren().add(securityAnchorPane);
     }
 
     private void handleBtnMainMenuSetting(ActionEvent e) {
-        
+
     }
 
     private void setLabelMainSlide(String message) {

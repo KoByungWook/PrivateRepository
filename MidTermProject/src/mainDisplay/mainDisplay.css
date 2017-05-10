@@ -1,6 +1,7 @@
 #mainBackground {
 /*    -fx-background-image: url("images/graybackground.jpg");
     -fx-background-size: stretch;*/
+    -fx-background-color: white;
 }
 
 #mainBtn {

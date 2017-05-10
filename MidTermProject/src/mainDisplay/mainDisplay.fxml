@@ -14,7 +14,7 @@
 
 <AnchorPane id="mainBackground" prefHeight="480.0" prefWidth="800.0" stylesheets="@mainDisplay.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainDisplay.MainDisplayController">
    <children>
-      <StackPane fx:id="stackPane" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+      <StackPane id="stackPane" fx:id="stackPane" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: transparent;">
          <children>
             <AnchorPane fx:id="anchorPane" prefHeight="445.0" prefWidth="451.0">
                <children>
