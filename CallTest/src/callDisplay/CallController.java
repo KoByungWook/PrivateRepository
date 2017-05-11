@@ -58,7 +58,10 @@ public class CallController implements Initializable {
                         btnStar.setText("*");
                         btnSharp.setText("#");
                         stack.getChildren().add(parent);
-
+						
+						call1.setDisable(true);
+						call2.setDisable(false);
+						call3.setDisable(false);
                     } catch (IOException ex) {
                     }
                 } else if (newValue == call2) {
@@ -72,6 +75,10 @@ public class CallController implements Initializable {
                         btnSharp.setText("호");
                         lblRequest.setText("동과 호수를 입력해주세요.");
                         stack.getChildren().add(parent);
+						
+						call1.setDisable(false);
+						call2.setDisable(true);
+						call3.setDisable(false);
                     } catch (IOException ex) {
                     }
                 } else if (newValue == call3) {
@@ -79,6 +86,10 @@ public class CallController implements Initializable {
                         stack.getChildren().clear();
                         Parent parent = FXMLLoader.load(getClass().getResource("callguard.fxml"));
                         stack.getChildren().add(parent);
+						
+						call1.setDisable(false);
+						call2.setDisable(false);
+						call3.setDisable(true);
                     } catch (IOException ex) {
                     }
                 }

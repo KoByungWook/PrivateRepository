@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="mainbackground" stylesheets="@security_main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainDisplay.securitydisplay.Security_mainController">
+<AnchorPane fx:id="securityAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" styleClass="mainbackground" stylesheets="@security_main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainDisplay.securitydisplay.Security_mainController">
    <children>
       <ToggleButton id="btnExitSettingTab" fx:id="btnExitSettingTab" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="140.0" style="-fx-background-radius: 10;" text="외출/재택방범">
          <toggleGroup>

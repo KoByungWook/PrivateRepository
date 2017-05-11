@@ -33,6 +33,5 @@
 			<h1>로드 완료 함수</h1>
 			<img id="img1" width="100px" height="100px">
 			
-			
 	 </body>
 </html>

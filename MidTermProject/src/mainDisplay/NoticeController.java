@@ -50,6 +50,7 @@ public class NoticeController implements Initializable {
                         labelTitle.setText("제목: " + newValue.getTitle());
                         labelDate.setText("일시: " + newValue.getDate());
                         areaNotice.setText(newValue.getContent());
+						areaNotice.setEditable(false);
 
                         popup.getContent().add(parent);
                         popup.setAutoHide(true);

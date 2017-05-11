@@ -100,8 +100,8 @@ public class MainDisplayController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //공지 클라이언트 시작
-        startClient();
+//        //공지 클라이언트 시작
+//        startClient();
         //공지 테이블 선언
         try {
             noticeBorderPane = FXMLLoader.load(getClass().getResource("notice.fxml"));
@@ -223,6 +223,8 @@ public class MainDisplayController implements Initializable {
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
             popup.show(AppMain.primaryStage);
+			
+			System.gc();
 
         } catch (IOException ex) {
         }
@@ -235,12 +237,14 @@ public class MainDisplayController implements Initializable {
         media = new Media(getClass().getResource("sounds/openDoor.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+		
 
-        setLabelMainSlide("현관문이 열렸습니다");
+//        setLabelMainSlide("현관문이 열렸습니다");
     }
 
     private void handleBtnMainInterphone(ActionEvent e) {
         Popup popup = new Popup();
+		System.out.println("1");
         try {
             BorderPane borderPane = (BorderPane) FXMLLoader.load(getClass().getResource("interphonePopup.fxml"));
             MediaView mediaView = (MediaView) borderPane.lookup("#mediaViewInterphone");
@@ -249,7 +253,9 @@ public class MainDisplayController implements Initializable {
             MediaPlayer frontMediaPlayer = new MediaPlayer(frontMedia);
             mediaView.setMediaPlayer(frontMediaPlayer);
             frontMediaPlayer.play();
-            
+            System.out.println(frontMedia);
+			System.out.println(frontMediaPlayer);
+			System.out.println(mediaView);
             
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
@@ -364,6 +370,7 @@ public class MainDisplayController implements Initializable {
     }
 
     private void handleBtnMainMenuLock(ActionEvent e) {
+		securityAnchorPane.setOpacity(1);
         stackPane.getChildren().add(securityAnchorPane);
     }
 
@@ -407,7 +414,7 @@ public class MainDisplayController implements Initializable {
             public void run() {
                 try {
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("192.168.43.213", 50001));
+                    socket.connect(new InetSocketAddress("192.168.3.103", 50001));
 
                     Platform.runLater(() -> {
                         btnMainConnect.setUserData("connect");

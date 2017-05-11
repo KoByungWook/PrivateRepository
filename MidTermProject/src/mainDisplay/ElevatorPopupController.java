@@ -65,6 +65,7 @@ public class ElevatorPopupController implements Initializable {
                         break;
                     }
                 }
+				
             }
 
         };
@@ -107,6 +108,7 @@ public class ElevatorPopupController implements Initializable {
                         break;
                     }
                 }
+				currentThread().interrupt();
             }
 
         };
