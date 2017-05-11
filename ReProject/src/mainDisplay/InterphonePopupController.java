@@ -22,9 +22,7 @@ public class InterphonePopupController implements Initializable {
 
     @FXML
     private MediaView mediaViewInterphone;
-    @FXML
     private Button btnInterphoneOpenDoor;
-    @FXML
     private Button btnInterphoneSave;
 
     @Override

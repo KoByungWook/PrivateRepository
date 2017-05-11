@@ -84,7 +84,6 @@ public class ElevatorPopupController implements Initializable {
     private void handleBtnElevatorDown(ActionEvent e) {
         media = new Media(getClass().getResource("sounds/elevatorDown.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setRate(1.1);
 
         Thread elevThread = new Thread() {
             @Override
