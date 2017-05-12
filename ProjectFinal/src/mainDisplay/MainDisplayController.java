@@ -227,80 +227,80 @@ public class MainDisplayController implements Initializable {
             labelDisplay.setText(String.valueOf(floorNum));
             
             btnElevatorUp.setOnAction(e2 -> {
-                media = new Media(getClass().getResource("sounds/elevatorUp.mp3").toString());
-                mediaPlayer = new MediaPlayer(media);
+				media = new Media(getClass().getResource("sounds/elevatorUp.mp3").toString());
+				mediaPlayer = new MediaPlayer(media);
 
-                Thread elevThread = new Thread() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            int floor = Integer.parseInt(labelDisplay.getText());
-                            if (floor < 12) {
-                                try {
-                                    Thread.sleep(700);
-                                } catch (InterruptedException ex) {
-                                }
-                                Platform.runLater(() -> {
-                                    labelDisplay.setText(String.valueOf(floor + 1));
-                                });
-                            } else if (floor > 12) {
-                                try {
-                                    Thread.sleep(700);
-                                } catch (InterruptedException ex) {
-                                }
-                                Platform.runLater(() -> {
-                                    labelDisplay.setText(String.valueOf(floor - 1));
-                                });
-                            } else {
-                                Platform.runLater(() -> {
-                                    mediaPlayer.play();
-                                    mediaPlayerDisposer();
-                                });
-                                break;
-                            }
-                        }
-                    }
-                };
-                elevThread.start();
-            });
+				Thread elevThread = new Thread() {
+					@Override
+					public void run() {
+						while (true) {
+							int floor = Integer.parseInt(labelDisplay.getText());
+							if (floor < 12) {
+								try {
+									Thread.sleep(700);
+								} catch (InterruptedException ex) {
+								}
+								Platform.runLater(() -> {
+									labelDisplay.setText(String.valueOf(floor + 1));
+								});
+							} else if (floor > 12) {
+								try {
+									Thread.sleep(700);
+								} catch (InterruptedException ex) {
+								}
+								Platform.runLater(() -> {
+									labelDisplay.setText(String.valueOf(floor - 1));
+								});
+							} else {
+								Platform.runLater(() -> {
+									mediaPlayer.play();
+								});
+								break;
+							}
+						}
+					}
+				};
+				elevThread.start();
+				mediaPlayerDisposer();
+			});
             
             btnElevatorDown.setOnAction(e2 -> {
-                media = new Media(getClass().getResource("sounds/elevatorDown.mp3").toString());
-                mediaPlayer = new MediaPlayer(media);
+				media = new Media(getClass().getResource("sounds/elevatorDown.mp3").toString());
+				mediaPlayer = new MediaPlayer(media);
 
-                Thread elevThread = new Thread() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            int floor = Integer.parseInt(labelDisplay.getText());
-                            if (floor < 12) {
-                                try {
-                                    Thread.sleep(700);
-                                } catch (InterruptedException ex) {
-                                }
-                                Platform.runLater(() -> {
-                                    labelDisplay.setText(String.valueOf(floor + 1));
-                                });
-                            } else if (floor > 12) {
-                                try {
-                                    Thread.sleep(700);
-                                } catch (InterruptedException ex) {
-                                }
-                                Platform.runLater(() -> {
-                                    labelDisplay.setText(String.valueOf(floor - 1));
-                                });
-                            } else {
-                                Platform.runLater(() -> {
-                                    mediaPlayer.play();
-                                    mediaPlayerDisposer();  
-                                });
-                                break;
-                            }
-                        }
-                    }
-                };
-                elevThread.start();
-            });
+				Thread elevThread = new Thread() {
+					@Override
+					public void run() {
+						while (true) {
+							int floor = Integer.parseInt(labelDisplay.getText());
+							if (floor < 12) {
+								try {
+									Thread.sleep(700);
+								} catch (InterruptedException ex) {
+								}
+								Platform.runLater(() -> {
+									labelDisplay.setText(String.valueOf(floor + 1));
+								});
+							} else if (floor > 12) {
+								try {
+									Thread.sleep(700);
+								} catch (InterruptedException ex) {
+								}
+								Platform.runLater(() -> {
+									labelDisplay.setText(String.valueOf(floor - 1));
+								});
+							} else {
+								Platform.runLater(() -> {
+									mediaPlayer.play();
+								});
+								break;
+							}
+						}
+					}
+				};
+				elevThread.start();
+				mediaPlayerDisposer();
+			});
 
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
@@ -310,7 +310,9 @@ public class MainDisplayController implements Initializable {
     }
     
     private void handleBtnMainOpenDoor(ActionEvent e) {
-        if(mediaPlayer != null) {
+        btnMainOpenDoor.arm();
+		
+		if(mediaPlayer != null) {
             mediaPlayer.dispose();
         }
         
@@ -534,7 +536,7 @@ public class MainDisplayController implements Initializable {
             public void run() {
                 try {
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("192.168.43.213", 50001));
+                    socket.connect(new InetSocketAddress("192.168.3.103", 50001));
 
                     Platform.runLater(() -> {
                         btnMainConnect.setUserData("connect");

@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -28,7 +31,7 @@ public class rootController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
-	}	
+		
+	}
 	
 }

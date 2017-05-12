@@ -2,6 +2,8 @@ package mainDisplay.securitydisplay;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -10,7 +12,6 @@ import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -80,7 +81,7 @@ public class Security_mainController implements Initializable {
 		Timeline timeline = new Timeline();
 		timeline.getKeyFrames().add(keyFrame);
 		timeline.play();
-
+		
 		timeline.statusProperty().addListener(new ChangeListener<Animation.Status>() {
 			@Override
 			public void changed(ObservableValue<? extends Animation.Status> observable, Animation.Status oldValue, Animation.Status newValue) {

@@ -96,10 +96,13 @@ public class MainDisplayController implements Initializable {
     private Label labelSlide;
     @FXML
     private Button btnInterphone;
+	@FXML
+	private Button btnTest;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //공지 클라이언트 시작
+        btnTest.setText("");
+//공지 클라이언트 시작
         startClient();
         //공지 테이블 선언
         try {

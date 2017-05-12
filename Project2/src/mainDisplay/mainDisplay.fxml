@@ -265,6 +265,7 @@
                         <Insets left="12.0" />
                      </padding>
                   </Label>
+                  <Button id="btnTest" fx:id="btnTest" layoutX="105.0" layoutY="324.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="99.0" text="Button" />
                </children></AnchorPane>
          </children></StackPane>
    </children>

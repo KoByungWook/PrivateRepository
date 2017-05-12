@@ -7,7 +7,7 @@
 .mainBtn{
     -fx-background-radius: 75;
     -fx-border-radius: 75;
-    
+    -fx-padding: 0;
 }
 
 .mainSubBtn {
@@ -20,6 +20,14 @@
     -fx-background-radius: 60;
     -fx-border-color: #cccccc;
     -fx-border-radius: 60;
+}
+
+.mainConnBtnLabel {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 30;
+		-fx-padding: 0;
 }
 
 #btnMainNotice {
@@ -49,4 +57,5 @@
 #mainBtnColor5 {
     -fx-background-color: linear-gradient(#ffff66, #ff9900);
     -fx-background-radius: 45;
+		-fx-margin: 0;
 }

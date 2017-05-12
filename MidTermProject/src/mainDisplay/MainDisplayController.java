@@ -249,22 +249,23 @@ public class MainDisplayController implements Initializable {
             BorderPane borderPane = (BorderPane) FXMLLoader.load(getClass().getResource("interphonePopup.fxml"));
             MediaView mediaView = (MediaView) borderPane.lookup("#mediaViewInterphone");
 
-            Media frontMedia = new Media(getClass().getResource("videos/video.m4v").toString());
-            MediaPlayer frontMediaPlayer = new MediaPlayer(frontMedia);
-            mediaView.setMediaPlayer(frontMediaPlayer);
-            frontMediaPlayer.play();
-            System.out.println(frontMedia);
-			System.out.println(frontMediaPlayer);
-			System.out.println(mediaView);
+//            Media frontMedia = new Media(getClass().getResource("videos/video.m4v").toString());
+//            MediaPlayer frontMediaPlayer = new MediaPlayer(frontMedia);
+//            mediaView.setMediaPlayer(frontMediaPlayer);
+//            frontMediaPlayer.play();
+//            System.out.println(frontMedia);
+//			System.out.println(frontMediaPlayer);
+//			System.out.println(mediaView);
+			
             
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
             popup.show(AppMain.primaryStage);
 
             
-            popup.setOnAutoHide((event) -> {
-                frontMediaPlayer.stop();
-            });
+//            popup.setOnAutoHide((event) -> {
+//                frontMediaPlayer.stop();
+//            });
         } catch (Exception ex) {
             ex.printStackTrace();
         }

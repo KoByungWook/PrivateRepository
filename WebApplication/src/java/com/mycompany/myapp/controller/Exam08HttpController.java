@@ -53,14 +53,14 @@ public class Exam08HttpController {
 	
 	@RequestMapping("/exam03")
 	public String exam03(
-			@RequestParam String type,
-			int bno,
+			@RequestParam String type,				//매개변수 타입 기본적으로 String
+			@RequestParam("bno") int boardNo,		//요청파라미터를 다른 변수명으로 받아올 수 있음
 			String[] hobby,
 			@RequestHeader("User-Agent") String userAgent,
 			Model model) {
 		
 		model.addAttribute("type", type);
-		model.addAttribute("bno", bno);
+		model.addAttribute("bno", boardNo);
 		model.addAttribute("userAgent", userAgent);
 		model.addAttribute("hobby", hobby);
 		return "http/exam02";
