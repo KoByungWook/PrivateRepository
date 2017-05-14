@@ -10,10 +10,13 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +32,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -38,6 +42,7 @@ import javafx.stage.Popup;
 import javafx.util.Duration;
 
 public class MainDisplayController implements Initializable {
+
     //음성 재생용 미디어, 미디어플레이어 선언
     private Media media;
     private MediaPlayer mediaPlayer;
@@ -49,7 +54,13 @@ public class MainDisplayController implements Initializable {
     //공지사항 pane 및 테이블에 들어갈 List 선언
     private BorderPane noticeBorderPane;
     public static ObservableList<Notice> list;
-    
+    //Home 버튼 선언
+    private HBox hboxHome;
+    private Button btnHome;
+    private Button btnSlide;
+    //소메뉴 씬 선언
+    private AnchorPane securityAnchorPane;
+
     @FXML
     private StackPane stackPane;
     @FXML
@@ -102,6 +113,8 @@ public class MainDisplayController implements Initializable {
     private Label labelMainNew;
     @FXML
     private Label labelMainSlide;
+    @FXML
+    private AnchorPane mainBackground;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -115,6 +128,19 @@ public class MainDisplayController implements Initializable {
             list = FXCollections.observableArrayList();
         } catch (IOException ex) {
         }
+        //Home버튼 선언 및 초기 위치 지정
+        try {
+            hboxHome = FXMLLoader.load(getClass().getResource("homeButton.fxml"));
+            btnSlide = (Button) hboxHome.lookup("#btnSlide");
+            btnHome = (Button) hboxHome.lookup("#btnHome");
+            
+            mainBackground.getChildren().add(hboxHome);
+            
+            hboxHome.setTranslateX(760);
+            hboxHome.setTranslateY(200);
+            hboxHome.setOpacity(0);
+        } catch(Exception ex) {
+        }
         //각 버튼별 이벤트 메소드 지정
         btnMainNotice.setOnAction(e -> handleBtnMainNotice(e));
         btnMainElevator.setOnAction(e -> handleBtnMainElevator(e));
@@ -126,7 +152,9 @@ public class MainDisplayController implements Initializable {
         btnMainMenuControl.setOnAction(e -> handleBtnMainMenuControl(e));
         btnMainMenuLock.setOnAction(e -> handleBtnMainMenuLock(e));
         btnMainMenuSetting.setOnAction(e -> handleBtnMainMenuSetting(e));
-    }    
+        btnSlide.setOnAction(e -> handleBtnSlide(e));
+        btnHome.setOnAction(e -> handleBtnHome(e));
+    }
 
     private void startDateTime() {
         //시간,날짜 라벨 폰트 선언
@@ -192,7 +220,7 @@ public class MainDisplayController implements Initializable {
             closeNotice();
         }
     }
-    
+
     private void openNotice() {
         try {
             btnMainNotice.setUserData("open");
@@ -203,10 +231,9 @@ public class MainDisplayController implements Initializable {
 
             labelMainNew.setText("");
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
-    
+
     private void closeNotice() {
         btnMainNotice.setUserData("close");
         anchorPane.getChildren().remove(noticeBorderPane);
@@ -225,82 +252,82 @@ public class MainDisplayController implements Initializable {
 
             int floorNum = (int) (Math.random() * 15) + 1;
             labelDisplay.setText(String.valueOf(floorNum));
-            
+
             btnElevatorUp.setOnAction(e2 -> {
-				media = new Media(getClass().getResource("sounds/elevatorUp.mp3").toString());
-				mediaPlayer = new MediaPlayer(media);
+                media = new Media(getClass().getResource("sounds/elevatorUp.mp3").toString());
+                mediaPlayer = new MediaPlayer(media);
 
-				Thread elevThread = new Thread() {
-					@Override
-					public void run() {
-						while (true) {
-							int floor = Integer.parseInt(labelDisplay.getText());
-							if (floor < 12) {
-								try {
-									Thread.sleep(700);
-								} catch (InterruptedException ex) {
-								}
-								Platform.runLater(() -> {
-									labelDisplay.setText(String.valueOf(floor + 1));
-								});
-							} else if (floor > 12) {
-								try {
-									Thread.sleep(700);
-								} catch (InterruptedException ex) {
-								}
-								Platform.runLater(() -> {
-									labelDisplay.setText(String.valueOf(floor - 1));
-								});
-							} else {
-								Platform.runLater(() -> {
-									mediaPlayer.play();
-								});
-								break;
-							}
-						}
-					}
-				};
-				elevThread.start();
-				mediaPlayerDisposer();
-			});
-            
+                Thread elevThread = new Thread() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            int floor = Integer.parseInt(labelDisplay.getText());
+                            if (floor < 12) {
+                                try {
+                                    Thread.sleep(700);
+                                } catch (InterruptedException ex) {
+                                }
+                                Platform.runLater(() -> {
+                                    labelDisplay.setText(String.valueOf(floor + 1));
+                                });
+                            } else if (floor > 12) {
+                                try {
+                                    Thread.sleep(700);
+                                } catch (InterruptedException ex) {
+                                }
+                                Platform.runLater(() -> {
+                                    labelDisplay.setText(String.valueOf(floor - 1));
+                                });
+                            } else {
+                                Platform.runLater(() -> {
+                                    mediaPlayer.play();
+                                });
+                                break;
+                            }
+                        }
+                    }
+                };
+                elevThread.start();
+                mediaPlayerDisposer();
+            });
+
             btnElevatorDown.setOnAction(e2 -> {
-				media = new Media(getClass().getResource("sounds/elevatorDown.mp3").toString());
-				mediaPlayer = new MediaPlayer(media);
+                media = new Media(getClass().getResource("sounds/elevatorDown.mp3").toString());
+                mediaPlayer = new MediaPlayer(media);
 
-				Thread elevThread = new Thread() {
-					@Override
-					public void run() {
-						while (true) {
-							int floor = Integer.parseInt(labelDisplay.getText());
-							if (floor < 12) {
-								try {
-									Thread.sleep(700);
-								} catch (InterruptedException ex) {
-								}
-								Platform.runLater(() -> {
-									labelDisplay.setText(String.valueOf(floor + 1));
-								});
-							} else if (floor > 12) {
-								try {
-									Thread.sleep(700);
-								} catch (InterruptedException ex) {
-								}
-								Platform.runLater(() -> {
-									labelDisplay.setText(String.valueOf(floor - 1));
-								});
-							} else {
-								Platform.runLater(() -> {
-									mediaPlayer.play();
-								});
-								break;
-							}
-						}
-					}
-				};
-				elevThread.start();
-				mediaPlayerDisposer();
-			});
+                Thread elevThread = new Thread() {
+                    @Override
+                    public void run() {
+                        while (true) {
+                            int floor = Integer.parseInt(labelDisplay.getText());
+                            if (floor < 12) {
+                                try {
+                                    Thread.sleep(700);
+                                } catch (InterruptedException ex) {
+                                }
+                                Platform.runLater(() -> {
+                                    labelDisplay.setText(String.valueOf(floor + 1));
+                                });
+                            } else if (floor > 12) {
+                                try {
+                                    Thread.sleep(700);
+                                } catch (InterruptedException ex) {
+                                }
+                                Platform.runLater(() -> {
+                                    labelDisplay.setText(String.valueOf(floor - 1));
+                                });
+                            } else {
+                                Platform.runLater(() -> {
+                                    mediaPlayer.play();
+                                });
+                                break;
+                            }
+                        }
+                    }
+                };
+                elevThread.start();
+                mediaPlayerDisposer();
+            });
 
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
@@ -308,18 +335,18 @@ public class MainDisplayController implements Initializable {
         } catch (IOException ex) {
         }
     }
-    
+
     private void handleBtnMainOpenDoor(ActionEvent e) {
         btnMainOpenDoor.arm();
-		
-		if(mediaPlayer != null) {
+
+        if (mediaPlayer != null) {
             mediaPlayer.dispose();
         }
-        
+
         media = new Media(getClass().getResource("sounds/openDoor.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        
+
         mediaPlayerDisposer();
         setLabelMainSlide("현관문이 열렸습니다");
     }
@@ -331,15 +358,15 @@ public class MainDisplayController implements Initializable {
             MediaView mediaView = (MediaView) borderPane.lookup("#mediaViewInterphone");
             Button btnInterphoneOpenDoor = (Button) borderPane.lookup("#btnInterphoneOpenDoor");
             Button btnInterphoneSave = (Button) borderPane.lookup("#btnInterphoneSave");
-            
+
             media2 = new Media(getClass().getResource("videos/video.m4v").toString());
             mediaPlayer2 = new MediaPlayer(media2);
             mediaView.setMediaPlayer(mediaPlayer2);
             mediaPlayer2.play();
-            
+
             btnInterphoneOpenDoor.setOnAction(e2 -> handleBtnMainOpenDoor(e2));
             btnInterphoneSave.setOnAction(e2 -> handleBtnInterphoneSave(e2));
-            
+
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
             popup.show(AppMain.primaryStage);
@@ -347,34 +374,34 @@ public class MainDisplayController implements Initializable {
             popup.setOnAutoHide((event) -> {
                 mediaPlayer2.stop();
                 mediaPlayer2.dispose();
-                
+
                 System.gc();
             });
-			
+
         } catch (IOException ex) {
         }
     }
-    
+
     private void handleBtnInterphoneSave(ActionEvent e) {
-        if(mediaPlayer != null) {
+        if (mediaPlayer != null) {
             mediaPlayer.dispose();
         }
         media = new Media(getClass().getResource("sounds/interphone.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        
+
         mediaPlayerDisposer();
-        
+
         String mediaUriTemp = media2.getSource();
-        String mediaUri = mediaUriTemp.substring(6);
-        
+        String mediaUri = mediaUriTemp.substring(5);
+
         try {
             SimpleDateFormat sdf1 = new SimpleDateFormat("MM월dd일E요일HH시mm분SS초");
             String name = sdf1.format(new Date()) + ".m4v";
-            
+
             FileInputStream fis = new FileInputStream(mediaUri);
-            FileOutputStream fos = new FileOutputStream("C:\\Temp\\" + name);
-            
+            FileOutputStream fos = new FileOutputStream("\\home\\pi\\Downloads\\" + name);
+
             byte[] byteArr = new byte[100];
             int readBytes = -1;
             while (true) {
@@ -399,7 +426,7 @@ public class MainDisplayController implements Initializable {
             closeMenuAnimation();
         }
     }
-    
+
     private void openMenuAnimation() {
         //menu 버튼 유저데이터 세팅
         btnMainMenu.setUserData("open");
@@ -436,7 +463,7 @@ public class MainDisplayController implements Initializable {
         //Timeline 실행
         timeline.play();
     }
-    
+
     private void closeMenuAnimation() {
         //menu 버튼 유저데이터 세팅
         btnMainMenu.setUserData("close");
@@ -483,15 +510,69 @@ public class MainDisplayController implements Initializable {
     }
 
     private void handleBtnMainMenuCall(ActionEvent e) {
+        
     }
-
+    
     private void handleBtnMainMenuControl(ActionEvent e) {
+        
     }
 
     private void handleBtnMainMenuLock(ActionEvent e) {
+        
+    }
+
+    private void handleBtnMainMenuSetting(ActionEvent e) {
+        
+    }
+   
+    private void handleBtnSlide(ActionEvent e) {
+        if(btnSlide.getRotate() == 0) {
+            btnSlideOut();
+        } else if(btnSlide.getRotate() == 180) {
+            btnSlideIn();
+        }
+    }
+
+    private void btnSlideOut() {
+        KeyValue keyValue = new KeyValue(hboxHome.translateXProperty(), 670);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+        btnSlide.setRotate(180);
     }
     
-    private void handleBtnMainMenuSetting(ActionEvent e) {
+    private void btnSlideIn() {
+        KeyValue keyValue = new KeyValue(hboxHome.translateXProperty(), 760);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+        btnSlide.setRotate(0);
+    }
+    
+    private void handleBtnHome(ActionEvent e) {
+        KeyValue keyValue = new KeyValue(securityAnchorPane.opacityProperty(), 0);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+
+        timeline.statusProperty().addListener(new ChangeListener<Animation.Status>() {
+            @Override
+            public void changed(ObservableValue<? extends Animation.Status> observable, Animation.Status oldValue, Animation.Status newValue) {
+                StackPane mainStackPane = (StackPane) mainBackground.lookup("#stackPane");
+                mainStackPane.getChildren().remove(1);
+
+                KeyValue keyValue = new KeyValue(hboxHome.translateXProperty(), 760);
+                KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().add(keyFrame);
+                timeline.play();
+                
+                btnSlide.setRotate(0);
+            }
+        });
     }
 
     private void mediaPlayerDisposer() {
@@ -512,12 +593,12 @@ public class MainDisplayController implements Initializable {
                     timeline.getKeyFrames().add(keyFrame);
                     timeline.play();
                 });
-                
+
                 try {
                     Thread.sleep(2500);
                 } catch (InterruptedException ex) {
                 }
-                
+
                 Platform.runLater(() -> {
                     KeyValue keyValue = new KeyValue(labelMainSlide.layoutYProperty(), -30);
                     KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
@@ -536,7 +617,7 @@ public class MainDisplayController implements Initializable {
             public void run() {
                 try {
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("192.168.3.103", 50001));
+                    socket.connect(new InetSocketAddress("192.168.43.213", 50001));
 
                     Platform.runLater(() -> {
                         btnMainConnect.setUserData("connect");
@@ -603,7 +684,7 @@ public class MainDisplayController implements Initializable {
                             labelMainNew.setText("N");
                         }
                     } catch (Exception ex) {
-                        
+
                     }
                 });
             }

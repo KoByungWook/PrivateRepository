@@ -8,10 +8,13 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,8 +28,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -34,9 +39,10 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.util.Duration;
+import static mainDisplay.AppMain.mainAnchorPane;
 
 public class MainDisplayController implements Initializable {
-    
+
     public static ObservableList<Notice> list;
     private Socket socket;
     private BorderPane noticeBorderPane;
@@ -44,6 +50,9 @@ public class MainDisplayController implements Initializable {
     private TableView<Notice> noticeTable;
     private Media media;
     private MediaPlayer mediaPlayer;
+    private HBox hbox;
+    private Button btnHome;
+    private Button btnSlide;
 
     @FXML
     private StackPane stackPane;
@@ -97,11 +106,11 @@ public class MainDisplayController implements Initializable {
     private Label labelSubBtnName3;
     @FXML
     private Label labelSubBtnName4;
+    @FXML
+    private AnchorPane mainBackground;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        //공지 클라이언트 시작
-//        startClient();
         //공지 테이블 선언
         try {
             noticeBorderPane = FXMLLoader.load(getClass().getResource("notice.fxml"));
@@ -166,6 +175,19 @@ public class MainDisplayController implements Initializable {
         };
         timeThread.setDaemon(true);
         timeThread.start();
+        //
+        try {
+            hbox = FXMLLoader.load(getClass().getResource("homeButton.fxml"));
+            btnSlide = (Button) hbox.lookup("#btnSlide");
+            btnHome = (Button) hbox.lookup("#btnHome");
+
+            mainBackground.getChildren().add(hbox);
+            hbox.setTranslateX(760);
+            hbox.setTranslateY(200);
+            hbox.setOpacity(0);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         //버튼 이벤트 선언
         btnMainNotice.setOnAction(e -> handleBtnMainNotice(e));
         btnMainElevator.setOnAction(e -> handleBtnMainElevator(e));
@@ -177,6 +199,8 @@ public class MainDisplayController implements Initializable {
         btnMainMenuControl.setOnAction(e -> handleBtnMainMenuControl(e));
         btnMainMenuLock.setOnAction(e -> handleBtnMainMenuLock(e));
         btnMainMenuSetting.setOnAction(e -> handleBtnMainMenuSetting(e));
+        btnSlide.setOnAction(e -> handleBtnSlide(e));
+        btnHome.setOnAction(e -> handleBtnHome(e));
         //포커스 시 파란색 테두리 해제
         btnMainElevator.setFocusTraversable(false);
         btnMainOpenDoor.setFocusTraversable(false);
@@ -223,8 +247,8 @@ public class MainDisplayController implements Initializable {
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
             popup.show(AppMain.primaryStage);
-			
-			System.gc();
+
+            System.gc();
 
         } catch (IOException ex) {
         }
@@ -237,14 +261,13 @@ public class MainDisplayController implements Initializable {
         media = new Media(getClass().getResource("sounds/openDoor.mp3").toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-		
 
 //        setLabelMainSlide("현관문이 열렸습니다");
     }
 
     private void handleBtnMainInterphone(ActionEvent e) {
         Popup popup = new Popup();
-		System.out.println("1");
+        System.out.println("1");
         try {
             BorderPane borderPane = (BorderPane) FXMLLoader.load(getClass().getResource("interphonePopup.fxml"));
             MediaView mediaView = (MediaView) borderPane.lookup("#mediaViewInterphone");
@@ -256,20 +279,17 @@ public class MainDisplayController implements Initializable {
 //            System.out.println(frontMedia);
 //			System.out.println(frontMediaPlayer);
 //			System.out.println(mediaView);
-			
-            
             popup.getContent().add(borderPane);
             popup.setAutoHide(true);
             popup.show(AppMain.primaryStage);
 
-            
 //            popup.setOnAutoHide((event) -> {
 //                frontMediaPlayer.stop();
 //            });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
     }
 
     private void handleBtnMainMenu(ActionEvent e) {
@@ -371,8 +391,11 @@ public class MainDisplayController implements Initializable {
     }
 
     private void handleBtnMainMenuLock(ActionEvent e) {
-		securityAnchorPane.setOpacity(1);
+        securityAnchorPane.setOpacity(1);
         stackPane.getChildren().add(securityAnchorPane);
+
+        hbox.setOpacity(1);
+        hbox.toFront();
     }
 
     private void handleBtnMainMenuSetting(ActionEvent e) {
@@ -491,6 +514,51 @@ public class MainDisplayController implements Initializable {
             }
         } catch (Exception ex) {
         }
+    }
+
+    private void handleBtnSlide(ActionEvent e) {
+        if (btnSlide.getRotate() == 0) {
+            KeyValue keyValue = new KeyValue(hbox.translateXProperty(), 670);
+            KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.play();
+            btnSlide.setRotate(180);
+            return;
+        } else if(btnSlide.getRotate() == 180) {
+            KeyValue keyValue = new KeyValue(hbox.translateXProperty(), 760);
+            KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.play();
+            btnSlide.setRotate(0);
+        }
+        
+    }
+
+    private void handleBtnHome(ActionEvent e) {
+        KeyValue keyValue = new KeyValue(securityAnchorPane.opacityProperty(), 0);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+
+        timeline.statusProperty().addListener(new ChangeListener<Animation.Status>() {
+            @Override
+            public void changed(ObservableValue<? extends Animation.Status> observable, Animation.Status oldValue, Animation.Status newValue) {
+                StackPane mainStackPane = (StackPane) mainAnchorPane.lookup("#stackPane");
+                mainStackPane.getChildren().remove(1);
+
+                KeyValue keyValue = new KeyValue(hbox.translateXProperty(), 760);
+                KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().add(keyFrame);
+                timeline.play();
+                btnSlide.setRotate(0);
+            }
+        });
+        
+        hbox.setOpacity(0);
     }
 
 }

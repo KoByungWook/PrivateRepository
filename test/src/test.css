@@ -1,0 +1,8 @@
+#circle {
+    -fx-fill: white;
+}
+
+#rectangle {
+    -fx-fill: white;
+    -fx-width-radius: 30;
+}

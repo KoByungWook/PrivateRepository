@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="borderPane" prefHeight="167.0" prefWidth="435.0" stylesheets="@root.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch17.mediaPlayer.RootController">
+   <bottom>
+      <HBox fx:id="hbox" alignment="CENTER" prefHeight="42.0" prefWidth="537.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSlow" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/slow.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnStop" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/stop.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnPlay" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/play.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnPause" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/pause.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnFast" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/fast.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/volume.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Slider fx:id="sliderVol" prefHeight="14.0" prefWidth="114.0" showTickMarks="true">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Slider>
+            <Button fx:id="btnOpen" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/open.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="5.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnDelete" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/paste.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox fx:id="vbox" alignment="CENTER" prefHeight="240.0" prefWidth="420.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane fx:id="stackPane" prefHeight="210.0" prefWidth="420.0">
+               <children>
+                  <MediaView fx:id="mediaView" fitHeight="210.0" fitWidth="420.0" preserveRatio="false" />
+               </children>
+            </StackPane>
+            <VBox fx:id="vbox2" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="420.0">
+               <children>
+                  <Label fx:id="labelTime" alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="76.0" />
+                  <Slider fx:id="sliderTime" layoutX="14.0" layoutY="241.0" prefHeight="14.0" prefWidth="420.0" showTickMarks="true" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <TableView fx:id="tableView" prefHeight="250.0" prefWidth="115.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="136.0" text="재생목록" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" />
+         </BorderPane.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </right>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</BorderPane>

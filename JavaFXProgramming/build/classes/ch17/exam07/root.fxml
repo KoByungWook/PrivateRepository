@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="500.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/member02.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label maxWidth="1.7976931348623157E308" prefHeight="30.0" text="1. 정우성" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="GulimChe" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="직업 : 영화배우, 탤런트&#10;소속사 : 아티스트컴퍼니&#10;키 : 186cm&#10;데뷔 : 1994년 영화 구미호&#10;" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/member06.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label maxWidth="1.7976931348623157E308" prefHeight="30.0" text="2. 아만다 사이프리드" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="직업 : 영화배우&#10;출생 : 1985년 12월 3일, 미국&#10;키 : 159cm&#10;데뷔 : 1999년 CBS 드라마 '애즈 더 월드 턴즈'&#10;" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/member10.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label maxWidth="1.7976931348623157E308" prefHeight="30.0" text="3. 박보영">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="직업 : 영화배우, 탤런드&#10;소속사 : 피데스스파티윰&#10;키 : 158cm&#10;데뷔 : 2006년 EBS 드라마 '비밀의 교정'&#10;" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
