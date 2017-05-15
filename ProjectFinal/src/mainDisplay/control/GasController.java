@@ -28,6 +28,8 @@ import static mainDisplay.control.ControlController.gasvalue;
 
 public class GasController implements Initializable {
 
+	public static Media media;
+	public static MediaPlayer mediaPlayer;
     @FXML
     private BorderPane gas;
     private ToggleButton btnOnOff;
@@ -122,8 +124,11 @@ public class GasController implements Initializable {
             lblOnOff.setAlignment(Pos.CENTER_RIGHT);
             gasvalue.setLblOnOff(lblOnOff.getText());
             
-            Media media = new Media(getClass().getResource("../sounds/gasOn.mp3").toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media); 
+			if(mediaPlayer != null) {
+				mediaPlayer.dispose();
+			}
+            media = new Media(getClass().getResource("../sounds/gasOn.mp3").toString());
+            mediaPlayer = new MediaPlayer(media); 
             mediaPlayer.play();
             
             gasImage.setImage(new Image(getClass().getResource("images/gason1.png").toString()));
@@ -138,8 +143,11 @@ public class GasController implements Initializable {
             lblOnOff.setAlignment(Pos.CENTER_LEFT);
             gasvalue.setLblOnOff(lblOnOff.getText());
             
-            Media media = new Media(getClass().getResource("../sounds/gasOff.mp3").toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media); 
+			if(mediaPlayer != null) {
+				mediaPlayer.dispose();
+			}
+            media = new Media(getClass().getResource("../sounds/gasOff.mp3").toString());
+            mediaPlayer = new MediaPlayer(media); 
             mediaPlayer.play();
             
             gasImage.setImage(new Image(getClass().getResource("images/gasoff1.png").toString()));

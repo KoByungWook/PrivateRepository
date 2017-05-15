@@ -89,7 +89,7 @@ public class Volume1Controller implements Initializable {
         btnAccept.setFont(font4);
         
         if (MusicAddress == null) {
-            MusicAddress = "media/bell1.mp3";
+            MusicAddress = "../sounds/bell1.mp3";
         }
         if (sta.getTxtMusic1() != null) {
             txtMusic.setText(sta.getTxtMusic1());
@@ -177,6 +177,7 @@ public class Volume1Controller implements Initializable {
                 if (mediaPlayer != null) {
                     mediaPlayer.dispose();
                 }
+				System.out.println(MusicAddress.toString());
                 media = new Media(getClass().getResource(MusicAddress).toString());
                 mediaPlayer = new MediaPlayer(media);
                 mediaPlayer.play();
@@ -244,9 +245,9 @@ public class Volume1Controller implements Initializable {
         btnAccept.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                sta.setTxtMusic(txtMusic.getText());
-                sta.setSliderCall(slidersoundValue1);
-                sta.setSliderMusic(slidersoundValue2);
+                sta.setTxtMusic1(txtMusic.getText());
+                sta.setSliderCall1(slidersoundValue1);
+                sta.setSliderMusic1(slidersoundValue2);
                 sta.setMusicAddress2(MusicAddress);
             }
         });

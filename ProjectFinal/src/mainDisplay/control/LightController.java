@@ -28,6 +28,9 @@ import static mainDisplay.control.ControlController.lightvalue;
 
 public class LightController implements Initializable {
 
+	public static Media media;
+	public static MediaPlayer mediaPlayer;
+	
     @FXML
     private BorderPane light;
     @FXML
@@ -252,9 +255,14 @@ public class LightController implements Initializable {
             lblOnOff.setText("ON");
             lblOnOff.setAlignment(Pos.CENTER_RIGHT);
             lightvalue.setLblOnOff(lblOnOff.getText());
-                        
-            Media media = new Media(getClass().getResource("../sounds/lightOn.mp3").toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media); 
+                  
+			
+			if(mediaPlayer != null) {
+				mediaPlayer.dispose();
+			}
+			
+            media = new Media(getClass().getResource("../sounds/lightOn.mp3").toString());
+            mediaPlayer = new MediaPlayer(media); 
             mediaPlayer.play();
         
             
@@ -281,8 +289,13 @@ public class LightController implements Initializable {
             lblOnOff.setAlignment(Pos.CENTER_LEFT);
             lightvalue.setLblOnOff(lblOnOff.getText());
             
-            Media media = new Media(getClass().getResource("../sounds/lightOff.mp3").toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media); 
+			
+			if(mediaPlayer != null) {
+				mediaPlayer.dispose();
+			}
+			
+            media = new Media(getClass().getResource("../sounds/lightOff.mp3").toString());
+            mediaPlayer = new MediaPlayer(media); 
             mediaPlayer.play();
             
             btnImg1.setImage(new Image(getClass().getResource("images/light_off.png").toString()));

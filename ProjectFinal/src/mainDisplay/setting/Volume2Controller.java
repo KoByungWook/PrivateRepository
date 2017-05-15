@@ -90,7 +90,7 @@ public class Volume2Controller implements Initializable {
         btnAccept.setFont(font4);
         
         if (MusicAddress == null) {
-            MusicAddress = "media/bell1.mp3";
+            MusicAddress = "../sounds/bell1.mp3";
         }
         if (sta.getTxtMusic2() != null) {
             txtMusic.setText(sta.getTxtMusic2());
@@ -228,9 +228,9 @@ public class Volume2Controller implements Initializable {
         btnAccept.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                sta.setTxtMusic(txtMusic.getText());
-                sta.setSliderCall(slidersoundValue1);
-                sta.setSliderMusic(slidersoundValue2);
+                sta.setTxtMusic2(txtMusic.getText());
+                sta.setSliderCall2(slidersoundValue1);
+                sta.setSliderMusic2(slidersoundValue2);
                 sta.setMusicAddress3(MusicAddress);
             }
         });

@@ -40,6 +40,8 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.util.Duration;
+import mainDisplay.control.GasController;
+import mainDisplay.control.LightController;
 import mainDisplay.setting.RootController;
 
 public class MainDisplayController implements Initializable {
@@ -397,6 +399,7 @@ public class MainDisplayController implements Initializable {
         mediaPlayerDisposer();
 
         String mediaUriTemp = media2.getSource();
+		System.out.println(mediaUriTemp);
         String mediaUri = mediaUriTemp.substring(6);
 
         try {
@@ -557,13 +560,15 @@ public class MainDisplayController implements Initializable {
         }
     }
    
-    private void handleBtnSlide(ActionEvent e) {
-        if(btnSlide.getRotate() == 0) {
-            btnSlideOut();
-        } else if(btnSlide.getRotate() == 180) {
-            btnSlideIn();
-        }
-    }
+  private void handleBtnSlide(ActionEvent e) {
+		if (stackPane.getChildren().size() == 2) {
+			if (btnSlide.getRotate() == 0) {
+				btnSlideOut();
+			} else if (btnSlide.getRotate() == 180) {
+				btnSlideIn();
+			}
+		}
+	}
 
     private void btnSlideOut() {
         KeyValue keyValue = new KeyValue(hboxHome.translateXProperty(), 670);
@@ -587,29 +592,37 @@ public class MainDisplayController implements Initializable {
         if(RootController.mediaPlayer != null) {
             RootController.mediaPlayer.dispose();
         }
+		if(GasController.mediaPlayer != null) {
+			GasController.mediaPlayer.dispose();
+		}
+		
+		if(LightController.mediaPlayer != null) {
+			LightController.mediaPlayer.dispose();
+		}
         
-        KeyValue keyValue = new KeyValue(stackPane.getChildren().get(1).opacityProperty(), 0.2);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
-        KeyValue keyValue2 = new KeyValue(hboxHome.opacityProperty(), 0);
-        KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(0.5), keyValue2);
-        KeyValue keyValue3 = new KeyValue(hboxHome.translateXProperty(), 760);
-        KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(0.5), keyValue3);
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.getKeyFrames().add(keyFrame2);
-        timeline.getKeyFrames().add(keyFrame3);
-        timeline.play();
+		if (stackPane.getChildren().size() == 2) {
+			KeyValue keyValue = new KeyValue(stackPane.getChildren().get(1).opacityProperty(), 0.2);
+			KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
+			KeyValue keyValue2 = new KeyValue(hboxHome.opacityProperty(), 0);
+			KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(0.5), keyValue2);
+			KeyValue keyValue3 = new KeyValue(hboxHome.translateXProperty(), 760);
+			KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(0.5), keyValue3);
+			Timeline timeline = new Timeline();
+			timeline.getKeyFrames().add(keyFrame);
+			timeline.getKeyFrames().add(keyFrame2);
+			timeline.getKeyFrames().add(keyFrame3);
+			timeline.play();
 
-        btnSlide.setRotate(0);
-        
-        timeline.statusProperty().addListener(new ChangeListener<Animation.Status>() {
-            @Override
-            public void changed(ObservableValue<? extends Animation.Status> observable, Animation.Status oldValue, Animation.Status newValue) {
-                stackPane.getChildren().remove(1);
-                btnSlide.setRotate(0);
-            }
-        });
-        
+			btnSlide.setRotate(0);
+
+			timeline.statusProperty().addListener(new ChangeListener<Animation.Status>() {
+				@Override
+				public void changed(ObservableValue<? extends Animation.Status> observable, Animation.Status oldValue, Animation.Status newValue) {
+					stackPane.getChildren().remove(1);
+					btnSlide.setRotate(0);
+				}
+			});
+		}
         
     }
 
@@ -655,7 +668,7 @@ public class MainDisplayController implements Initializable {
             public void run() {
                 try {
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("192.168.3.129", 50001));
+                    socket.connect(new InetSocketAddress("localhost", 50001));
 
                     Platform.runLater(() -> {
                         btnMainConnect.setUserData("connect");
