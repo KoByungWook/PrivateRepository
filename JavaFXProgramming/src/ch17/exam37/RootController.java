@@ -28,6 +28,7 @@ public class RootController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btnStart.setOnAction(e -> handleBtnStart(e));
         btnStop.setOnAction(e -> handleBtnStop(e));
+        System.out.println(System.currentTimeMillis());
     }    
 
     private void handleBtnStart(ActionEvent e) {

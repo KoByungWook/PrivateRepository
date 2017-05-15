@@ -1,7 +1,7 @@
 #mainBackground {
-/*    -fx-background-image: url("images/graybackground.jpg");
-    -fx-background-size: stretch;*/
-    -fx-background-color: #aaaaaa;
+    -fx-background-image: url("images/background01.jpg");
+    -fx-background-size: stretch;
+/*    -fx-background-color: #aaaaaa;*/
     
 }
 

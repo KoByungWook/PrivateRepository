@@ -40,6 +40,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.util.Duration;
+import mainDisplay.setting.RootController;
 
 public class MainDisplayController implements Initializable {
 
@@ -59,7 +60,10 @@ public class MainDisplayController implements Initializable {
     private Button btnHome;
     private Button btnSlide;
     //소메뉴 씬 선언
+    private AnchorPane callAnchorPane;
+    private BorderPane controlBorderPane;
     private AnchorPane securityAnchorPane;
+    private AnchorPane settingAnchorPane;
 
     @FXML
     private StackPane stackPane;
@@ -137,7 +141,7 @@ public class MainDisplayController implements Initializable {
             mainBackground.getChildren().add(hboxHome);
             
             hboxHome.setTranslateX(760);
-            hboxHome.setTranslateY(200);
+            hboxHome.setTranslateY(80);
             hboxHome.setOpacity(0);
         } catch(Exception ex) {
         }
@@ -158,8 +162,8 @@ public class MainDisplayController implements Initializable {
 
     private void startDateTime() {
         //시간,날짜 라벨 폰트 선언
-        Font timeFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 56);
-        Font dateFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 28);
+        Font timeFont = Font.loadFont(getClass().getResource("fonts/08SeoulNamsanEB.ttf").toExternalForm(), 60);
+        Font dateFont = Font.loadFont(getClass().getResource("fonts/08SeoulNamsanEB.ttf").toExternalForm(), 32);
         //시간,날짜 데이터 읽기, 라벨에 출력하기, 라벨 위치 설정하기
         Thread timeThread = new Thread() {
             @Override
@@ -196,9 +200,9 @@ public class MainDisplayController implements Initializable {
 
     private void setMainFont() {
         //폰트 선언
-        Font nameFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 16);
-        Font slideFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 15);
-        Font subFont = Font.loadFont(getClass().getResource("fonts/NanumBarunGothicBold.ttf").toExternalForm(), 13);
+        Font nameFont = Font.loadFont(getClass().getResource("fonts/08SeoulNamsanEB.ttf").toExternalForm(), 16);
+        Font slideFont = Font.loadFont(getClass().getResource("fonts/08SeoulNamsanEB.ttf").toExternalForm(), 15);
+        Font subFont = Font.loadFont(getClass().getResource("fonts/08SeoulNamsanEB.ttf").toExternalForm(), 13);
         //버튼 라벨&서브 버튼 라벨 폰트 설정   
         labelMainBtnName1.setFont(nameFont);
         labelMainBtnName2.setFont(nameFont);
@@ -393,14 +397,14 @@ public class MainDisplayController implements Initializable {
         mediaPlayerDisposer();
 
         String mediaUriTemp = media2.getSource();
-        String mediaUri = mediaUriTemp.substring(5);
+        String mediaUri = mediaUriTemp.substring(6);
 
         try {
             SimpleDateFormat sdf1 = new SimpleDateFormat("MM월dd일E요일HH시mm분SS초");
             String name = sdf1.format(new Date()) + ".m4v";
 
             FileInputStream fis = new FileInputStream(mediaUri);
-            FileOutputStream fos = new FileOutputStream("\\home\\pi\\Downloads\\" + name);
+            FileOutputStream fos = new FileOutputStream("C:\\Temp\\" + name);
 
             byte[] byteArr = new byte[100];
             int readBytes = -1;
@@ -510,19 +514,47 @@ public class MainDisplayController implements Initializable {
     }
 
     private void handleBtnMainMenuCall(ActionEvent e) {
-        
+        try {
+            callAnchorPane = FXMLLoader.load(getClass().getResource("call/call.fxml"));
+            stackPane.getChildren().add(callAnchorPane);
+            
+            hboxHome.setOpacity(1);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
     private void handleBtnMainMenuControl(ActionEvent e) {
-        
+        try {
+            controlBorderPane = FXMLLoader.load(getClass().getResource("control/control.fxml"));
+            stackPane.getChildren().add(controlBorderPane);
+            
+            hboxHome.setOpacity(1);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void handleBtnMainMenuLock(ActionEvent e) {
-        
+        try {
+            securityAnchorPane = FXMLLoader.load(getClass().getResource("securitydisplay/security_main.fxml"));
+            stackPane.getChildren().add(securityAnchorPane);
+
+            hboxHome.setOpacity(1);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void handleBtnMainMenuSetting(ActionEvent e) {
-        
+        try {
+            settingAnchorPane = FXMLLoader.load(getClass().getResource("setting/root.fxml"));
+            stackPane.getChildren().add(settingAnchorPane);
+            
+            hboxHome.setOpacity(1);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
    
     private void handleBtnSlide(ActionEvent e) {
@@ -552,27 +584,33 @@ public class MainDisplayController implements Initializable {
     }
     
     private void handleBtnHome(ActionEvent e) {
-        KeyValue keyValue = new KeyValue(securityAnchorPane.opacityProperty(), 0);
+        if(RootController.mediaPlayer != null) {
+            RootController.mediaPlayer.dispose();
+        }
+        
+        KeyValue keyValue = new KeyValue(stackPane.getChildren().get(1).opacityProperty(), 0.2);
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
+        KeyValue keyValue2 = new KeyValue(hboxHome.opacityProperty(), 0);
+        KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(0.5), keyValue2);
+        KeyValue keyValue3 = new KeyValue(hboxHome.translateXProperty(), 760);
+        KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(0.5), keyValue3);
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(keyFrame);
+        timeline.getKeyFrames().add(keyFrame2);
+        timeline.getKeyFrames().add(keyFrame3);
         timeline.play();
 
+        btnSlide.setRotate(0);
+        
         timeline.statusProperty().addListener(new ChangeListener<Animation.Status>() {
             @Override
             public void changed(ObservableValue<? extends Animation.Status> observable, Animation.Status oldValue, Animation.Status newValue) {
-                StackPane mainStackPane = (StackPane) mainBackground.lookup("#stackPane");
-                mainStackPane.getChildren().remove(1);
-
-                KeyValue keyValue = new KeyValue(hboxHome.translateXProperty(), 760);
-                KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.4), keyValue);
-                Timeline timeline = new Timeline();
-                timeline.getKeyFrames().add(keyFrame);
-                timeline.play();
-                
+                stackPane.getChildren().remove(1);
                 btnSlide.setRotate(0);
             }
         });
+        
+        
     }
 
     private void mediaPlayerDisposer() {
@@ -617,7 +655,7 @@ public class MainDisplayController implements Initializable {
             public void run() {
                 try {
                     socket = new Socket();
-                    socket.connect(new InetSocketAddress("192.168.43.213", 50001));
+                    socket.connect(new InetSocketAddress("192.168.3.129", 50001));
 
                     Platform.runLater(() -> {
                         btnMainConnect.setUserData("connect");

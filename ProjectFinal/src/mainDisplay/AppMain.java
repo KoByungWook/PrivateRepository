@@ -14,7 +14,6 @@ public class AppMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         AppMain.primaryStage = primaryStage;
         AnchorPane mainAnchorPane = FXMLLoader.load(getClass().getResource("mainDisplay.fxml"));
-
         Scene scene = new Scene(mainAnchorPane);
         primaryStage.setTitle("AppMain");
         primaryStage.setScene(scene);
