@@ -6,7 +6,6 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
-import com.pi4j.wiringpi.Gpio;
 
 public class RgbLed {
 	private GpioPinDigitalOutput redPin;
@@ -25,32 +24,59 @@ public class RgbLed {
 		bluePin.setShutdownOptions(true, PinState.LOW);
 	}
 	
-	public void red() {
-		redPin.low();
-		greenPin.high();
-		bluePin.high();
+	public void rgb(boolean red, boolean green, boolean blue) {
+		if(red) {
+			redPin.low();
+		} else {
+			redPin.high();
+		}
+		
+		if(green) {
+			greenPin.low();
+		} else {
+			greenPin.high();
+		}
+		
+		if(blue) {
+			bluePin.low();
+		} else {
+			bluePin.high();
+		}
 	}
 	
-	public void green() {
-		redPin.high();
-		greenPin.low();
-		bluePin.high();
+	public void red(boolean state) {
+		if (state == true) {
+			redPin.low();
+		} else if(state == false) {
+			redPin.high();
+		}
 	}
 	
-	public void blue() {
-		redPin.high();
-		greenPin.high();
-		bluePin.low();
+	public void green(boolean state) {
+		if (state == true) {
+			greenPin.low();
+		} else if(state == false) {
+			greenPin.high();
+		}
 	}
+	
+	public void blue(boolean state) {
+		if (state == true) {
+			bluePin.low();
+		} else if(state == false) {
+			bluePin.high();
+		}
+	}
+	
 	public static void main(String[] args) throws InterruptedException {
 		RgbLed test = new RgbLed(RaspiPin.GPIO_27, RaspiPin.GPIO_28, RaspiPin.GPIO_29);
 		
 		while(true) {
-			test.red();
+			test.rgb(true, false, false);
 			Thread.sleep(1000);
-			test.green();
+			test.rgb(false, true, false);
 			Thread.sleep(1000);
-			test.blue();
+			test.rgb(false, false, true);
 			Thread.sleep(1000);
 		}
 	}
