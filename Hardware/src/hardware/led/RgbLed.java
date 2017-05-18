@@ -6,6 +6,7 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
+import java.io.File;
 
 public class RgbLed {
 	private GpioPinDigitalOutput redPin;
@@ -70,7 +71,6 @@ public class RgbLed {
 	
 	public static void main(String[] args) throws InterruptedException {
 		RgbLed test = new RgbLed(RaspiPin.GPIO_27, RaspiPin.GPIO_28, RaspiPin.GPIO_29);
-		
 		while(true) {
 			test.rgb(true, false, false);
 			Thread.sleep(1000);
