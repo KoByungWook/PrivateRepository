@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	 <head>
-			<meta charset=UTF-8">
+			<meta charset="UTF-8">
 			<title>JSP Page</title>
 			<script>
 				 function totalSum(from, to) {

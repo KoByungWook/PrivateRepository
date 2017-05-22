@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset=UTF-8">
+		<meta charset="UTF-8">
 			<meta name= viewport content="width=device-width initial-scale=1 user-scalable=no">
 			<title>회원 가입</title>
 			<link href="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
