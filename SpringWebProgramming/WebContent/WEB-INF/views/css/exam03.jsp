@@ -4,7 +4,7 @@
 	 <head>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 			<title>JSP Page</title>
-			<link href="/WebApplication/resources/css/exam03.css" rel="stylesheet" type="text/css"/>
+			<link href="<%=application.getContextPath()%>/resources/css/exam03.css" rel="stylesheet" type="text/css"/>
 	 </head>
 	 <body>
 			<div>div태그</div>

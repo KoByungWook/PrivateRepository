@@ -15,7 +15,7 @@
 				 <button type="button" class="btn btn-primary">Default</button>
 				 <button type="button" class="btn btn-warning">Default</button>
 				 <button type="button" class="btn btn-success">Default</button>
-				 <a class="btn btn-info" href="/WebApplication">a tag</a>
+				 <a class="btn btn-info" href="<%=application.getContextPath()%>">a tag</a>
 				 <input type="button" class="btn btn-success" value="input tag"/>
 			
 			<h3> 테이블 </h3>
@@ -33,9 +33,9 @@
 			</table>
 			
 			<h3>이미지</h3>
-			<img class="img-rounded" src="/WebApplication/resources/images/photo1.jpg" width="100px" height="100px">
-			<img class="img-circle" src="/WebApplication/resources/images/photo1.jpg" width="100px" height="100px">
-			<img class="img-thumbnail" src="/WebApplication/resources/images/photo1.jpg" width="100px" height="100px">
+			<img class="img-rounded" src="<%=application.getContextPath()%>/resources/images/photo1.jpg" width="100px" height="100px">
+			<img class="img-circle" src="<%=application.getContextPath()%>/resources/images/photo1.jpg" width="100px" height="100px">
+			<img class="img-thumbnail" src="<%=application.getContextPath()%>/resources/images/photo1.jpg" width="100px" height="100px">
 			
 			<h3>폼</h3>
 			<form>

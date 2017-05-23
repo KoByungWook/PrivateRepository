@@ -14,7 +14,7 @@
 				 
 				 var pop1;
 				 function handleBtn1() {
-						pop1 = window.open("/WebApplication/javascript/exam09", "pop1", "width=300, height=200");
+						pop1 = window.open("<%=application.getContextPath()%>/javascript/exam09", "pop1", "width=300, height=200");
 				 }
 				 function handleBtn2() {
 						pop1.close();

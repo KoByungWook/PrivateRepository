@@ -27,7 +27,7 @@
 			<span style="background-color:blueviolet; border:1px solid black; height: 100px">span 태그</span>
 			<span style="background-color:cyan; border:1px solid black; height: 100px">span 태그2</span><br/>
 			<span style="background-color:chartreuse; border:1px solid black; height: 100px">span 태그3</span>
-			<img src="/WebApplication/resources/images/penguins.jpg" style="border:2px solid black; height: 100px" />
+			<img src="<%=application.getContextPath()%>/resources/images/penguins.jpg" style="border:2px solid black; height: 100px" />
 			<a style="border:2px solid blue; height: 100px">a 태그</a>
 			
 			<h3>블록 -> 인라인</h3>

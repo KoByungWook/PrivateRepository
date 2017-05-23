@@ -24,17 +24,17 @@
 			<button id="btnGoogle" onclick="handleBtnGoogle()">구글</button>
 			<input type ="button" onclick="handleBtnNaver()" value="네이버"/>		
 			<h3>이미지 태그</h3>
-			<img src="/WebApplication/resources/images/penguins.jpg" alt="penguins" height="42" width="42"/>
-			<input type="image" src="/WebApplication/resources/images/penguins.jpg"/>
+			<img src="<%=application.getContextPath()%>/resources/images/penguins.jpg" alt="penguins" height="42" width="42"/>
+			<input type="image" src="<%=application.getContextPath()%>/resources/images/penguins.jpg"/>
 			
 			<h3>컨테이너 태그</h3>
 			<div>
-				 <img src="/WebApplication/resources/images/penguins.jpg" alt="penguins" height="42" width="42"/>
+				 <img src="<%=application.getContextPath()%>/resources/images/penguins.jpg" alt="penguins" height="42" width="42"/>
 				 <button id="btnNaver" onclick="handleBtnNaver()">네이버</button>
 			</div>
 			
 			<div>
-				 <img src="/WebApplication/resources/images/penguins.jpg" alt="penguins" height="42" width="42"/>
+				 <img src="<%=application.getContextPath()%>/resources/images/penguins.jpg" alt="penguins" height="42" width="42"/>
 				 <button id="btnNaver" onclick="handleBtnNaver()">네이버</button>
 			</div>
 			
