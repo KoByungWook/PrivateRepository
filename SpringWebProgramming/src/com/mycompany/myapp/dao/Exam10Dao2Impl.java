@@ -1,8 +1,5 @@
 package com.mycompany.myapp.dao;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Exam10Dao2Impl implements Exam10Dao2{
 	
 	public void insert() {

@@ -60,7 +60,7 @@
 							exam += String.valueOf(i);
 					}%>
 	<a href="bootstrap/<%=exam%>" class="btn btn-primary"><%=exam%></a>
-	<%}%>"
+	<%}%>
 
 	<h4>JSP</h4>
 	<%for(int i=1;i<=5;i++){
@@ -101,5 +101,9 @@
 	<h4>의존성 주입</h4>
 	<a href="di/exam01" class="btn btn-primary">회원 가입</a>
 	<a href="di/exam02" class="btn btn-primary">로그인</a>
+
+	<h4>redirect</h4>
+	<a href="redirect/write" class="btn btn-primary">게시물 목록</a>
+	<a href="redirect/list" class="btn btn-primary">게시물 쓰기</a>
 </body>
 </html>

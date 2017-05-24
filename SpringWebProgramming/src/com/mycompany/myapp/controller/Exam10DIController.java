@@ -9,6 +9,7 @@ import com.mycompany.myapp.service.Exam10Service2;
 import com.mycompany.myapp.service.Exam10Service3;
 import com.mycompany.myapp.service.Exam10Service4;
 import com.mycompany.myapp.service.Exam10Service5;
+import com.mycompany.myapp.service.Exam10Service6;
 
 @Controller
 public class Exam10DIController {
@@ -22,6 +23,8 @@ public class Exam10DIController {
 	private Exam10Service4 exam10Service4;
 	@Autowired
 	private Exam10Service5 exam10Service5;
+	@Autowired
+	private Exam10Service6 exam10Service6;
 	
 	@RequestMapping("/di/exam01")
 	public String exam01() {
@@ -31,6 +34,7 @@ public class Exam10DIController {
 		exam10Service3.join();
 		exam10Service4.join();
 		exam10Service5.join();
+		exam10Service6.join();
 		return "di/exam01";
 	}
 	
@@ -42,6 +46,7 @@ public class Exam10DIController {
 		exam10Service3.login();
 		exam10Service4.login();
 		exam10Service5.login();
+		exam10Service6.login();
 		return "di/exam01";
 	}
 }
