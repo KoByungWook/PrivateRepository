@@ -5,10 +5,12 @@ import hardware.converter.PCF8591;
 public class ThermistorSensor {
 	//Field
 	private PCF8591 pcf8591;
+	
 	//Constructor
 	public ThermistorSensor(PCF8591 pcf8591) {
 		this.pcf8591 = pcf8591;
 	}
+	
 	//Method
 	public double getValue() throws Exception {
 		int analogVal = pcf8591.analogRead();	//0~255

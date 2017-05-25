@@ -10,13 +10,13 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import hardware.converter.PCF8591;
 
-public class FlameSensor {
+public class GasSensor {
 	//Field
 	private PCF8591 pcf8591;
 	private GpioPinDigitalInput gpioPinDigitalInput;
 	
 	//Constructor
-	public FlameSensor(PCF8591 pcf8591, Pin digitalPinNo) {
+	public GasSensor(PCF8591 pcf8591, Pin digitalPinNo) {
 		this.pcf8591 = pcf8591;
 		GpioController gpioController = GpioFactory.getInstance();
 		gpioPinDigitalInput = gpioController.provisionDigitalInputPin(digitalPinNo);
@@ -34,7 +34,7 @@ public class FlameSensor {
 	
 	public static void main(String[] args) throws Exception {
 		PCF8591 pcf8591 = new PCF8591(0x48, PCF8591.AIN0);
-		FlameSensor test = new FlameSensor(pcf8591, RaspiPin.GPIO_00);
+		GasSensor test = new GasSensor(pcf8591, RaspiPin.GPIO_00);
 		
 		
 		//방법2: Digital Pin의 상태를 이용
@@ -42,7 +42,7 @@ public class FlameSensor {
 			@Override
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
 				if(event.getState() == PinState.LOW) {
-					System.out.println("##############화재 발생");
+					System.out.println("##############가스 검출");
 				} else if(event.getState() == PinState.HIGH) {
 					System.out.println("##############정상 상태");
 				}
@@ -53,7 +53,7 @@ public class FlameSensor {
 		while(true) {
 			double value = test.getValue();
 			System.out.println(value);
-			if(value < 100) {
+			if(value < 200) {
 				//방법1:Analog 값을 이용해서 처리
 			}
 			Thread.sleep(1000);
