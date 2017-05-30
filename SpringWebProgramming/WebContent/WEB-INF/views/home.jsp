@@ -1,4 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%><!DOCTYPE html>
+<%@page contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -105,5 +107,11 @@
 	<h4>redirect</h4>
 	<a href="redirect/write" class="btn btn-primary">게시물 목록</a>
 	<a href="redirect/list" class="btn btn-primary">게시물 쓰기</a>
+	
+	<h4>JDBC</h4>
+	<a href="jdbc/exam01" class="btn btn-primary">글 쓰기</a>
+	<a href="jdbc/exam02" class="btn btn-primary">글 쓰기</a>
+	<a href="jdbc/exam03" class="btn btn-primary">회원가입하기</a>
+	
 </body>
 </html>

@@ -1,13 +1,13 @@
 package com.mycompany.myapp.dto;
 
-public class Member {
+public class Exam07Member {
 	private String name;
 	private int age;
 
-	public Member() {
+	public Exam07Member() {
 	}
 
-	public Member(String name, int age) {
+	public Exam07Member(String name, int age) {
 		this.name = name;
 		this.age = age;
 	}
