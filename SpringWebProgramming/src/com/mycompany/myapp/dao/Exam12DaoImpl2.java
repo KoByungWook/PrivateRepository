@@ -17,8 +17,8 @@ import com.mycompany.myapp.dto.Exam12Board;
 import com.mycompany.myapp.dto.Exam12Member;
 
 @Component
-public class Exam12DaoImpl implements Exam12Dao {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Exam12DaoImpl.class);
+public class Exam12DaoImpl2 implements Exam12Dao {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Exam12DaoImpl2.class);
 
 	@Override
 	public int boardInsert(Exam12Board board) {
@@ -288,106 +288,41 @@ public class Exam12DaoImpl implements Exam12Dao {
 		Connection conn = null;
 		
 		try {
-			// JDBC Driver Class 로딩
 			Class.forName("oracle.jdbc.OracleDriver");
-			// 연결 문자열 작성
 			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// 연결 객체 얻기
 			conn = DriverManager.getConnection(connectionString, "iotuser", "iot12345");
-			LOGGER.info("연결 성공");
-			// SQL 작성
+			
 			String sql = "select * ";
 			sql += "from ( ";
-			sql += "  select rownum as r, mid, mname, mpassword, mdate, mtel, memail, mage, maddress ";
-			sql += "  from ( ";
-			sql += "    select mid, mname, mpassword, mdate, mtel, memail, mage, maddress from member order by mid desc ";
-			sql += "  ) ";
-			sql += "  where rownum<=? ";
-			sql += "  ) ";
+			sql += "select rownum as r, mid, mname, mpassword, mdate, mtel, memail, mage, maddress ";
+			sql += "from {  ";
+			sql += "select mid, mname, mpassword, mdate, mtel, memail, mage, maddress ";
+			sql += ") ";
+			sql += "where rownum<=? ";
+			sql += ") ";
 			sql += "where r>=? ";
-			// SQL문 전송해서 실행
+			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, pageNo * rowsPerPage);
 			pstmt.setInt(2, (pageNo-1) * rowsPerPage + 1);
 			ResultSet rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-				Exam12Member member = new Exam12Member();
-				member.setMid(rs.getString("mid"));
-				member.setMname(rs.getString("mname"));
-				member.setMpassword(rs.getString("mpassword"));
-				member.setMdate(rs.getDate("mdate"));
-				member.setMtel(rs.getString("mtel"));
-				member.setMemail(rs.getString("memail"));
-				member.setMage(rs.getInt("mage"));
-				member.setMaddress(rs.getString("maddress"));
-				
-				list.add(member);
-			}
-			
-			rs.close();
-			pstmt.close();
-
-			LOGGER.info("행 추가 성공");
-
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			// 연결 끊기
-			try {
-				conn.close();
-				LOGGER.info("연결 끊기");
-			} catch (SQLException e) {}
 		}
-		return list;
 	}
 	
 	@Override
 	public int memberCountAll() {
-		int count = 0;
-		Connection conn = null;
-		try {
-			// JDBC Driver Class 로딩
-			Class.forName("oracle.jdbc.OracleDriver");
-			// 연결 문자열 작성
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// 연결 객체 얻기
-			conn = DriverManager.getConnection(connectionString, "iotuser", "iot12345");
-			LOGGER.info("연결 성공");
-			// SQL 작성
-			String sql = "select count(*) from member ";
-			// SQL문 전송해서 실행
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			
-			rs.next();
-			count = rs.getInt(1);
-			
-			rs.close();
-			pstmt.close();
-
-			LOGGER.info("행 추가 성공");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// 연결 끊기
-			try {
-				conn.close();
-				LOGGER.info("연결 끊기");
-			} catch (SQLException e) {}
-		}
-		return count;
+		
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static void main(String[] args) {
-		Exam12DaoImpl test = new Exam12DaoImpl();
+		Exam12DaoImpl2 test = new Exam12DaoImpl2();
 	
 		for(int i=1; i<=150; i++) {
 			Exam12Member member = new Exam12Member();

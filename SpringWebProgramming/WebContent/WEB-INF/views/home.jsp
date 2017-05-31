@@ -112,6 +112,9 @@
 	<a href="jdbc/exam01" class="btn btn-primary">글 쓰기</a>
 	<a href="jdbc/exam02" class="btn btn-primary">글 쓰기</a>
 	<a href="jdbc/exam03" class="btn btn-primary">회원가입하기</a>
+	<a href="jdbc/exam04" class="btn btn-primary">게시물 목록</a>
+	<a href="jdbc/exam05" class="btn btn-primary">게시물 페이지 목록</a>
+	<a href="jdbc/exam06" class="btn btn-primary">회원 페이지 목록</a>
 	
 </body>
 </html>
