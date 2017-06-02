@@ -36,7 +36,9 @@
 			<tr>
 				<td>${b.mid}</td>
 				<td>${b.mpassword}</td>
-				<td>${b.mname}</td>
+				<td>
+					<a href="exam06Detail?mid=${b.mid}">${b.mname}</a>
+				</td>
 				<td>${b.mage}</td>
 				<td>${b.mdate}</td>
 				<td>${b.mtel}</td>
