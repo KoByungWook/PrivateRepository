@@ -26,11 +26,11 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
 
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
 
-			LOGGER.info("¿¬°á ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 			String sql = "insert into member ";
 			sql += "(mid, mpassword, mname, mage, mdate, moriginalfilename, msavedfilename, mfilecontent) ";
@@ -50,7 +50,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			mid = member.getMid();
 			pstmt.close();
 
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		} finally {
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -73,11 +73,11 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
 
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
 
-			LOGGER.info("¿¬°á ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 			String sql = "select * from member where mid=?";
 
@@ -100,7 +100,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		} finally {
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -114,11 +114,11 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
 
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
 
-			LOGGER.info("¿¬°á ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 			String sql = "select * from member where mid=?";
 
@@ -140,7 +140,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		} finally {
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -155,10 +155,10 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 	try {
 		Class.forName("oracle.jdbc.OracleDriver");
 
-		String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
 
 		conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-		LOGGER.info("¿¬°á ¼º°ø");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		String sql = "select * from member where mid=?";
 
@@ -193,21 +193,21 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 	public void memberUpdate(PhotoBoardMember member) {
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql;
 			if (member.getMoriginalfilename() != null) {
 				sql = "update member set mpassword=?, mname=?, mage=?, moriginalfilename=?, msavedfilename=?, mfilecontent=? where mid=? ";
 			} else {
 				sql = "update member set mpassword=?, mname=?, mage=? where mid=? ";
 			}
-			// SQL¹® Àü¼ÛÇØ¼­ ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getMpassword());
 			pstmt.setString(2, member.getMname());
@@ -226,17 +226,17 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 
 			pstmt.close();
 
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ¿¬°á ²÷±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -245,23 +245,23 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 
 	@Override
 	public int boardInsert(PhotoBoard board) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		int bno = -1;
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql = "insert into board ";
 			sql += "(bno, bid, btitle, bdate, bcontent, boriginalfilename, bsavedfilename, bfilecontent, bhitcount) ";
 			sql += "values ";
 			sql += "(board_bno_seq.nextval, ?, ?, sysdate, ?, ?, ?, ?, 0)"; 
-			LOGGER.info("½ÇÇà2");													
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½2");													
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"bno"});
 			pstmt.setString(1, board.getBid());
 			pstmt.setString(2, board.getBtitle());
@@ -270,7 +270,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			pstmt.setString(5, board.getBsavedfilename());
 			pstmt.setString(6, board.getBfilecontent());
 			pstmt.executeUpdate();
-			LOGGER.info("½ÇÇà3");
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½3");
 			ResultSet rs = pstmt.getGeneratedKeys();
 			
 			rs.next();
@@ -279,7 +279,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			
 			pstmt.close();
 			
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -289,7 +289,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -307,14 +307,14 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		List<PhotoBoard> list = new ArrayList<>();
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql = "select * ";
 			sql += "from ( ";
 			sql += "  select rownum as r, bno, btitle, bid, bdate, bhitcount, boriginalfilename, bsavedfilename ";
@@ -324,7 +324,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			sql += "  where rownum<=? ";
 			sql += "  ) ";
 			sql += "where r>=? ";
-			// SQL¹® Àü¼ÛÇØ¼­ ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, pageNo * rowsPerPage);
 			pstmt.setInt(2, (pageNo - 1) * rowsPerPage + 1);
@@ -347,17 +347,17 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			rs.close();
 			pstmt.close();
 
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ¿¬°á ²÷±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -369,16 +369,16 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		int count = 0;
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql = "select count(*) from board ";
-			// SQL¹® Àü¼ÛÇØ¼­ ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 
@@ -388,17 +388,17 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			rs.close();
 			pstmt.close();
 
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ¿¬°á ²÷±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -410,16 +410,16 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 		PhotoBoard board = null;
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql = "select * from board where bno=?";
-			// SQL¹® Àü¼ÛÇØ¼­ ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bno);
 			ResultSet rs = pstmt.executeQuery();
@@ -441,17 +441,17 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			rs.close();
 			pstmt.close();
 
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ¿¬°á ²÷±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -462,16 +462,16 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 	public void boardUpdateBhitcount(int bno, int bhitcount) {
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql = "update board set bhitcount=? where bno=? ";
-			// SQL¹® Àü¼ÛÇØ¼­ ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bhitcount);
 			pstmt.setInt(2, bno);
@@ -479,17 +479,17 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 
 			pstmt.close();
 
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ¿¬°á ²÷±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -499,21 +499,21 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 	public void boardUpdate(PhotoBoard board) {
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql;
 			if (board.getBoriginalfilename() != null) {
 				sql = "update board set btitle=?, bcontent=?, bdate=sysdate, boriginalfilename=?, bsavedfilename=?, bfilecontent=? where bno=? ";
 			} else {
 				sql = "update board set btitle=?, bcontent=?, bdate=sysdate where bno=? ";
 			}
-			// SQL¹® Àü¼ÛÇØ¼­ ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getBtitle());
 			pstmt.setString(2, board.getBcontent());
@@ -530,17 +530,17 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 
 			pstmt.close();
 
-			LOGGER.info("Çà Ãß°¡ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ¿¬°á ²÷±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}
@@ -550,33 +550,33 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 	public void boardDelete(int bno) {
 		Connection conn = null;
 		try {
-			// JDBC Driver Class ·Îµù
+			// JDBC Driver Class ï¿½Îµï¿½
 			Class.forName("oracle.jdbc.OracleDriver");
-			// ¿¬°á ¹®ÀÚ¿­ ÀÛ¼º
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
-			// ¿¬°á °´Ã¼ ¾ò±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½Û¼ï¿½
+			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("¿¬°á ¼º°ø");
-			// SQL ÀÛ¼º
+			LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			// SQL ï¿½Û¼ï¿½
 			String sql;
 			sql = "delete from board where bno=? ";
-			// SQL¹® Àü¼ÛÇØ¼­ ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bno);
 			pstmt.executeUpdate();
 			pstmt.close();
 
-			LOGGER.info("Çà »èÁ¦ ¼º°ø");
+			LOGGER.info("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// ¿¬°á ²÷±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.close();
-				LOGGER.info("¿¬°á ²÷±â");
+				LOGGER.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} catch (SQLException e) {
 			}
 		}

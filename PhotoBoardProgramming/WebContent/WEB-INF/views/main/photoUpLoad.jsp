@@ -62,7 +62,7 @@
 			</div>
 		</div>
 		<div style="text-align:center">
-			<input type="submit"class="btn btn-info"value="${pageNo}"/>
+			<input type="submit"class="btn btn-info"value="글쓰기"/>
 			<a href="mainBoard" class="btn btn-warning">취소</a>
 		</div>
 	</form>

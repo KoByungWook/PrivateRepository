@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,34 +40,34 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home() {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		return "home";
 	}
 	
 	@RequestMapping("/home")
 	public String home2() {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		return "redirect:/";
 	}
 	
 	@RequestMapping("/main/mainBoard")
 	public String mainBoard(@RequestParam(defaultValue="1")int pageNo, Model model, HttpServletRequest request) {
-		LOGGER.info("½ÇÇà");
-		// ÇÑ ÆäÀÌÁö¸¦ ±¸¼ºÇÏ´Â ÇàÀÇ °³¼ö
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
+		// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int rowsPerPage = 5;
-		// ÇÑ ±×·ìÀ» ±¸¼ºÇÏ´Â ÆäÀÌÁö ¼ö
+		// ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		int pagesPerGroup = 5;
-		// ÃÑ Çà¼ö
+		// ï¿½ï¿½ ï¿½ï¿½ï¿½
 		int totalRows = service.boardTotalRows();
-		// ÀüÃ¼ ÆäÀÌÁö ¼ö
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		int totalPageNo = (totalRows / rowsPerPage) + ((totalRows % rowsPerPage != 0) ? 1 : 0);
-		// ÀüÃ¼ ±×·ì ¼ö
+		// ï¿½ï¿½Ã¼ ï¿½×·ï¿½ ï¿½ï¿½
 		int totalGroupNo = (totalPageNo / pagesPerGroup) + ((totalPageNo % pagesPerGroup != 0) ? 1 : 0);
-		// ÇöÀç ±×·ì
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½
 		int groupNo = (pageNo - 1) / pagesPerGroup + 1;
-		// ÇöÀç ±×·ìÀÇ ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 		int startPageNo = (groupNo - 1) * pagesPerGroup + 1;
-		// ÇöÀç ±×·ìÀÇ ³¡ ÆäÀÌÁö ¹øÈ£
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 		int endPageNo = startPageNo + pagesPerGroup - 1;
 		if (groupNo == totalGroupNo) {
 			endPageNo = totalPageNo;
@@ -155,13 +154,13 @@ public class HomeController {
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String joinGet() {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		return "join";
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinPost(PhotoBoardMember member) throws Exception {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		
 		member.setMoriginalfilename(member.getMattach().getOriginalFilename());
 		
@@ -180,7 +179,7 @@ public class HomeController {
 	
 	@RequestMapping("/checkLogin")
 	public String checkLogin(String mid, String mpassword, HttpServletRequest request, Model model) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		String result = service.checkMid(mid);
 		PhotoBoardMember member = service.getMember(mid);
 		HttpSession session = request.getSession(true);
@@ -197,7 +196,7 @@ public class HomeController {
 	
 	@RequestMapping("/main/checkMid")
 	public String checkMid(String mpassword, HttpServletRequest request, Model model) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		HttpSession session = request.getSession();
 		PhotoBoardMember member = (PhotoBoardMember)session.getAttribute("member");
 		
@@ -215,7 +214,7 @@ public class HomeController {
 	public String memberDetail(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(true);
 		PhotoBoardMember member = (PhotoBoardMember)session.getAttribute("member");
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		LOGGER.info(member.getMid());
 		model.addAttribute("member", member);
 		return "main/memberDetail";
@@ -223,7 +222,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/main/memberUpdate", method=RequestMethod.GET)
 	public String memberUpdateGet(String mid, Model model) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		PhotoBoardMember member = service.getMember(mid);
 		model.addAttribute("member", member);
 		return "main/memberUpdate";
@@ -231,9 +230,9 @@ public class HomeController {
 	
 	@RequestMapping(value="/main/memberUpdate", method=RequestMethod.POST)
 	public String memberUpdatePost(HttpServletRequest request, PhotoBoardMember member) throws IllegalStateException, IOException {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		if(!member.getMattach().isEmpty()) {
-			//Ã·ºÎ ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ ÄÃ·³°ªÀ¸·Î ¼³Á¤
+			//Ã·ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			member.setMoriginalfilename(member.getMattach().getOriginalFilename());
 			
 			LOGGER.info(member.getMattach().getContentType());
@@ -242,7 +241,7 @@ public class HomeController {
 			String fileName = new Date().getTime() +"-"+ member.getMoriginalfilename();
 			member.setMsavedfilename(fileName);
 			
-			//Ã·ºÎµÈ ÆÄÀÏÀ» ¼­¹ö ·ÎÄÃ ½Ã½ºÅÛ¿¡ ÀúÀå
+			//Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 			String realPath = servletContext.getRealPath("/WEB-INF/upload/");
 			File file = new File(realPath + fileName);
 			member.getMattach().transferTo(file);
@@ -259,7 +258,7 @@ public class HomeController {
 	
 	@RequestMapping("main/logOut")
 	public String logOut(HttpServletRequest request) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		HttpSession session = request.getSession(true);
 		session.setAttribute("member", null);
 		return "redirect:/";
@@ -267,13 +266,13 @@ public class HomeController {
 	
 	@RequestMapping(value="/main/photoUpLoad", method=RequestMethod.GET)
 	public String photoUpLoadGet() {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		return "main/photoUpLoad";
 	}
 	
 	@RequestMapping(value="/main/photoUpLoad", method=RequestMethod.POST)
 	public String photoUpLoadPost(PhotoBoard board) throws Exception {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		
 		board.setBoriginalfilename(board.getBattach().getOriginalFilename());
 		
@@ -293,7 +292,7 @@ public class HomeController {
 	
 	@RequestMapping("/main/photoDetail")
 	public String photoDetail(int pageNo, int bno, Model model, HttpServletRequest request) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		
 		PhotoBoard board = service.getBoardDetail(bno);
 		model.addAttribute("board", board);
@@ -335,7 +334,7 @@ public class HomeController {
 	
 	@RequestMapping("/main/checkBid")
 	public String checkBid(int bno, String bid, Model model, HttpServletRequest request) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		HttpSession session = request.getSession(true);
 		PhotoBoardMember member = (PhotoBoardMember)session.getAttribute("member");
 		
@@ -348,7 +347,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/main/photoUpdate", method=RequestMethod.GET)
 	public String photoUpdateGet(int pageNo, int bno, Model model) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		PhotoBoard board = service.getBoard(bno);
 		model.addAttribute("board", board);
 		model.addAttribute("pageNo", pageNo);
@@ -357,9 +356,9 @@ public class HomeController {
 	
 	@RequestMapping(value="/main/photoUpdate", method=RequestMethod.POST)
 	public String photoUpdatePost(int pageNo, PhotoBoard board) throws IllegalStateException, IOException {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		if(!board.getBattach().isEmpty()) {
-			//Ã·ºÎ ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ ÄÃ·³°ªÀ¸·Î ¼³Á¤
+			//Ã·ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			board.setBoriginalfilename(board.getBattach().getOriginalFilename());
 			
 			LOGGER.info(board.getBattach().getContentType());
@@ -368,7 +367,7 @@ public class HomeController {
 			String fileName = new Date().getTime() +"-"+ board.getBoriginalfilename();
 			board.setBsavedfilename(fileName);
 			
-			//Ã·ºÎµÈ ÆÄÀÏÀ» ¼­¹ö ·ÎÄÃ ½Ã½ºÅÛ¿¡ ÀúÀå
+			//Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 			String realPath = servletContext.getRealPath("/WEB-INF/upload/");
 			File file = new File(realPath + fileName);
 			board.getBattach().transferTo(file);
@@ -380,7 +379,7 @@ public class HomeController {
 	
 	@RequestMapping("/main/photoDelete")
 	public String photoDelete(int bno) {
-		LOGGER.info("½ÇÇà");
+		LOGGER.info("ï¿½ï¿½ï¿½ï¿½");
 		service.boardDelete(bno);
 		return "redirect:/main/mainBoard";
 	}
