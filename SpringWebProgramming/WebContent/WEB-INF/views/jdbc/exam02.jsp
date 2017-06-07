@@ -61,7 +61,6 @@
 					name="battach" />
 			</div>
 		</div>
-		
 		<input type="submit" class="btn btn-info" value="글쓰기" />
 	</form>
 </body>
