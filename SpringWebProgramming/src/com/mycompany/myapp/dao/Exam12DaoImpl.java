@@ -6,11 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.myapp.dto.Exam12Board;
@@ -20,17 +22,21 @@ import com.mycompany.myapp.dto.Exam12Member;
 public class Exam12DaoImpl implements Exam12Dao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Exam12DaoImpl.class);
 
+	@Autowired
+	private DataSource dataSource;
+	
 	@Override
 	public int boardInsert(Exam12Board board) {
 		int bno = -1;
 		Connection conn = null;
 		try {
 			// JDBC Driver Class 로딩
-			Class.forName("oracle.jdbc.OracleDriver");
+			//Class.forName("oracle.jdbc.OracleDriver");
 			// 연결 문자열 작성
-			String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
+			//String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
 			// 연결 객체 얻기
-			conn = DriverManager.getConnection(connectionString, "iotuser", "iot12345");
+			//conn = DriverManager.getConnection(connectionString, "iotuser", "iot12345");
+			conn = dataSource.getConnection();
 			LOGGER.info("연결 성공");
 			// SQL 작성
 			String sql = "insert into board ";
@@ -45,7 +51,7 @@ public class Exam12DaoImpl implements Exam12Dao {
 			// PreparedStatement pstmt = conn.prepareStatement(sql,
 			// Statement.RETURN_GENERATED_KEYS);
 			// 오라클일 경우 sequence 외부 객체로 자동 증가값을 얻기 때문에 다음과 같이 지정
-			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] { "bno" });
+			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] { "bno" });	//insert를 실행하기 전에는 bno값을 얻을 수 없기 때문에 sql 뿐만 아니라 bno를 얻어 리턴해준다!
 			pstmt.setString(1, board.getBtitle());
 			pstmt.setString(2, board.getBcontent());
 			pstmt.setString(3, board.getBwriter());
@@ -60,8 +66,6 @@ public class Exam12DaoImpl implements Exam12Dao {
 			pstmt.close();
 			LOGGER.info("행 추가 성공");
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

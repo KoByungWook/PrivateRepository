@@ -59,16 +59,16 @@ public class DCMotor {
         DCMotor motorB = new DCMotor(RaspiPin.GPIO_02, RaspiPin.GPIO_03, pca9685, PCA9685.PWM_04);
 
         motorA.backward();
-        motorA.setSpeed(4000);
+        motorA.setSpeed(2000);
         motorB.backward();
-        motorB.setSpeed(4000);
+        motorB.setSpeed(2000);
 
         Thread.sleep(5000);
 
         motorA.forward();
-        motorA.setSpeed(4000);
+        motorA.setSpeed(2000);
         motorB.forward();
-        motorB.setSpeed(4000);
+        motorB.setSpeed(2000);
 
         Thread.sleep(5000);
         

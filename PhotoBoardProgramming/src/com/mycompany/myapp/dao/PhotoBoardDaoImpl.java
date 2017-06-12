@@ -5,11 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.myapp.dto.PhotoBoard;
@@ -19,302 +24,155 @@ import com.mycompany.myapp.dto.PhotoBoardMember;
 public class PhotoBoardDaoImpl implements PhotoBoardDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PhotoBoardDaoImpl.class);
 
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
 	@Override
 	public String memberInsert(PhotoBoardMember member) {
-		String mid = null;
-		Connection conn = null;
-		try {
-			Class.forName("oracle.jdbc.OracleDriver");
 
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
+		String sql = "insert into member ";
+		sql += "(mid, mpassword, mname, mage, mdate, moriginalfilename, msavedfilename, mfilecontent) ";
+		sql += "values ";
+		sql += "(?, ?, ?, ?, sysdate, ?, ?, ?)";
 
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
+		jdbcTemplate.update(sql, member.getMid(), member.getMpassword(), member.getMname(), member.getMage(),
+				member.getMoriginalfilename(), member.getMsavedfilename(), member.getMfilecontent());
 
-			LOGGER.info("���� ����");
+		String mid = member.getMid();
 
-			String sql = "insert into member ";
-			sql += "(mid, mpassword, mname, mage, mdate, moriginalfilename, msavedfilename, mfilecontent) ";
-			sql += "values ";
-			sql += "(?, ?, ?, ?, sysdate, ?, ?, ?)";
-
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getMid());
-			pstmt.setString(2, member.getMpassword());
-			pstmt.setString(3, member.getMname());
-			pstmt.setInt(4, member.getMage());
-			pstmt.setString(5, member.getMoriginalfilename());
-			pstmt.setString(6, member.getMsavedfilename());
-			pstmt.setString(7, member.getMfilecontent());
-			pstmt.executeUpdate();
-
-			mid = member.getMid();
-			pstmt.close();
-
-			LOGGER.info("�� �߰� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
 		return mid;
 	}
 
 	@Override
 	public String checkMid(String mid) {
 		String result = "fail";
-		Connection conn = null;
-		try {
-			Class.forName("oracle.jdbc.OracleDriver");
 
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-
-			LOGGER.info("���� ����");
-
-			String sql = "select * from member where mid=?";
-
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mid);
-			
-			LOGGER.info(mid);
-			
-			ResultSet rs = pstmt.executeQuery();
-
-			if(rs.next()) {
-				result = "success";
+		RowMapper<PhotoBoardMember> rowMapper = new RowMapper<PhotoBoardMember>() {
+			@Override
+			public PhotoBoardMember mapRow(ResultSet rs, int rowNum) throws SQLException {
+				PhotoBoardMember member = new PhotoBoardMember();
+				member.setMid(rs.getString("mid"));
+				return member;
 			}
-			
-			LOGGER.info(result);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
-		return result;
-	}
-	
-	@Override
-	public String checkMpassword(String mid, String mpassword) {
-		String result = "fail";
-		Connection conn = null;
-		try {
-			Class.forName("oracle.jdbc.OracleDriver");
-
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-
-			LOGGER.info("���� ����");
-
-			String sql = "select * from member where mid=?";
-
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mid);
-			
-			ResultSet rs = pstmt.executeQuery();
-
-			rs.next();
-			
-			if(rs.getString("mpassword").equals(mpassword)) {
-				result = "success";
-			}
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
-		return result;
-	}
-	
-@Override
-	public PhotoBoardMember memberSelectByMid(String mid) {
-	PhotoBoardMember member = null;
-	Connection conn = null;
-
-	try {
-		Class.forName("oracle.jdbc.OracleDriver");
-
-		String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-
-		conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-		LOGGER.info("���� ����");
+		};
 
 		String sql = "select * from member where mid=?";
 
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, mid);
-		ResultSet rs = pstmt.executeQuery();
+		try {
+			jdbcTemplate.queryForObject(sql, rowMapper, mid);
 
-		if (rs.next()) {
-			member = new PhotoBoardMember();
+			result = "success";
+			return result;
 
-			member.setMid(rs.getString("mid"));
-			member.setMpassword(rs.getString("mpassword"));
-			member.setMname(rs.getString("mname"));
-			member.setMage(rs.getInt("mage"));
-			member.setMdate(rs.getDate("mdate"));
-			member.setMoriginalfilename(rs.getString("moriginalfilename"));
-			member.setMsavedfilename(rs.getString("msavedfilename"));
-			member.setMfilecontent(rs.getString("mfilecontent"));
+		} catch (Exception e) {
+			return result;
 		}
-		rs.close();
-		pstmt.close();
-
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	} catch (SQLException e) {
-		e.printStackTrace();
 	}
-	return member;
+
+	@Override
+	public String checkMpassword(String mid, String mpassword) {
+		String result = "fail";
+
+		String sql = "select * from member where mid=?";
+
+		RowMapper<PhotoBoardMember> rowMapper = new RowMapper<PhotoBoardMember>() {
+			@Override
+			public PhotoBoardMember mapRow(ResultSet rs, int rowNum) throws SQLException {
+				PhotoBoardMember member = new PhotoBoardMember();
+				member.setMid(rs.getString("mid"));
+				member.setMpassword(rs.getString("mpassword"));
+				return member;
+			}
+		};
+
+		PhotoBoardMember member = jdbcTemplate.queryForObject(sql, rowMapper, mid);
+
+		if (member.getMpassword().equals(mpassword)) {
+			result = "success";
+		}
+		return result;
+	}
+
+	@Override
+	public PhotoBoardMember memberSelectByMid(String mid) {
+
+		String sql = "select * from member where mid=?";
+
+		RowMapper<PhotoBoardMember> rowMapper = new RowMapper<PhotoBoardMember>() {
+			@Override
+			public PhotoBoardMember mapRow(ResultSet rs, int rowNum) throws SQLException {
+				PhotoBoardMember member = new PhotoBoardMember();
+
+				member.setMid(rs.getString("mid"));
+				member.setMpassword(rs.getString("mpassword"));
+				member.setMname(rs.getString("mname"));
+				member.setMage(rs.getInt("mage"));
+				member.setMdate(rs.getDate("mdate"));
+				member.setMoriginalfilename(rs.getString("moriginalfilename"));
+				member.setMsavedfilename(rs.getString("msavedfilename"));
+				member.setMfilecontent(rs.getString("mfilecontent"));
+
+				return member;
+			}
+		};
+
+		PhotoBoardMember member = jdbcTemplate.queryForObject(sql, rowMapper, mid);
+
+		return member;
 	}
 
 	@Override
 	public void memberUpdate(PhotoBoardMember member) {
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
-			String sql;
-			if (member.getMoriginalfilename() != null) {
-				sql = "update member set mpassword=?, mname=?, mage=?, moriginalfilename=?, msavedfilename=?, mfilecontent=? where mid=? ";
-			} else {
-				sql = "update member set mpassword=?, mname=?, mage=? where mid=? ";
-			}
-			// SQL�� �����ؼ� ����
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getMpassword());
-			pstmt.setString(2, member.getMname());
-			pstmt.setInt(3, member.getMage());
-			
-			if (member.getMoriginalfilename() != null) {
-				pstmt.setString(4, member.getMoriginalfilename());
-				pstmt.setString(5, member.getMsavedfilename());
-				pstmt.setString(6, member.getMfilecontent());
-				pstmt.setString(7, member.getMid());
-				LOGGER.info(member.getMid());
-			} else {
-				pstmt.setString(4, member.getMid());
-			}
-			pstmt.executeUpdate();
 
-			pstmt.close();
-
-			LOGGER.info("�� �߰� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// ���� ����
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
+		String sql;
+		if (member.getMoriginalfilename() != null) {
+			sql = "update member set mpassword=?, mname=?, mage=?, moriginalfilename=?, msavedfilename=?, mfilecontent=? where mid=? ";
+			jdbcTemplate.update(sql, member.getMpassword(), member.getMname(), member.getMage(),
+					member.getMoriginalfilename(), member.getMsavedfilename(), member.getMfilecontent());
+		} else {
+			sql = "update member set mpassword=?, mname=?, mage=? where mid=? ";
+			jdbcTemplate.update(sql, member.getMpassword(), member.getMname(), member.getMage());
 		}
+
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public int boardInsert(PhotoBoard board) {
-		LOGGER.info("����");
+
 		int bno = -1;
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
-			String sql = "insert into board ";
-			sql += "(bno, bid, btitle, bdate, bcontent, boriginalfilename, bsavedfilename, bfilecontent, bhitcount) ";
-			sql += "values ";
-			sql += "(board_bno_seq.nextval, ?, ?, sysdate, ?, ?, ?, ?, 0)"; 
-			LOGGER.info("����2");													
-			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"bno"});
-			pstmt.setString(1, board.getBid());
-			pstmt.setString(2, board.getBtitle());
-			pstmt.setString(3, board.getBcontent());
-			pstmt.setString(4, board.getBoriginalfilename());
-			pstmt.setString(5, board.getBsavedfilename());
-			pstmt.setString(6, board.getBfilecontent());
-			pstmt.executeUpdate();
-			LOGGER.info("����3");
-			ResultSet rs = pstmt.getGeneratedKeys();
-			
-			rs.next();
-			
-			bno = rs.getInt(1);
-			
-			pstmt.close();
-			
-			LOGGER.info("�� �߰� ����");
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
+		final String sql = "insert into board "
+		+ "(bno, bid, btitle, bdate, bcontent, boriginalfilename, bsavedfilename, bfilecontent, bhitcount) "
+		+ "values "
+		+ "(board_bno_seq.nextval, ?, ?, sysdate, ?, ?, ?, ?, 0)";
 
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
+		PreparedStatementCreator psc = new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+				PreparedStatement pstmt = conn.prepareStatement(sql, new String[] { "bno" });
+				pstmt.setString(1, board.getBid());
+				pstmt.setString(2, board.getBtitle());
+				pstmt.setString(3, board.getBcontent());
+				pstmt.setString(4, board.getBoriginalfilename());
+				pstmt.setString(5, board.getBsavedfilename());
+				pstmt.setString(6, board.getBfilecontent());
+				return pstmt;
 			}
-		}
+		};
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		jdbcTemplate.update(psc, keyHolder);
+		bno = keyHolder.getKey().intValue();
+
+		LOGGER.info(String.valueOf(bno));
+
 		return bno;
 	}
 
 	@Override
-	public List<PhotoBoard> boardSelectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<PhotoBoard> boardSelectPage(int pageNo, int rowsPerPage) {
-		List<PhotoBoard> list = new ArrayList<>();
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
+		
 			String sql = "select * ";
 			sql += "from ( ";
 			sql += "  select rownum as r, bno, btitle, bid, bdate, bhitcount, boriginalfilename, bsavedfilename ";
@@ -324,109 +182,45 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 			sql += "  where rownum<=? ";
 			sql += "  ) ";
 			sql += "where r>=? ";
-			// SQL�� �����ؼ� ����
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, pageNo * rowsPerPage);
-			pstmt.setInt(2, (pageNo - 1) * rowsPerPage + 1);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				PhotoBoard board = new PhotoBoard();
-				
-				board.setBno(rs.getInt("bno"));
-				board.setBoriginalfilename(rs.getString("boriginalfilename"));
-				board.setBtitle(rs.getString("btitle"));
-				board.setBid(rs.getString("bid"));
-				board.setBdate(rs.getDate("bdate"));
-				board.setBhitcount(rs.getInt("bhitcount"));
-				board.setBsavedfilename(rs.getString("bsavedfilename"));
-
-				list.add(board);
-			}
-
-			rs.close();
-			pstmt.close();
-
-			LOGGER.info("�� �߰� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// ���� ����
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
-		return list;
+			
+			Object[] args = { (pageNo*rowsPerPage), ((pageNo-1)*rowsPerPage+1) };
+			
+			RowMapper<PhotoBoard> rowMapper = new RowMapper<PhotoBoard>() {
+				@Override
+				public PhotoBoard mapRow(ResultSet rs, int rowNum) throws SQLException {
+					PhotoBoard board = new PhotoBoard();
+					board.setBno(rs.getInt("bno"));
+					board.setBoriginalfilename(rs.getString("boriginalfilename"));
+					board.setBtitle(rs.getString("btitle"));
+					board.setBid(rs.getString("bid"));
+					board.setBdate(rs.getDate("bdate"));
+					board.setBhitcount(rs.getInt("bhitcount"));
+					board.setBsavedfilename(rs.getString("bsavedfilename"));
+					return board;
+				}
+			};
+			
+			List<PhotoBoard> list = jdbcTemplate.query(sql, args, rowMapper);
+			return list;
 	}
 
 	@Override
 	public int boardCountAll() {
-		int count = 0;
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
-			String sql = "select count(*) from board ";
-			// SQL�� �����ؼ� ����
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+		String sql = "select count(*) from board ";
+		
+		int count = jdbcTemplate.queryForObject(sql, Integer.class);
 
-			rs.next();
-			count = rs.getInt(1);
-
-			rs.close();
-			pstmt.close();
-
-			LOGGER.info("�� �߰� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// ���� ����
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
 		return count;
 	}
 
 	@Override
 	public PhotoBoard boardSelectByBno(int bno) {
-		PhotoBoard board = null;
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
-			String sql = "select * from board where bno=?";
-			// SQL�� �����ؼ� ����
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bno);
-			ResultSet rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				board = new PhotoBoard();
-
+		String sql = "select * from board where bno=?";
+		
+		RowMapper<PhotoBoard> rowMapper = new RowMapper<PhotoBoard>() {
+			@Override
+			public PhotoBoard mapRow(ResultSet rs, int rowNum) throws SQLException {
+				PhotoBoard board = new PhotoBoard();
 				board.setBno(rs.getInt("bno"));
 				board.setBtitle(rs.getString("btitle"));
 				board.setBid(rs.getString("bid"));
@@ -436,149 +230,44 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
 				board.setBoriginalfilename(rs.getString("boriginalfilename"));
 				board.setBsavedfilename(rs.getString("bsavedfilename"));
 				board.setBfilecontent(rs.getString("bfilecontent"));
+				return board;
 			}
-
-			rs.close();
-			pstmt.close();
-
-			LOGGER.info("�� �߰� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// ���� ����
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
+		};
+		
+		PhotoBoard board = jdbcTemplate.queryForObject(sql, rowMapper, bno);
 		return board;
 	}
 
 	@Override
 	public void boardUpdateBhitcount(int bno, int bhitcount) {
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
-			String sql = "update board set bhitcount=? where bno=? ";
-			// SQL�� �����ؼ� ����
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bhitcount);
-			pstmt.setInt(2, bno);
-			pstmt.executeUpdate();
-
-			pstmt.close();
-
-			LOGGER.info("�� �߰� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// ���� ����
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
+		String sql = "update board set bhitcount=? where bno=? ";
+		
+		jdbcTemplate.update(sql, bhitcount, bno);
 	}
 
 	@Override
 	public void boardUpdate(PhotoBoard board) {
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
-			String sql;
-			if (board.getBoriginalfilename() != null) {
-				sql = "update board set btitle=?, bcontent=?, bdate=sysdate, boriginalfilename=?, bsavedfilename=?, bfilecontent=? where bno=? ";
-			} else {
-				sql = "update board set btitle=?, bcontent=?, bdate=sysdate where bno=? ";
-			}
-			// SQL�� �����ؼ� ����
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, board.getBtitle());
-			pstmt.setString(2, board.getBcontent());
 
-			if (board.getBoriginalfilename() != null) {
-				pstmt.setString(3, board.getBoriginalfilename());
-				pstmt.setString(4, board.getBsavedfilename());
-				pstmt.setString(5, board.getBfilecontent());
-				pstmt.setInt(6, board.getBno());
-			} else {
-				pstmt.setInt(3, board.getBno());
-			}
-			pstmt.executeUpdate();
-
-			pstmt.close();
-
-			LOGGER.info("�� �߰� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// ���� ����
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
+		String sql;
+		if (board.getBoriginalfilename() != null) {
+			sql = "update board set btitle=?, bcontent=?, bdate=sysdate, boriginalfilename=?, bsavedfilename=?, bfilecontent=? where bno=? ";
+			jdbcTemplate.update(board.getBtitle(), board.getBcontent(), board.getBoriginalfilename(),
+					board.getBsavedfilename(), board.getBfilecontent(), board.getBno());
+		} else {
+			sql = "update board set btitle=?, bcontent=?, bdate=sysdate where bno=? ";
+			jdbcTemplate.update(board.getBtitle(), board.getBcontent(), board.getBno());
 		}
 	}
 
 	@Override
 	public void boardDelete(int bno) {
-		Connection conn = null;
-		try {
-			// JDBC Driver Class �ε�
-			Class.forName("oracle.jdbc.OracleDriver");
-			// ���� ���ڿ� �ۼ�
-			String connectionString = "jdbc:oracle:thin:@192.168.3.138:1521:orcl";
-			// ���� ��ü ���
-			conn = DriverManager.getConnection(connectionString, "photoboard", "iot12345");
-			LOGGER.info("���� ����");
-			// SQL �ۼ�
-			String sql;
-			sql = "delete from board where bno=? ";
-			// SQL�� �����ؼ� ����
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bno);
-			pstmt.executeUpdate();
-			pstmt.close();
+		String sql = "delete from board where bno=? ";
+		jdbcTemplate.update(sql, bno);
+	}
 
-			LOGGER.info("�� ���� ����");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			// ���� ����
-			try {
-				conn.close();
-				LOGGER.info("���� ����");
-			} catch (SQLException e) {
-			}
-		}
+	@Override
+	public List<PhotoBoard> boardSelectAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

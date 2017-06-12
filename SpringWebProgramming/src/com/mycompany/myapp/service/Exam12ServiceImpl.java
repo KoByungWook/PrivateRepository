@@ -2,9 +2,10 @@ package com.mycompany.myapp.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mycompany.myapp.controller.Exam12JdbcController;
@@ -16,7 +17,7 @@ import com.mycompany.myapp.dto.Exam12Member;
 public class Exam12ServiceImpl implements Exam12Service{
 	private static final Logger LOGGER = LoggerFactory.getLogger(Exam12JdbcController.class);
 	
-	@Autowired
+	@Resource(name="exam12DaoImpl")
 	private Exam12Dao dao;
 	
 	@Override

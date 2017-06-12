@@ -47,7 +47,7 @@ public class RgbLedPWM {
 	}
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
-		RgbLedPWM test = new RgbLedPWM(RaspiPin.GPIO_00, RaspiPin.GPIO_02, RaspiPin.GPIO_03);
+		RgbLedPWM test = new RgbLedPWM(RaspiPin.GPIO_04, RaspiPin.GPIO_05, RaspiPin.GPIO_06);
 		
 		for (int i = 0; i < 50; i++) {
 			int num1 = Math.abs((int)(Math.random() * 255));
