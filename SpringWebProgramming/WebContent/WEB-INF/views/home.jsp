@@ -124,5 +124,13 @@
 	<a href="jdbc/exam05" class="btn btn-primary">게시물 페이지 목록</a>
 	<a href="jdbc/exam06" class="btn btn-primary">회원 페이지 목록</a>
 	
+	<h4>AOP</h4>
+	<a href="jdbc/exam05" class="btn btn-primary">실행 시간 체크</a>
+	<a href="aop/exam01" class="btn btn-primary">로그인 없이 볼 수 있는 내용</a>
+	<a href="aop/exam02write" class="btn btn-primary">로그인해야 볼 수 있는 내용</a>
+	<a href="aop/exam02update" class="btn btn-primary">로그인해야 볼 수 있는 내용</a>
+	
+	<h4>transaction</h4>
+	<a href="transaction/exam01" class="btn btn-primary">계좌 이체 테스트</a>
 </body>
 </html>

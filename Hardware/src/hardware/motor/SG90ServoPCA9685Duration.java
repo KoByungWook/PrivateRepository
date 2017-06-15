@@ -64,11 +64,11 @@ public class SG90ServoPCA9685Duration {
         
         Thread.sleep(1000);
         
-        servoLR.setAngle(90);
+        servoLR.setAngle(155);
         
         Thread.sleep(1000);
         
-        servoUD.setAngle(90);
+        servoUD.setAngle(30);
         
         Thread.sleep(1000);
         

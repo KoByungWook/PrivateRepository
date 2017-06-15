@@ -8,10 +8,18 @@
 		<selectKey keyProperty="bno" resultType="int" order="AFTER">
 			select board_bno_seq.currval from dual
 		</selectKey>
-		insert into board
-		(bno, btitle, bcontent, bwriter, bdate, bpassword, bhitcount, boriginalfilename, bsavedfilename, bfilecontent)
-		values
-		(board_bno_seq.nextval, #{btitle}, #{bcontent}, #{bwriter}, sysdate, #{bpassword}, 0, #{boriginalfilename}, #{bsavedfilename}, #{bfilecontent})
+		<if test="boriginalfilename != null">
+			insert into board
+			(bno, btitle, bcontent, bwriter, bdate, bpassword, bhitcount, boriginalfilename, bsavedfilename, bfilecontent)
+			values
+			(board_bno_seq.nextval, #{btitle}, #{bcontent}, #{bwriter}, sysdate, #{bpassword}, 0, #{boriginalfilename}, #{bsavedfilename}, #{bfilecontent})
+		</if>
+		<if test="boriginalfilename == null">
+			insert into board
+			(bno, btitle, bcontent, bwriter, bdate, bpassword, bhitcount)
+			values
+			(board_bno_seq.nextval, #{btitle}, #{bcontent}, #{bwriter}, sysdate, #{bpassword}, 0)
+		</if>
 	</insert>
 	
 	<!--
@@ -66,7 +74,7 @@
 			update board set btitle=#{btitle}, bcontent=#{bcontent}, bpassword=#{bpassword}, bdate=sysdate,
 			boriginalfilename=#{boriginalfilename}, bsavedfilename=#{bsavedfilename}, bfilecontent=#{bfilecontent} where bno=#{bno} 
 		</if>
-		<if test="boriginalfilename = null">
+		<if test="boriginalfilename == null">
 			update board set btitle=#{btitle}, bcontent=#{bcontent}, bpassword=#{bpassword}, bdate=sysdate where bno=#{bno} 
 		</if>		
 	</update>

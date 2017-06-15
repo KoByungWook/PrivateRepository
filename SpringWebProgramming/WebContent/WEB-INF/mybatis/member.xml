@@ -27,20 +27,26 @@
 		select count(*) from member
 	</select>
 	
-	<select id="selectByMid" parameterType="String" resultType="com.mycompany.myapp.dto.Exam12Member">
+	<select id="selectByMid" parameterType="string" resultType="com.mycompany.myapp.dto.Exam12Member">
 		select * from member where mid=#{mid}
 	</select>
-	
+
 	<update id="update" parameterType="com.mycompany.myapp.dto.Exam12Member">
 		<if test="moriginalfilename != null">
-			update member set mdate=sysdate, mtel=#{mtel}, maddress=#{maddress}, mage=#{mage}, moriginalfilename=#{moriginalfilename}, msavedfilename=#{msavedfilename}, mfilecontent=#{mfilecontent} where mid=#{mid}
+			update member set mdate=sysdate, mtel=#{mtel},
+			maddress=#{maddress}, mage=#{mage},
+			moriginalfilename=#{moriginalfilename},
+			msavedfilename=#{msavedfilename}, mfilecontent=#{mfilecontent} where
+			mid=#{mid}
 		</if>
-		<if test="moriginalfilename = null">
-			update member set mdate=sysdate, mtel=#{mtel}, maddress=#{maddress}, mage=#{mage} where mid=#{mid}
+		<if test="moriginalfilename == null">
+			update member set mdate=sysdate, mtel=#{mtel},
+			maddress=#{maddress}, mage=#{mage} where mid=#{mid}
 		</if>
 	</update>
 	
-	<update id="delete" parameterType="String">
+	<update id="delete" parameterType="string">
 		delete from member where mid=#{mid}
 	</update>
+	
 </mapper>
