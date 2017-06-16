@@ -3,5 +3,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 {
-	"temperature":"25"
+	"thermistor":"${thermistor}",
+	"photoresistor":"${photoresistor}"
 }
