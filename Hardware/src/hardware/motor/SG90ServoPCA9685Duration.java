@@ -45,13 +45,13 @@ public class SG90ServoPCA9685Duration {
         SG90ServoPCA9685Duration servoUD = new SG90ServoPCA9685Duration(pca9685, PCA9685.PWM_15);
         SG90ServoPCA9685Duration servoFW = new SG90ServoPCA9685Duration(pca9685, PCA9685.PWM_00);
 //
-//        for(int i=10; i<150; i+=10) {
-//            servoUS.setAngle(i);
-//            servoLR.setAngle(i);
-//            servoUD.setAngle(i);
-//            servoFW.setAngle(i);
-//            Thread.sleep(500);
-//        }
+        for(int i=10; i<150; i+=10) {
+            servoUS.setAngle(i);
+            servoLR.setAngle(i);
+            servoUD.setAngle(i);
+            servoFW.setAngle(i);
+            Thread.sleep(500);
+        }
 //        
 //        for(int i=150; i>0; i-=10) {
 //            servoUS.setAngle(i);
@@ -64,11 +64,11 @@ public class SG90ServoPCA9685Duration {
         
         Thread.sleep(1000);
         
-        servoLR.setAngle(155);
+        servoLR.setAngle(90);
         
         Thread.sleep(1000);
         
-        servoUD.setAngle(30);
+        servoUD.setAngle(10);
         
         Thread.sleep(1000);
         

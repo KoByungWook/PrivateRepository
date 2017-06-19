@@ -18,6 +18,6 @@
 </head>
 
 <body>
-로티 핵바보 로티 비열해
+WebProjectTemplate
 </body>
 </html>

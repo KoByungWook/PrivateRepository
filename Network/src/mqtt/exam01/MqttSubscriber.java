@@ -1,6 +1,5 @@
 package mqtt.exam01;
 
-import java.util.Date;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;

@@ -51,15 +51,15 @@ public class GasSensor {
         });
 
         //방법1: Analog값 이용해서 처리
-//		while(true) {
-//			double value = test.getValue();
-//			System.out.println(value);
-//			if(value < 200) {
-//				//방법1:Analog 값을 이용해서 처리
-//			}
-//			Thread.sleep(1000);
-//		}
-        System.in.read();
+		while(true) {
+			double value = test.getValue();
+			System.out.println(value);
+			if(value < 200) {
+				//방법1:Analog 값을 이용해서 처리
+			}
+			Thread.sleep(1000);
+		}
+//        System.in.read();
 
     }
 }
