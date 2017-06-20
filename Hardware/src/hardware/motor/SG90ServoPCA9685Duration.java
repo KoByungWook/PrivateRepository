@@ -44,37 +44,40 @@ public class SG90ServoPCA9685Duration {
         SG90ServoPCA9685Duration servoLR = new SG90ServoPCA9685Duration(pca9685, PCA9685.PWM_14);
         SG90ServoPCA9685Duration servoUD = new SG90ServoPCA9685Duration(pca9685, PCA9685.PWM_15);
         SG90ServoPCA9685Duration servoFW = new SG90ServoPCA9685Duration(pca9685, PCA9685.PWM_00);
+		SG90ServoPCA9685Duration servoTest = new SG90ServoPCA9685Duration(pca9685, PCA9685.PWM_03);
 //
-        for(int i=10; i<150; i+=10) {
-            servoUS.setAngle(i);
-            servoLR.setAngle(i);
-            servoUD.setAngle(i);
-            servoFW.setAngle(i);
-            Thread.sleep(500);
-        }
-//        
-//        for(int i=150; i>0; i-=10) {
-//            servoUS.setAngle(i);
-//            servoLR.setAngle(i);
-//            servoUD.setAngle(i);
-//            servoFW.setAngle(i);
-//            Thread.sleep(500);
-//        }
-        servoUS.setAngle(90);
         
-        Thread.sleep(1000);
-        
-        servoLR.setAngle(90);
-        
-        Thread.sleep(1000);
-        
-        servoUD.setAngle(10);
-        
-        Thread.sleep(1000);
-        
-        servoFW.setAngle(90);
+		while (true) {
+//			for (int i = 10; i < 150; i += 10) {
+//				servoUS.setAngle(i);
+//				servoLR.setAngle(i);
+//				servoUD.setAngle(i);
+//				servoFW.setAngle(i);
+//				Thread.sleep(500);
+//			}
+//
+//			for (int i = 150; i > 0; i -= 10) {
+//				servoUS.setAngle(i);
+//				servoLR.setAngle(i);
+//				servoUD.setAngle(i);
+//				servoFW.setAngle(i);
+//				Thread.sleep(500);
+//			}
+		servoUS.setAngle(30);
+        servoLR.setAngle(30);
+        servoUD.setAngle(30);
+        servoFW.setAngle(30);
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
+		
+		servoUS.setAngle(90);
+        servoLR.setAngle(90);
+		servoUD.setAngle(90);
+		servoFW.setAngle(90);
+		
+		Thread.sleep(2000);
+		}
+        
 
     }
 

@@ -132,5 +132,10 @@
 	
 	<h4>transaction</h4>
 	<a href="transaction/exam01" class="btn btn-primary">계좌 이체 테스트</a>
+	
+	<h4>WebSocket</h4>
+	<a href="websocket/echoClient" class="btn btn-primary">에코 클라이언트</a>
+	<a href="websocket/measureClient" class="btn btn-primary">측정값 얻기</a>
+	<a href="websocket/chatClient" class="btn btn-primary">채팅 클라이언트</a>
 </body>
 </html>

@@ -131,7 +131,8 @@ public class LCD1602 {
 	public static void main(String[] args) throws Exception {
 		LCD1602 lcd1602 = new LCD1602(0x27);
 
-		lcd1602.write(0, 0, "display");
+		lcd1602.write(0, 0, "Display");
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 		for (int i = 0; i < 10; i++) {
 			lcd1602.write(1, 0, formatter.format(new Date()));
