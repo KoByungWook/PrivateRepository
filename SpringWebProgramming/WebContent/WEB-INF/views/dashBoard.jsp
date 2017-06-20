@@ -16,6 +16,8 @@
 		<script
 			src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js"
 			type="text/javascript"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
 		<style>
 			hr {
 				align : center;
@@ -39,7 +41,9 @@
 					<div style="height:140px;background-color:rgba(179,179,179,0.5);">SensingCar Direction</div>
 				</div>
 				<div class="col-md-2" style="padding:5px; ">
-					<div style="height:140px;background-color:rgba(179,179,179,0.5);">UltrasonicSensor rotate</div>
+					<div style="height:140px;background-color:rgba(179,179,179,0.5);">
+						<div id="container" style="height: 140px;margin: 0 auto"></div>
+					</div>
 				</div>
 				<div class="col-md-2" style="padding:5px; ">
 					<div style="height:140px;background-color:rgba(179,179,179,0.5);">Camera Up-Down</div>
@@ -114,5 +118,48 @@
 			</div>
 			
 		</div>
+		
+		<script>
+			$(function() {
+				var ultrasonicRocation = Highcharts.chart('container', {
+				    chart: {
+				        plotBackgroundColor: null,
+				        plotBorderWidth: 0,
+				        plotShadow: false
+				    },
+				    title: {
+				        text: 'ultrasonicSensor<br>direction',
+				        align: 'center',
+				        verticalAlign: 'middle',
+				        y: 40
+				    },
+				    tooltip: {
+				        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				    },
+				    plotOptions: {
+				        pie: {
+				            dataLabels: {
+				                enabled: false,
+				            },
+				            startAngle: -90,
+				            endAngle: 90,
+				            center: ['50%', '75%']
+				        }
+				    },
+				    series: [{
+				        type: 'pie',
+				        name: 'ultrasonicSensor direction',
+				        innerSize: '10%',
+				        data: [
+				            ['Firefox',   10.38],
+				            ['IE',       56.33],
+				            ['Chrome', 24.03],
+				            ['Safari',    4.77],
+				            ['Opera',     0.91]
+				        ]
+				    }]
+				});
+			});
+		</script>
 	</body>
 </html>
