@@ -53,3 +53,6 @@
 /Network/build/
 /Network/dist/
 /SensingCarLocalWebControl/target/
+/SensingCar/nbproject/private/
+/SensingCar/build/
+/SensingCar/dist/
