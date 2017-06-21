@@ -19,109 +19,6 @@
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/highcharts-more.js"></script>
 		<script src="https://code.highcharts.com/modules/exporting.js"></script>
-		<style>
-			hr {
-				align : center;
-				width : 80%;
-				margin-top : 0.5em;
-				margin-bottom : 0.5em;
-				border : 0px;
-				border-top : 1px solid rgba(179,179,179,0.3);
-			}
-		</style>	
-	</head>
-	<body style="background-color:#1a1a1a">
-		<h3 style="padding-left:200px;margin-top:30px">SensingCar DashBoard</h3>
-		<hr/>
-		<div class="container-fluid" style="width:80%;margin-top:0px">
-			<div class="row" >
-				<div class="col-md-3" style="padding:5px; ">
-					<div style="height:200px;background-color:rgba(179,179,179,0.3);">SensingCar Speed</div>
-				</div>
-				<div class="col-md-3" style="padding:5px; ">
-					<div style="height:200px;background-color:rgba(179,179,179,0.3);">SensingCar Direction</div>
-				</div>
-				<div class="col-md-2" style="padding:5px; ">
-					<div style="height:200px;background-color:rgba(179,179,179,0.3);">
-						<div id="container" style="height: 200px; margin: 0 auto"></div>
-					</div>
-				</div>
-				<div class="col-md-2" style="padding:5px; ">
-					<div style="height:200px;background-color:rgba(179,179,179,0.3);">Camera Up-Down</div>
-				</div>
-				<div class="col-md-2" style="padding:5px; ">
-					<div style="height:200px;background-color:rgba(179,179,179,0.3);">Camera Left-Right</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-md-4">
-					<div class="row">
-						<div class="col-md-12" style="padding:5px; ">
-							<div style="height:200px;background-color:rgba(179,179,179,0.3);">Thermistor Chart</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12" style="padding:5px; ">
-							<div style="height:200px;background-color:rgba(179,179,179,0.3);">Photoresistor Chart</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12" style="padding:5px; ">
-							<div style="height:200px;background-color:rgba(179,179,179,0.3);">GasSensor Chart</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-8">
-				
-					<div class="row">
-						<div class="col-md-6" style="padding:5px; ">
-							<div style="height:330px;background-color:#1a1a1a;text-align:center;padding:5px">
-								<img src="http://192.168.3.44:50001?action=stream" style="height:320px;"/>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="row">
-								<div class="col-md-12" style="padding:5px; ">
-									<div style="height:160px;background-color:rgba(179,179,179,0.3);">UltrasonicSensor Value</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" style="padding:5px; ">
-									<div style="height:160px;background-color:rgba(179,179,179,0.3);">TrackingSensor Value</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-md-4" style="padding:5px; ">
-							<div style="height:280px;background-color:rgba(179,179,179,0.3);">RGB Control</div>
-						</div>
-						<div class="col-md-4" style="padding:5px; ">
-							<div style="height:280px;background-color:rgba(179,179,179,0.3);">LCD1602 Control</div>
-						</div>
-						<div class="col-md-4">
-							<div class="row">
-								<div class="col-md-12" style="padding:5px; ">
-									<div style="height:135px;background-color:rgba(179,179,179,0.3);">Laser On/Off</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" style="padding:5px; ">
-									<div style="height:135px;background-color:rgba(179,179,179,0.3);">Buzzer On/Off</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-		</div>
-		
 		<script>
 			$(function() {
 				Highcharts.chart('container', {
@@ -217,5 +114,111 @@
 					});
 			});
 		</script>
+		<style>
+			hr {
+				align : center;
+				width : 80%;
+				margin-top : 0.5em;
+				margin-bottom : 0.5em;
+				border : 0px;
+				border-top : 1px solid rgba(179,179,179,0.3);
+			}
+			.section {
+				
+			}
+		</style>	
+	</head>
+	<body style="background-color:#1a1a1a">
+		<h3 style="padding-left:200px;margin-top:30px">SensingCar DashBoard</h3>
+		<hr/>
+		<div class="container-fluid" style="width:80%;margin-top:0px">
+			<div class="row" >
+				<div class="col-md-3" style="padding:5px; ">
+					<div style="height:200px;background-color:rgba(179,179,179,0.3);">SensingCar Speed</div>
+				</div>
+				<div class="col-md-3" style="padding:5px; ">
+					<div style="height:200px;background-color:rgba(179,179,179,0.3);">SensingCar Direction</div>
+				</div>
+				<div class="col-md-2" style="padding:5px; ">
+					<div style="height:200px;background-color:rgba(179,179,179,0.3);">
+						<div id="container" style="height: 200px; margin: 0 auto"></div>
+					</div>
+				</div>
+				<div class="col-md-2" style="padding:5px; ">
+					<div style="height:200px;background-color:rgba(179,179,179,0.3);">Camera Up-Down</div>
+				</div>
+				<div class="col-md-2" style="padding:5px; ">
+					<div style="height:200px;background-color:rgba(179,179,179,0.3);">Camera Left-Right</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col-md-12" style="padding:5px; ">
+							<div style="height:200px;background-color:rgba(179,179,179,0.3);">Thermistor Chart</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding:5px; ">
+							<div style="height:200px;background-color:rgba(179,179,179,0.3);">Photoresistor Chart</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" style="padding:5px; ">
+							<div style="height:200px;background-color:rgba(179,179,179,0.3);">GasSensor Chart</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-8">
+				
+					<div class="row">
+						<div class="col-md-6" style="padding:5px; ">
+							<div style="height:330px;background-color:#1a1a1a;text-align:center;padding:5px">
+								<img src="http://192.168.3.44:50001?action=stream" style="height:320px;"/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12" style="padding:5px; ">
+									<div style="height:160px;background-color:rgba(179,179,179,0.3);">UltrasonicSensor Value</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding:5px; ">
+									<div style="height:160px;background-color:rgba(179,179,179,0.3);">TrackingSensor Value</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4" style="padding:5px; ">
+							<div style="height:280px;background-color:rgba(179,179,179,0.3);">RGB Control</div>
+						</div>
+						<div class="col-md-4" style="padding:5px; ">
+							<div style="height:280px;background-color:rgba(179,179,179,0.3);">LCD1602 Control</div>
+						</div>
+						<div class="col-md-4">
+							<div class="row">
+								<div class="col-md-12" style="padding:5px; ">
+									<div style="height:135px;background-color:rgba(179,179,179,0.3);">Laser On/Off</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12" style="padding:5px; ">
+									<div style="height:135px;background-color:rgba(179,179,179,0.3);">Buzzer On/Off</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+		
 	</body>
 </html>

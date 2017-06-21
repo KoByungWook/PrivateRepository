@@ -10,4 +10,9 @@ public class TestController {
 	public String dashBoard() {
 		return "dashBoard";
 	}
+	
+	@RequestMapping("/dashBoard2")
+	public String dashBoard2() {
+		return "dashBoard2";
+	}
 }
