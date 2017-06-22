@@ -15,7 +15,7 @@ public class RGBLedResource extends CoapResource {
 	private int currRed;
 	private int currGreen;
 	private int currBlue;
-	
+					
 	//Constructor
 	public RGBLedResource() throws Exception {
 		super("rgbled");
@@ -34,11 +34,11 @@ public class RGBLedResource extends CoapResource {
 	@Override
 	public void handleGET(CoapExchange exchange) {
 	}
-	
+
 	@Override
 	public void handlePOST(CoapExchange exchange) {
-		//{"command":"change", "red":"100", "green":"100", "blue":"100" }
-		//{"command":"status"}
+		//{ "command":"change", "red":"100", "green":"100", "blue":"100" }
+		//{ "command":"status" }
 		try {
 			String requestJson = exchange.getRequestText();
 			JSONObject requestJsonObject = new JSONObject(requestJson);
@@ -48,7 +48,7 @@ public class RGBLedResource extends CoapResource {
 				int green = Integer.parseInt(requestJsonObject.getString("green"));
 				int blue = Integer.parseInt(requestJsonObject.getString("blue"));
 				setColor(red, green, blue);
-			} else if(command.equals("getStatus")) {
+			} else if(command.equals("status")) {
 			}
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "success");
@@ -58,11 +58,11 @@ public class RGBLedResource extends CoapResource {
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
 		} catch(Exception e) {
-			LOGGER.info(e.toString());
+			logger.info(e.toString());
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "fail");
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
-		}	
+		}		
 	}
 }

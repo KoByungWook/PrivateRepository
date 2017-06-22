@@ -13,8 +13,8 @@ public class FrontTireResource extends CoapResource {
 	private static final Logger logger = LoggerFactory.getLogger(FrontTireResource.class);
 	private PCA9685 pca9685;
 	private SG90ServoPCA9685Duration servoMotor;
+	private final int maxAngle = 130;
 	private final int minAngle = 60;
-	private final int maxAngle = 120;
 	private int currAngle;
 	
 	//Constructor
@@ -32,14 +32,15 @@ public class FrontTireResource extends CoapResource {
 		servoMotor.setAngle(angle);
 		currAngle = angle;
 	}
+	
 	@Override
 	public void handleGET(CoapExchange exchange) {
 	}
 
 	@Override
 	public void handlePOST(CoapExchange exchange) {
-		//{"command":"change", "angle":"90" }
-		//{"command":"status"}
+		//{ "command":"change", "angle":"90" }
+		//{ "command":"status" }
 		try {
 			String requestJson = exchange.getRequestText();
 			JSONObject requestJsonObject = new JSONObject(requestJson);
@@ -47,19 +48,19 @@ public class FrontTireResource extends CoapResource {
 			if(command.equals("change")) {
 				int angle = Integer.parseInt(requestJsonObject.getString("angle"));
 				setAngle(angle);
-			} else if(command.equals("getStatus")) {
+			} else if(command.equals("status")) {
 			}
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "success");
-			responseJsonObject.put("status", String.valueOf(currAngle));
+			responseJsonObject.put("angle", String.valueOf(currAngle));
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
 		} catch(Exception e) {
-			LOGGER.info(e.toString());
+			logger.info(e.toString());
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "fail");
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
-		}	
+		}		
 	}
 }

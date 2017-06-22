@@ -15,30 +15,30 @@ public class ThermistorSensorResource extends CoapResource {
 	private PCF8591 pcf8591;
 	private ThermistorSensor thermistorSensor;
 	private double currTemperature;
+	
 	//Constructor
 	public ThermistorSensorResource() throws Exception {
 		super("thermistorsensor");
-		
 		setObservable(true);
 		getAttributes().setObservable();
 		setObserveType(CoAP.Type.NON);
 		
 		pcf8591 = new PCF8591(0x48, PCF8591.AIN1);
 		thermistorSensor = new ThermistorSensor(pcf8591);
+		
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
-				while (true) {
+				while(true) {
 					try {
 						currTemperature = thermistorSensor.getValue();
 						changed();
 						Thread.sleep(1000);
-					} catch (Exception e) {
-						LOGGER.info(e.toString());
+					} catch(Exception e) {
+						logger.info(e.toString());
 					}
 				}
 			}
-			
 		};
 		thread.start();
 	}
@@ -51,16 +51,15 @@ public class ThermistorSensorResource extends CoapResource {
 		String responseJson = responseJsonObject.toString();
 		exchange.respond(responseJson);
 	}
-	
-	
+
 	@Override
 	public void handlePOST(CoapExchange exchange) {
-		//{"command":"status"}
+		//{ "command":"status" }
 		try {
 			String requestJson = exchange.getRequestText();
 			JSONObject requestJsonObject = new JSONObject(requestJson);
 			String command = requestJsonObject.getString("command");
-			if(command.equals("getStatus")) {
+			if(command.equals("status")) {
 			}
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "success");
@@ -68,11 +67,11 @@ public class ThermistorSensorResource extends CoapResource {
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
 		} catch(Exception e) {
-			LOGGER.info(e.toString());
+			logger.info(e.toString());
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "fail");
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
-		}	
+		}		
 	}
 }

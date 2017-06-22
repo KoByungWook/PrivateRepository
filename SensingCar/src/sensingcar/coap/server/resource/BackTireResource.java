@@ -11,8 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class BackTireResource extends CoapResource {
 	//Field
-	private static final Logger logger = LoggerFactory.getLogger(BackTireResource.class);	
-	
+	private static final Logger logger = LoggerFactory.getLogger(BackTireResource.class);
 	private DCMotor dcMotorLeft;
 	private DCMotor dcMotorRight;
 	private PCA9685 pca9685;
@@ -28,7 +27,6 @@ public class BackTireResource extends CoapResource {
 		dcMotorLeft = new DCMotor(RaspiPin.GPIO_00, RaspiPin.GPIO_01, pca9685, PCA9685.PWM_05);
 		dcMotorRight = new DCMotor(RaspiPin.GPIO_02, RaspiPin.GPIO_03, pca9685, PCA9685.PWM_04);
 		forward();
-		setSpeed(0);
 	}
 	
 	//Method
@@ -63,22 +61,22 @@ public class BackTireResource extends CoapResource {
 
 	@Override
 	public void handlePOST(CoapExchange exchange) {
-		//{ "command":"change", "direction":"forward", "speed":"1000"}
+		//{ "command":"change", "direction":"forward", "speed":"1000" }
 		//{ "command":"status" }
 		try {
 			String requestJson = exchange.getRequestText();
 			JSONObject requestJsonObject = new JSONObject(requestJson);
 			String command = requestJsonObject.getString("command");
 			if(command.equals("change")) {
-				String reqDirection = requestJsonObject.getString("direction");
-				int reqSpeed = Integer.parseInt(requestJsonObject.getString("speed"));
-				if(reqDirection.equals("forward")) {
+				String direction = requestJsonObject.getString("direction");
+				int speed = Integer.parseInt(requestJsonObject.getString("speed"));
+				if(direction.equals("forward")) {
 					forward();
-				} else if(reqDirection.equals("backward")) {
+				} else if(direction.equals("backward")) {
 					backward();
 				}
-				setSpeed(reqSpeed);
-			} else if(command.equals("getStatus")) {
+				setSpeed(speed);
+			} else if(command.equals("status")) {
 			}
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "success");
@@ -87,11 +85,11 @@ public class BackTireResource extends CoapResource {
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
 		} catch(Exception e) {
-			LOGGER.info(e.toString());
+			logger.info(e.toString());
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "fail");
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
-		}	
+		}
 	}
 }

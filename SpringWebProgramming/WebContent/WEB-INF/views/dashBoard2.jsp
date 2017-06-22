@@ -1,7 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><!DOCTYPE html>
-<html>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 		<meta name=viewport
@@ -269,29 +270,33 @@
 			        }]
 			    });
 			});
-		</script>	
+		</script>
+		
 	</head>
 <body>
-	<div class="container-fluid" style="width:95%;height:100%;border:1px solid #1a1a1a;margin-top:20px;margin-bottom:20px;">
+	<div class="container-fluid" style="width:85%;height:100%;border:1px solid #1a1a1a;margin-top:20px;margin-bottom:20px;">
 		<div class="row">
-			<div class="col-md-4">
-				<div class="col-md-12" style="height:460px;">
+			<div class="col-md-6">
+				<div class="col-md-12" style="height:400px;">
 					<h3 style="padding-left:10px;margin-top:10px">SensingCar Control</h3>
 					<hr style="margin-top:0px;"/>
 				</div>
-				<div class="col-md-12" style="height:230px;">
+				<div class="col-md-12" style="height:400px;">
 						<h3 style="padding-left:10px;margin-top:10px">Display Control</h3>
 						<hr style="margin-top:0px;"/>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="row">
 					<div class="col-md-12" style="height:230px;">
-						<h3 style="padding-left:10px;margin-top:10px">Ultrasonic Control</h3>
+						<h3 style="padding-left:10px;margin-top:10px">Camera Control</h3>
 						<hr style="margin-top:0px;"/>
+						<div style="text-align:center;">
+							<img src="http://192.168.3.44:50001?action=stream" style="height:150px"/>
+						</div>
 					</div>
 					<div class="col-md-12" style="height:230px;">
-						<h3 style="padding-left:10px;margin-top:10px">Camera Control</h3>
+						<h3 style="padding-left:10px;margin-top:10px">US-sensor Control</h3>
 						<hr style="margin-top:0px;"/>
 					</div>
 					<div class="col-md-12" style="height:230px;">
@@ -300,7 +305,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4" style="background-color:#1a1a1a;height:690px">
+			<div class="col-md-3" style="background-color:#1a1a1a;height:800px">
 				<h3 style="color:#808080;padding-left:10px;margin-top:10px">Real Time Data</h3>
 				<hr style="margin-top:0px;"/>
 				<div class="col-md-12" style="height:200px;margin:0px;padding:0px;">

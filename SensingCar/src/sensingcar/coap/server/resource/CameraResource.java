@@ -17,10 +17,10 @@ public class CameraResource extends CoapResource {
 	private final int minLeftRight = 10;
 	private final int maxLeftRight = 170;
 	private final int minUpDown = 10;
-	private final int maxUpdown = 100;
+	private final int maxUpDown = 100;
 	private int currLeftRight;
 	private int currUpDown;
-	
+					
 	//Constructor
 	public CameraResource() throws Exception {
 		super("camera");
@@ -34,14 +34,14 @@ public class CameraResource extends CoapResource {
 	//Method
 	private void turnLeftRight(int angle) {
 		if(angle < minLeftRight) angle = minLeftRight;
-		else if(angle > maxLeftRight) angle = maxLeftRight;
+		if(angle > maxLeftRight) angle = maxLeftRight;
 		leftRightMotor.setAngle(angle);
 		currLeftRight = angle;
 	}
 	
 	private void turnUpDown(int angle) {
 		if(angle < minUpDown) angle = minUpDown;
-		else if(angle > maxUpdown) angle = maxUpdown;
+		if(angle > maxUpDown) angle = maxUpDown;
 		upDownMotor.setAngle(angle);
 		currUpDown = angle;
 	}
@@ -49,11 +49,11 @@ public class CameraResource extends CoapResource {
 	@Override
 	public void handleGET(CoapExchange exchange) {
 	}
-	
+
 	@Override
 	public void handlePOST(CoapExchange exchange) {
-		//{"command":"change", "leftRight":"90", "updown":"10" }
-		//{"command":"status"}
+		//{ "command":"change", "leftright":"90", "updown":"10" }
+		//{ "command":"status" }
 		try {
 			String requestJson = exchange.getRequestText();
 			JSONObject requestJsonObject = new JSONObject(requestJson);
@@ -63,7 +63,7 @@ public class CameraResource extends CoapResource {
 				int updown = Integer.parseInt(requestJsonObject.getString("updown"));
 				turnLeftRight(leftright);
 				turnUpDown(updown);
-			} else if(command.equals("getStatus")) {
+			} else if(command.equals("status")) {
 			}
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "success");
@@ -72,11 +72,11 @@ public class CameraResource extends CoapResource {
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
 		} catch(Exception e) {
-			LOGGER.info(e.toString());
+			logger.info(e.toString());
 			JSONObject responseJsonObject = new JSONObject();
 			responseJsonObject.put("result", "fail");
 			String responseJson = responseJsonObject.toString();
 			exchange.respond(responseJson);
-		}	
+		}		
 	}
 }

@@ -3,7 +3,7 @@ package sensingcar;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sensingcar.coap.CoapResourceServer;
+import sensingcar.coap.server.CoapResourceServer;
 
 public class SensingCar {
 	//Field
