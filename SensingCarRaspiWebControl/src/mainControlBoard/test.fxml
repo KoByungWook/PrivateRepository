@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="mainControlBoard.TestController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainControlBoard.TestController">
    <children>
       <StackPane prefHeight="480.0" prefWidth="800.0">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnBuzzerOn" layoutX="89.0" layoutY="91.0" mnemonicParsing="false" text="On" />
-                  <Button fx:id="btnBuzzerOff" layoutX="156.0" layoutY="91.0" mnemonicParsing="false" text="OFF" />
-                  <Label fx:id="labelBuzzerStatus" layoutX="89.0" layoutY="48.0" prefHeight="30.0" prefWidth="67.0" text="Label" />
+                  <Button fx:id="btnBuzzerOn" layoutX="28.0" layoutY="68.0" mnemonicParsing="false" text="On" />
+                  <Button fx:id="btnBuzzerOff" layoutX="76.0" layoutY="68.0" mnemonicParsing="false" text="OFF" />
+                  <Label fx:id="labelBuzzerStatus" layoutX="28.0" layoutY="25.0" prefHeight="30.0" prefWidth="67.0" text="Label" />
+                  <Circle fx:id="handleRotate" layoutX="400.0" layoutY="240.0" radius="234.0" stroke="BLACK" strokeType="INSIDE">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#020d17" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Circle>
                </children>
             </AnchorPane>
          </children>

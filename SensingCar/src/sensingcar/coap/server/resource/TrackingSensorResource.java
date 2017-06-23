@@ -20,7 +20,7 @@ public class TrackingSensorResource extends CoapResource {
 	
 	//Constructor
 	public TrackingSensorResource() throws Exception {
-		super("tracking");
+		super("trackingsensor");
 		setObservable(true);
 		getAttributes().setObservable();
 		setObserveType(CoAP.Type.NON);
