@@ -32,6 +32,12 @@ function showThermistorSensorChart(sensor) {
 			data: []
 		}]
 	});
+	
+	$("#hoverTemperature").css("box-shadow", "5px 5px 10px gray inset");
+	$("#hoverDistance").css("box-shadow","none");
+	$("#hoverPhoto").css("box-shadow","none");
+	$("#hoverGas").css("box-shadow","none");
+	$("#hoverTracking").css("box-shadow","none");
 }
 function showGasSensorChart() {
 	sensorChart = new Highcharts.Chart({
@@ -62,6 +68,12 @@ function showGasSensorChart() {
 			data: []
 		}]
 	});
+	
+	$("#hoverTemperature").css("box-shadow","none");
+	$("#hoverDistance").css("box-shadow","none");
+	$("#hoverPhoto").css("box-shadow","none");
+	$("#hoverGas").css("box-shadow", "5px 5px 10px gray inset");
+	$("#hoverTracking").css("box-shadow","none");
 }
 
 function showPhotoresistorSensorChart() {
@@ -93,6 +105,12 @@ function showPhotoresistorSensorChart() {
 			data: []
 		}]
 	});
+	
+	$("#hoverTemperature").css("box-shadow","none");
+	$("#hoverDistance").css("box-shadow","none");
+	$("#hoverPhoto").css("box-shadow", "5px 5px 10px gray inset");
+	$("#hoverGas").css("box-shadow","none");
+	$("#hoverTracking").css("box-shadow","none");
 }
 
 function showUltrasonicSensorChart() {
@@ -126,6 +144,12 @@ function showUltrasonicSensorChart() {
 			data: []
 		}]
 	});
+	
+	$("#hoverTemperature").css("box-shadow","none");
+	$("#hoverDistance").css("box-shadow","5px 5px 10px gray inset");
+	$("#hoverPhoto").css("box-shadow", "none");
+	$("#hoverGas").css("box-shadow","none");
+	$("#hoverTracking").css("box-shadow","none");
 }
 
 function showTrackingSensorChart() {
@@ -159,6 +183,27 @@ function showTrackingSensorChart() {
 			data: []
 		}]
 	});
+	
+	$("#hoverTemperature").css("box-shadow","none");
+	$("#hoverDistance").css("box-shadow","none");
+	$("#hoverPhoto").css("box-shadow", "none");
+	$("#hoverGas").css("box-shadow","none");
+	$("#hoverTracking").css("box-shadow","5px 5px 10px gray inset");
+}
+
+function showClearSensorChart() {
+	sensorChart = null;
+	if(ws != null) {
+		ws.close();
+		ws = null;
+	}
+	$("#chartContainer").html("<br/><br/>Please put your mouse<br/>To the data that you want to see in the chart.");
+
+	$("#hoverTemperature").css("box-shadow","none");
+	$("#hoverDistance").css("box-shadow","none");
+	$("#hoverPhoto").css("box-shadow", "none");
+	$("#hoverGas").css("box-shadow","none");
+	$("#hoverTracking").css("box-shadow","none");
 }
 
 function requestThermistorSensorData() {

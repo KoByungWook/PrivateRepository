@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://localhost:8080/SensingCarRemoteWebControl/test2 -->
+<html class="fa-events-icons-ready"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no">
+		<title>Home</title>
+		<link href="./Home_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<script src="./Home_files/b36942a4d5.js.다운로드"></script><link href="./Home_files/b36942a4d5.css" media="all" rel="stylesheet">
+		<script src="./Home_files/jquery-3.2.1.min.js.다운로드" type="text/javascript"></script>
+		<script src="./Home_files/bootstrap.min.js.다운로드" type="text/javascript"></script>
+		<script src="./Home_files/highcharts.js.다운로드"></script>
+		
+		<script src="./Home_files/showsensorchart.js.다운로드"></script>
+			
+		<script src="./Home_files/thermistorsensorvalue.js.다운로드"></script>
+		<script src="./Home_files/photoresistorsensorvalue.js.다운로드"></script>
+		<script src="./Home_files/trackingsensorvalue.js.다운로드"></script>
+		<script src="./Home_files/ultrasonicsensorvalue.js.다운로드"></script>
+		<script src="./Home_files/gassensorvalue.js.다운로드"></script>
+		<style>
+			.bannerhr {
+				height: 1px;
+				width: 75%;
+				color: #ffffff;
+				background-color: #ffffff;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="min-height:400px;background-repeat:no-repeat;background-size:100%;background-image:url(/SensingCarRemoteWebControl/resources/images/coding_background2.jpg);">
+			<div style="font-size:30px;color:white;margin-top:15px">Group4</div>
+			<hr class="bannerhr">
+			<div style="font-size:50px;color:white;">SensingCar Remote Control Board</div>
+			
+		</div>
+			
+		<div class="container-fluid" style="width:70%;margin-top:20px">
+			<div class="row">
+			
+				<div class="col-md-12" style="margin-bottom:30px;">
+					<div>
+						<h3>Real Time Data</h3>
+						<hr>
+					</div>
+					<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+						<div class="row" style="margin:0px;">
+							<div onmouseover="showThermistorSensorChart()" class="col-md-2" style="height:70px;padding-top:5px;">
+								<span style="font-size:14px;"><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i> Temperature</span>
+             					<div id="divTemperature" style="text-align:center;font-size:25px;">27.6℃</div>
+							</div>
+							<div onmouseover="showUltrasonicSensorChart()" class="col-md-2" style="height:70px;padding-top:5px;">
+								<span style="font-size:14px;"><i class="fa fa-exchange" aria-hidden="true"></i> Distance</span>
+             					<div id="divDistance" style="text-align:center;font-size:25px;">123cm</div>
+							</div>
+							<div onmouseover="showPhotoresistorSensorChart()" class="col-md-2" style="height:70px;padding-top:5px;">
+								<span style="font-size:14px;"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Brightness</span>
+             					<div id="divPhoto" style="text-align:center;font-size:25px;">244</div>
+							</div>
+							<div onmouseover="showGasSensorChart()" class="col-md-2" style="height:70px;padding-top:5px;">
+								<span style="font-size:14px;"><i class="fa fa-cloud" aria-hidden="true"></i> Gas Con.</span>
+             					<div id="divGas" style="text-align:center;font-size:25px;">78</div>
+							</div>
+							<div onmouseover="showTrackingSensorChart()" class="col-md-2" style="height:70px;padding-top:5px;">
+								<span style="font-size:14px;"><i class="fa fa-adjust" aria-hidden="true"></i> Tracking</span>
+             					<div id="divTracking" style="height:30px;background-color:black;"></div>
+							</div>
+							<div onmouseover="showClearSensorChart()" class="col-md-2" style="height:70px;padding-top:5px;">
+								<span style="font-size:14px;"><i class="fa fa-window-close" aria-hidden="true"></i> Clear</span>
+             					<div id="divClear" style="text-align:center;font-size:12px;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+						<div style="height:320px;">
+							<div id="chartContainer" style="height:320px;text-align:center;" data-highcharts-chart="1"><div id="highcharts-66jtcgl-4" class="highcharts-container " style="position: relative; overflow: hidden; width: 1046px; height: 320px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1046" height="320"><desc>Created with Highcharts 5.0.6</desc><defs><clippath id="highcharts-66jtcgl-5"><rect x="0" y="0" width="934.5448191658586" height="185" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="1046" height="320" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="101.45518083414136" y="53" width="934.5448191658586" height="185"></rect><g class="highcharts-grid highcharts-xaxis-grid "><path fill="none" class="highcharts-grid-line" d="M 139.24005392137877 53 L 139.24005392137877 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 230.92506740172348 53 L 230.92506740172348 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 322.3004065309378 53 L 322.3004065309378 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 413.6458980337503 53 L 413.6458980337503 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 505.68178838220337 53 L 505.68178838220337 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 597.3787531125706 53 L 597.3787531125706 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 688.7272354777542 53 L 688.7272354777542 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 780.1236673473837 53 L 780.1236673473837 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 872.1236673473837 53 L 872.1236673473837 238" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 963.8266257658067 53 L 963.8266257658067 238" opacity="1"></path></g><g class="highcharts-grid highcharts-yaxis-grid "><path fill="none" stroke="#e6e6e6" stroke-width="1" class="highcharts-grid-line" d="M 101.45518083414136 176.19383183705025 L 1036 176.19383183705025" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" opacity="0.6455180834141359" class="highcharts-grid-line" d="M 105 238.5 L 1036 238.5"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" opacity="0.6455180834141359" class="highcharts-grid-line" d="M 105 146.5 L 1036 146.5"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" opacity="0.6455180834141359" class="highcharts-grid-line" d="M 105 99.5 L 1036 99.5"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" opacity="0.6455180834141359" class="highcharts-grid-line" d="M 105 52.5 L 1036 52.5"></path></g><rect fill="none" class="highcharts-plot-border" x="105" y="53" width="931" height="185"></rect><g class="highcharts-axis highcharts-xaxis "><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 139.24005392137877 238 L 139.24005392137877 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 230.92506740172348 238 L 230.92506740172348 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 322.3004065309378 238 L 322.3004065309378 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 413.6458980337503 238 L 413.6458980337503 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 505.68178838220337 238 L 505.68178838220337 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 597.3787531125706 238 L 597.3787531125706 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 688.7272354777542 238 L 688.7272354777542 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 780.1236673473837 238 L 780.1236673473837 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 872.1236673473837 238 L 872.1236673473837 248" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 963.8266257658067 238 L 963.8266257658067 248" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" d="M 101.45518083414136 238.5 L 1036 238.5"></path></g><g class="highcharts-axis highcharts-yaxis "><text x="28.883922058559662" text-anchor="middle" transform="translate(0,0) rotate(270 28.883922058559662 145.5)" class="highcharts-axis-title" style="color:#666666;fill:#666666;" y="145.5">brightness</text><path fill="none" class="highcharts-axis-line" d="M 101.45518083414136 53 L 101.45518083414136 238"></path></g><g class="highcharts-series-group"><g class="highcharts-series highcharts-series-0 highcharts-line-series highcharts-color-0 " transform="translate(101.39495553019614,53) scale(1 1)" clip-path="url(#highcharts-66jtcgl-5)" width="185" height="931"><path fill="none" d="M 427.8570115370837 122.07666932715718 L 483.42936050482507 122.07666932715718 L 506.7480329327202 62.92333067284282" class="highcharts-graph" stroke="yellow" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><path fill="none" d="M 409.58892156863 138.75 L 419.58892156863 138.75 L 474.94691176471 138.75 L 511.41107843137 46.25 L 521.41107843137 46.25" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" class="highcharts-tracker"></path></g><g class="highcharts-markers highcharts-series-0 highcharts-line-series highcharts-color-0 highcharts-tracker" transform="translate(101.39495553019614,53) scale(1 1)" clip-path="url(#highcharts-66jtcgl-6)" width="185" height="931"><path fill="yellow" d="M 427.36105274155074 117.93701350883813 C 432.6890527415507 117.93701350883813 432.6890527415507 125.93701350883813 427.36105274155074 125.93701350883813 C 422.03305274155076 125.93701350883813 422.03305274155076 117.93701350883813 427.36105274155074 117.93701350883813 Z" class="highcharts-point highcharts-color-0"></path><path fill="yellow" d="M 482.7245767737921 117.93701350883813 C 488.05257677379205 117.93701350883813 488.05257677379205 125.93701350883813 482.7245767737921 125.93701350883813 C 477.3965767737921 125.93701350883813 477.3965767737921 117.93701350883813 482.7245767737921 117.93701350883813 Z" class="highcharts-point highcharts-color-0"></path><path fill="yellow" d="M 511 42 C 516.328 42 516.328 50 511 50 C 505.672 50 505.672 42 511 42 Z" class="highcharts-point highcharts-color-0"></path></g></g><text x="523" text-anchor="middle" class="highcharts-title" style="color:#333333;font-size:18px;fill:#333333;width:982px;" y="24"><tspan>PhotoresistorSensor</tspan></text><g class="highcharts-legend" transform="translate(463,275)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="119" height="30" visibility="visible"></rect><g><g><g class="highcharts-legend-item highcharts-line-series highcharts-color-0 highcharts-series-0" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" class="highcharts-graph" stroke="yellow" stroke-width="2"></path><path fill="yellow" d="M 8 7 C 13.328 7 13.328 15 8 15 C 2.6719999999999997 15 2.6719999999999997 7 8 7 Z" class="highcharts-point"></path><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" y="15">photoresistor</text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels "><text x="139.53797716465945" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:02</tspan></text><text x="231.17737047419075" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:04</tspan></text><text x="322.79059743773246" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:06</tspan></text><text x="414.40382440127416" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:08</tspan></text><text x="506.0550000570071" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:10</tspan></text><text x="597.6711592385597" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:12</tspan></text><text x="689.2873184201122" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:14</tspan></text><text x="780.9503164375188" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:16</tspan></text><text x="872.5694137014517" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:18</tspan></text><text x="964.1885109653846" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:95px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="257" opacity="1"><tspan>02:06:20</tspan></text></g><g class="highcharts-axis-labels highcharts-yaxis-labels "><text x="86.45518083414136" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:335px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="177.69383183705025" opacity="1"><tspan>243</tspan></text><text x="90" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:335px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="241" opacity="0.6809662750727222"><tspan>242.5</tspan></text><text x="90" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:335px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="115.1108860736189" opacity="0.6809662750727222"><tspan>243.5</tspan></text><text x="90" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:335px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="52.72701359456488" opacity="0.6809662750727222"><tspan>244</tspan></text><text x="90" style="color:#666666;cursor:default;font-size:11px;fill:#666666;width:335px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="-9.579154568384865" opacity="0.6809662750727222"><tspan>244.5</tspan></text></g><text x="1036" class="highcharts-credits" text-anchor="end" style="cursor:pointer;color:#999999;font-size:9px;fill:#999999;" y="315">Highcharts.com</text></svg></div></div>
+						</div>
+					</div>	
+				</div>
+				
+				<div class="col-md-12" style="margin-bottom:30px;">
+					<div>
+						<h3>Driving Status &amp; Control</h3>
+						<hr>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+								<div style="height:240px;"></div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+										<div style="height:120px;"></div>
+									</div>
+									<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+										<div style="height:120px;"></div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-8" style="margin-bottom:30px;">
+						<div>
+							<h3>Camera Control</h3>
+							<hr>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+									<div style="height:300px;"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+											<div style="height:300px;"></div>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4" style="margin-bottom:30px;">
+						<div>
+							<h3>Toggle Control</h3>
+							<hr>
+						</div>
+						<div class="col-md-12">
+							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+								<div style="height:300px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-5" style="margin-bottom:30px;">
+						<div>
+							<h3>RGB LED Control</h3>
+							<hr>
+						</div>
+						<div class="col-md-12">
+							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+								<div style="height:240px;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-7" style="margin-bottom:30px;">
+						<div>
+							<h3>LCD Display Control</h3>
+							<hr>
+						</div>
+						<div class="col-md-12">
+							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+								<div style="height:240px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	
+</body></html>
