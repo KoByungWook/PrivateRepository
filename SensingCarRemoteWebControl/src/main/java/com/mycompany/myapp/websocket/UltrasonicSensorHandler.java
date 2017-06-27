@@ -33,7 +33,7 @@ public class UltrasonicSensorHandler extends TextWebSocketHandler implements App
 	@PostConstruct
 	public void init() {
 		coapClient = new CoapClient();
-		coapClient.setURI("coap://192.168.43.166/ultrasonicsensor");
+		coapClient.setURI("coap://192.168.3.44/ultrasonicsensor");
 		coapObserveRelation = coapClient.observe(new CoapHandler() {			
 			@Override
 			public void onLoad(CoapResponse response) {

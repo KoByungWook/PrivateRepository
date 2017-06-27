@@ -73,7 +73,7 @@ function showPhotoresistorSensorChart() {
 				load: requestPhotoresistorSensorData
 			}
 		},
-		colors: ['pink'],
+		colors: ['yellow'],
 		title: {
 			text: "PhotoresistorSensor"
 		},
