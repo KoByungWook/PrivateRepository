@@ -104,8 +104,8 @@ public class HomeController {
 		jsonObject = new JSONObject(json);
 		model.addAttribute("direction", jsonObject.getString("direction"));
 		model.addAttribute("speed", jsonObject.getString("speed"));
-		// model.addAttribute("cameraUrl",
-		// "http://192.168.3.44:50001?action=stream");
+		 model.addAttribute("cameraUrl",
+		 "http://192.168.3.44:50001?action=stream");
 
 		coapClient.shutdown();
 		return "controlpanel";

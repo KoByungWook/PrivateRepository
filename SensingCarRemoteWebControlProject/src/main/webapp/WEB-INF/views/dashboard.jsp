@@ -8,17 +8,12 @@
 		<meta name=viewport
 			content="width=device-width initial-scale=1 user-scalable=no">
 		<title>Home</title>
-		<link
-			href="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css"
-			rel="stylesheet" type="text/css" />
-		<script src="https://use.fontawesome.com/b36942a4d5.js"></script>
-		<script
-			src="<%=application.getContextPath()%>/resources/jquery/jquery-3.2.1.min.js"
-			type="text/javascript"></script>
-		<script
-			src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js"
-			type="text/javascript"></script>
+		<link href="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="<%=application.getContextPath()%>/resources/custom_css/inputrange.css" rel="stylesheet" type="text/css" />
+		<script src="<%=application.getContextPath()%>/resources/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+		<script src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="<%=application.getContextPath()%>/resources/highcharts/code/highcharts.js"></script>
+		<script src="https://use.fontawesome.com/b36942a4d5.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Hammersmith+One" />
@@ -26,9 +21,10 @@
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Indie+Flower" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Gloria+Hallelujah" />
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Contrail+One" />
+			
+		<script src="<%=application.getContextPath()%>/resources/js/camera.js"></script>
 				
 		<script src="<%=application.getContextPath()%>/resources/js/showsensorchart.js"></script>
-			
 		<script src="<%=application.getContextPath()%>/resources/js/thermistorsensorvalue.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/photoresistorsensorvalue.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/trackingsensorvalue.js"></script>
@@ -77,7 +73,7 @@
 		<div class="topnav">
 		  <a href="#top">TOP</a>
 		  <a href="#realTimeData">RealTime Data</a>
-		  <a href="#driving">Driving Status & Control</a>
+		  <a href="#driving">Driving Control</a>
 		  <a href="#camera">Camera & Toggle Control</a>
 		  <a href="#rgb">RGB & LCD Control</a>
 		</div>
@@ -93,33 +89,33 @@
 			
 				<div id="realTimeData" class="col-md-12" style="margin-top:30px;">
 					<div>
-						<h2>RealTime Data</h2>
+						<h2 style="color:#000066;">RealTime Data</h2>
 						<hr/>
 					</div>
-					<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+					<div class="row" style="position:relative;background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
 						<div class="row" style="margin:0px;">
 							<div id="hoverTemperature" onmouseover="showThermistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:16px;"><i class="fa fa-thermometer-three-quarters"  aria-hidden="true"></i> Temperature</span>
+								<span style="font-size:18px;"><i class="fa fa-thermometer-three-quarters"  aria-hidden="true"></i> Temperature</span>
              					<div id="divTemperature" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverDistance" onmouseover="showUltrasonicSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:16px;"><i class="fa fa-exchange" aria-hidden="true"></i> Distance</span>
+								<span style="font-size:18px;"><i class="fa fa-exchange" aria-hidden="true"></i> Distance</span>
              					<div id="divDistance" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverPhoto" onmouseover="showPhotoresistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:16px;"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Brightness</span>
+								<span style="font-size:18px;"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Brightness</span>
              					<div id="divPhoto" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverGas" onmouseover="showGasSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:16px;"><i class="fa fa-cloud"  aria-hidden="true"></i> Gas Con.</span>
+								<span style="font-size:18px;"><i class="fa fa-cloud"  aria-hidden="true"></i> Gas Con.</span>
              					<div id="divGas" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverTracking" onmouseover="showTrackingSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:16px;"><i class="fa fa-adjust" aria-hidden="true"></i> Tracking</span>
+								<span style="font-size:18px;"><i class="fa fa-adjust" aria-hidden="true"></i> Tracking</span>
              					<div id="divTracking" style="height:30px;background-color:black;margin-top:10px;"></div>
 							</div>
 							<div onmouseover="showClearSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:16px;"><i class="fa fa-window-close" aria-hidden="true"></i> Clear</span>
+								<span style="font-size:18px;"><i class="fa fa-window-close" aria-hidden="true"></i> Clear</span>
              					<div id="divClear" style="text-align:center;font-size:16px;"></div>
 							</div>
 						</div>
@@ -130,12 +126,12 @@
 								<br/><br/>Please put your mouse<br/>To the data that you want to see in the chart.
 							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 				
 				<div id="driving" class="col-md-12" style="margin-bottom:30px;">
 					<div>
-						<h2>Driving Status & Control</h2>
+						<h2 style="color:#000066;">Driving Control</h2>
 						<hr/>
 					</div>
 					<div class="row">
@@ -162,20 +158,47 @@
 				<div class="row">
 					<div id="camera" class="col-md-8" style="margin-bottom:30px;">
 						<div>
-							<h2>Camera Control</h2>
+							<h2 style="color:#000066;">Camera Control</h2>
 							<hr/>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-									<div style="height:300px;"></div>
+									<div style="height:300px;text-align:center;padding-top:30px;">
+										<img src="${cameraUrl}" style="height:85%"/>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-											<div style="height:300px;"></div>
+											<div style="height:300px;">
+												<div class="row" style="margin:0px;padding-top:15px;">
+													<div class="col-md-6">
+														<span style="font-size:24px;padding:10px;"><i class="fa fa-arrows-h" aria-hidden="true"></i> LR-Angle</span>
+             											<div id="leftrightAngle" style="text-align:center;font-size:48px;">${leftright}º</div>
+													</div>
+													<div class="col-md-6">
+														<span style="font-size:24px;padding:10px;"><i class="fa fa-arrows-v" aria-hidden="true"></i> UD-Angle</span>
+             											<div id="updownAngle" style="text-align:center;font-size:48px;">${updown}º</div>
+													</div>
+												</div>
+												<div class="row" style="margin:0px;text-align:center;height:80px;padding:20px;">
+													<i class="fa fa-arrow-left fa-2x" aria-hidden="true" style="display:inline-block;"></i>
+													<input id="cameraLeftRight" type="range" min="10" max="170" step="1" 
+													   value="${leftright}" onchange="camera('change',this.value,'${updown}','lr')"
+													   style="width:75%;display:inline-block;margin:7px;padding-bottom:5px;"/>
+													<i class="fa fa-arrow-right fa-2x" aria-hidden="true" style="display:inline-block;"></i>
+												</div>
+												<div class="row" style="margin:0px;text-align:center;height:80px;padding:20px;">	
+													<i class="fa fa-arrow-down fa-2x" aria-hidden="true" style="display:inline-block;"></i>   
+													<input id="cameraUpDown" type="range" min="10" max="100" step="1" 
+													   value="${updown}" onchange="camera('change','${leftright}',this.value,'ud')"
+													   style="width:75%;display:inline-block;margin:5px;padding-bottom:5px;"/>
+													<i class="fa fa-arrow-up fa-2x" aria-hidden="true" style="display:inline-block;"></i>
+												</div>
+											</div>
 										</div>	
 									</div>
 								</div>
@@ -184,7 +207,7 @@
 					</div>
 					<div id="toggle" class="col-md-4" style="margin-bottom:30px;">
 						<div>
-							<h2>Toggle Control</h2>
+							<h2 style="color:#000066;">Toggle Control</h2>
 							<hr/>
 						</div>
 						<div class="col-md-12">
@@ -198,7 +221,7 @@
 				<div class="row">
 					<div id="rgb" class="col-md-5" style="margin-bottom:30px;">
 						<div>
-							<h2>RGB LED Control</h2>
+							<h2 style="color:#000066;">RGB LED Control</h2>
 							<hr/>
 						</div>
 						<div class="col-md-12">
@@ -209,7 +232,7 @@
 					</div>
 					<div id="lcd" class="col-md-7" style="margin-bottom:30px;">
 						<div>
-							<h2>LCD Display Control</h2>
+							<h2 style="color:#000066;">LCD Display Control</h2>
 							<hr/>
 						</div>
 						<div class="col-md-12">
