@@ -33,7 +33,7 @@ public class ThermistorSensorHandler extends TextWebSocketHandler implements App
 	@PostConstruct
 	public void init() {
 		coapClient = new CoapClient();
-		coapClient.setURI("coap://192.168.43.166/thermistorsensor");
+		coapClient.setURI("coap://192.168.3.44/thermistorsensor");
 		coapObserveRelation = coapClient.observe(new CoapHandler() {			
 			@Override
 			public void onLoad(CoapResponse response) {

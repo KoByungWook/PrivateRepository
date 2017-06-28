@@ -33,7 +33,7 @@ public class trackingSensorHandler extends TextWebSocketHandler implements Appli
 	@PostConstruct
 	public void init() {
 		coapClient = new CoapClient();
-		coapClient.setURI("coap://192.168.43.166/trackingsensor");
+		coapClient.setURI("coap://192.168.3.44/trackingsensor");
 		coapObserveRelation = coapClient.observe(new CoapHandler() {			
 			@Override
 			public void onLoad(CoapResponse response) {
