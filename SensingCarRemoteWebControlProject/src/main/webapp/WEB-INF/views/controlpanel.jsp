@@ -5,289 +5,131 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>WebApplication</title>
-		
-		
-		<link href="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<link href="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 		<script src="<%=application.getContextPath()%>/resources/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
-		<script src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="<%=application.getContextPath()%>/resources/highcharts/code/highcharts.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/highcharts/code/themes/gray.js"></script>  
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script> 
 		<style>@media screen and (min-width: 480px) { #title { height: 10px; } }</style>
-		
-		
-		<script src="<%=application.getContextPath()%>/resources/js/camera.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/rgbled.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/laseremitter.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/buzzer.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/ultrasonicsensor.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/lcd.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/fronttire.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/backtire.js"></script>
-		
-		<script src="<%=application.getContextPath()%>/resources/js/thermistorsensorchart.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/ultrasonicsensorchart.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/trackingsensorchart.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/photoresistorsensorchart.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/gassensorchart.js"></script>
+		<script type="text/javascript">
+
+		Highcharts.chart('container', {
+
+		    chart: {
+		        type: 'gauge',
+		        plotBackgroundColor: null,
+		        plotBackgroundImage: null,
+		        plotBorderWidth: 0,
+		        plotShadow: false
+		    },
+
+		    title: {
+		        text: 'Speedometer'
+		    },
+
+		    pane: {
+		        startAngle: -150,
+		        endAngle: 150,
+		        background: [{
+		            backgroundColor: {
+		                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+		                stops: [
+		                    [0, '#FFF'],
+		                    [1, '#333']
+		                ]
+		            },
+		            borderWidth: 0,
+		            outerRadius: '109%'
+		        }, {
+		            backgroundColor: {
+		                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+		                stops: [
+		                    [0, '#333'],
+		                    [1, '#FFF']
+		                ]
+		            },
+		            borderWidth: 1,
+		            outerRadius: '107%'
+		        }, {
+		            // default background
+		        }, {
+		            backgroundColor: '#DDD',
+		            borderWidth: 0,
+		            outerRadius: '105%',
+		            innerRadius: '103%'
+		        }]
+		    },
+
+		    // the value axis
+		    yAxis: {
+		        min: 0,
+		        max: 200,
+
+		        minorTickInterval: 'auto',
+		        minorTickWidth: 1,
+		        minorTickLength: 10,
+		        minorTickPosition: 'inside',
+		        minorTickColor: '#666',
+
+		        tickPixelInterval: 30,
+		        tickWidth: 2,
+		        tickPosition: 'inside',
+		        tickLength: 10,
+		        tickColor: '#666',
+		        labels: {
+		            step: 2,
+		            rotation: 'auto'
+		        },
+		        title: {
+		            text: 'km/h'
+		        },
+		        plotBands: [{
+		            from: 0,
+		            to: 120,
+		            color: '#55BF3B' // green
+		        }, {
+		            from: 120,
+		            to: 160,
+		            color: '#DDDF0D' // yellow
+		        }, {
+		            from: 160,
+		            to: 200,
+		            color: '#DF5353' // red
+		        }]
+		    },
+
+		    series: [{
+		        name: 'Speed',
+		        data: [80],
+		        tooltip: {
+		            valueSuffix: ' km/h'
+		        }
+		    }]
+
+		},
+		// Add some life
+		function (chart) {
+		    if (!chart.renderer.forExport) {
+		        setInterval(function () {
+		            var point = chart.series[0].points[0],
+		                newVal,
+		                inc = Math.round((Math.random() - 0.5) * 20);
+
+		            newVal = point.y + inc;
+		            if (newVal < 0 || newVal > 200) {
+		                newVal = point.y - inc;
+		            }
+
+		            point.update(newVal);
+
+		        }, 3000);
+		    }
+		});
+		</script>
 	</head>
 
 	<body style="background-color: black;">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-8">
-					<div id="title" style="height:50px; margin:20px 0px; color: white; text-align: center; font-size: 30px; font-style: italic; font-weight: bold;">
-						IoT Smart Sensing Car Control Panel
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div style="height:50px; margin-top: 40px; text-align: center; color: white; font-size: 20px; font-style: italic; font-weight: bold;">
-						Powered By <span style="color: orange;">CoAP</span> Java Application
-					</div>
-				</div>                
-			</div>
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="row">
-						<div class="col-md-5">
-							<div style="height:210px;">
-								<img class="img-responsive"  src="<%=application.getContextPath()%>/resources/image/602.jpg" style="width:100%;height:100%;"/>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div  style="height:210px;">
-								<img class="img-responsive" src="${cameraUrl}" style="width:100%; height:100%;"/>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div style="background: linear-gradient(#737373, black); color: white; height:600px; padding: 5px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">Camera 장치 제어</div>
-								
-								<%-- <div style="text-align: center">현재 상태: <span id="cameraStatus">leftright=${leftright} ; updown=${updown}</span></div>
-								<br/>
-								<div style="text-align: center;">
-									좌우<br/>
-									<button id="btnLeftright180" type="button" class="btn btn-danger" onclick="camera('change', '180', '${updown}')">&lt;&lt;</button> 
-									<button id="btnLeftright135" type="button" class="btn btn-warning" onclick="camera('change', '135', '${updown}')">&lt;</button> 
-									<button id="btnLeftright90" type="button" class="btn btn-default" onclick="camera('change', '90', '${updown}')">정면</button>                                    
-									<button id="btnLeftright45" type="button" class="btn btn-info" onclick="camera('change', '45', '${updown}')">&gt;</button>
-									<button id="btnLeftright0" type="button" class="btn btn-primary" onclick="camera('change', '0', '${updown}')">&gt;&gt;</button>                                    
-									<br/><br/>상하<br/>
-									<button id="btnUpdown10" type="button" class="btn btn-default" onclick="camera('change', '${leftright}', '10')">정면</button>
-									<button id="btnUpdown45" type="button" class="btn btn-info" onclick="camera('change', '${leftright}', '45')">45도</button>
-									<button id="btnUpdown75" type="button" class="btn btn-primary" onclick="camera('change', '${leftright}', '75')">75도</button>
-								</div>  --%>
-								<hr/>
-								
-								<%-- <div style="padding-left: 20px;">
-									<table style="width:100%">
-										<tr>
-											<td style="width:70%">
-												 좌 우 : <input id="leftright" type="text" maxlength="16" value="${leftright}" style="color: black; width:120px;"/><br/><br/>
-												 상 하 : <input id="updown" type="text" maxlength="16" value="${updown}" style="color: black; width:120px;"/>
-											</td>
-											<td style="width:30%">
-													<button type="button" onclick="camera('change')" class="btn btn-primary">보내기</button>	
-											</td>	 
-										</tr>
-									</table>
-								</div>  --%>
-								
-								<hr/>
-							<!-- leftright  -->
-							<div data-role="main" class="ui-content">
-								<label for="points">leftright :</label> 
-								<span id="rangeLeftRight">${leftright}</span>
-
-								<table style="width: 100%">
-									<tr>
-										<td style="width: 70%">
-										<input id="leftright" type="range"
-											style="width: 200px;" name="points" value="${leftright}"
-											min="10" max="170" step="10"
-											onchange="camera('change' ,this.value,'${updown}' )"></input>
-										</td>
-									</tr>
-								</table>
-							</div>
-							
-						<!-- updown  -->
-						<div data-role="main" class="ui-content">
-								<label for="points">updown :</label>
-								 <span id="rangeUpDown">${updown}</span>
-
-								<table style="width: 100%">
-									<tr>
-										<td style="width: 70%">
-										<input id="updown" type="range"
-											style="width: 200px;" name="points" value="${updown}"
-											min="10" max="100" step="10"
-											onchange="camera('change' ,'${leftright}' ,this.value)"></input>
-										</td>
-										
-									</tr>
-								</table>
-							</div>
-
-
-						</div>
-						</div>       
-					</div>
-
-					<div class="row">
-						<div class="col-lg-3">
-							<div style="background: linear-gradient(#737373, black); color: white; height:150px; background-color: lightgray; padding: 5px; margin-top: 20px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">RGBLed 장치 제어</div>
-								<div style="text-align: center">현재 상태: <div id="rgbledStatus" style="width:15px;height:15px;display: inline-block; background-color: rgb(${red} ${green} ${blue});"></div></div>
-								<br/>
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-danger" onclick="rgbled('change', '255', '0', '0')">Red</button>
-									<button type="button" class="btn btn-success" onclick="rgbled('change', '0', '255', '0')">Green</button>
-									<button type="button" class="btn btn-primary" onclick="rgbled('change', '0', '0', '255')">Blue</button>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div style="background: linear-gradient(#737373, black); color: white; height:150px; background-color: lightgray; padding: 5px; margin-top: 20px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">LaserEmitter 장치 제어</div>
-								<div style="text-align: center;">현재 상태: <span id="laseremitterStatus">${laseremitterStatus}</span></div>
-								<br/>
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-warning" onclick="laseremitter('change', 'on')">ON</button>
-									<button type="button" class="btn btn-info" onclick="laseremitter('change', 'off')">OFF</button>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div style="background: linear-gradient(#737373, black); color: white; height:150px; background-color: lightgray; padding: 5px; margin-top: 20px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">Buzzer 장치 제어</div>
-								<div style="text-align: center">현재 상태: <span id="buzzerStatus">${buzzerStatus}</span></div>
-								<br/>  
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-warning"  onclick="buzzer('change', 'on')">ON</button>
-									<button type="button" class="btn btn-info"  onclick="buzzer('change', 'off')">OFF</button>
-								</div>                                
-							</div>
-						</div>      
-						<div class="col-lg-3">
-							<div style="background: linear-gradient(#737373, black); color: white; height:150px; background-color: lightgray; padding: 5px; margin-top: 20px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">UltrasonicSensor 제어</div>
-								<div style="text-align: center">현재 상태: <span id="ultrasonicsensorStatus">angle=${ultrasonicsensorAngle}; distance=${ultrasonicsensorDistance}</span></div>
-								<br/>
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-danger" onclick="ultrasonicsensor('change', '180')">&lt;&lt;</button>                                    
-									<button type="button" class="btn btn-default" onclick="ultrasonicsensor('change', '90')">정면</button>
-									<button type="button" class="btn btn-primary" onclick="ultrasonicsensor('change', '0')">&gt;&gt;</button>                                    
-								</div>
-							</div>
-						</div>                            
-					</div>
-
-					<div class="row">
-						<div class="col-lg-4">
-							<div style="background: linear-gradient(#737373, black); color: white; height:180px; background-color: lightgray; padding: 5px; margin-top: 20px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">LCD 장치 제어</div>
-								<div style="text-align: center">현재 상태: <span id="lcdStatus" ><br/>line0: ${lcdline0}<br/>line1: ${lcdline1}</span></div>
-								<br/>
-								<div style="padding-left: 20px;">
-									<table style="width:100%">
-										<tr>
-											<td style="width:70%">
-												Line0: <input id="lcdline0" type="text" maxlength="16" value="${lcdline0}" style="color: black; width:120px;"/><br/>
-												Line1: <input id="lcdline1" type="text" maxlength="16" value="${lcdline1}" style="color: black; width:120px;"/>
-											</td>
-											<td style="width:30%">
-												<button type="button" onclick="lcd('change')" class="btn btn-primary">보내기</button>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</div> 
-						</div>
-						<div class="col-lg-3">
-							<div style="background: linear-gradient(#737373, black); color: white; height:150px; background-color: lightgray; padding: 5px; margin-top: 20px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">FrontTire 장치 제어</div>
-								<div style="text-align: center">현재 상태: <span id="fronttireStatus">angle=${fronttireAngle}</span></div>
-								<br/>
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-danger" onclick="fronttire('change', '65')">&lt;&lt;</button>
-									<button type="button" class="btn btn-default" onclick="fronttire('change', '95')">정면</button>
-									<button type="button" class="btn btn-primary" onclick="fronttire('change', '125')">&gt;&gt;</button>
-								</div>
-							</div> 
-							
-							<hr/>
-							<!-- FrontTire -->
-							<div data-role="main" class="ui-content">
-								<label for="points">FrontTire :</label>
-								 <span id="rangeFrontTireAngle">${fronttireAngle}</span>
-								
-								<table style="width: 100%">
-									<tr>
-										<td style="width: 70%">
-										<input id="fronttire" type="range"
-											style="width: 200px;" name="points" value="${fronttireAngle}"
-											min="60" max="120" step="10"
-											onchange="fronttire('change' , this.value)"></input>
-										</td>
-										
-									</tr>
-								</table>
-							</div>
-							
-						</div>
-						<div class="col-lg-5">
-							<div style="background: linear-gradient(#737373, black); color: white; height:150px; background-color: lightgray; padding: 5px; margin-top: 20px;">
-								<div style="text-align: center; font-size: 18px; font-style: italic; font-weight: bold;">BackTire 장치 제어</div>
-								<div style="text-align: center">현재 상태: <span id="backtireStatus"><br/>direction : ${backtireDirection} <br/> speed : ${backtireSpeed} </span></div>
-								<br/>
-								<div style="text-align: center;">
-									<button id="btnForward" type="button" class="btn btn-warning" onclick="backtire('change', 'forward','${backtireSpeed}') " style="margin-bottom: 5px;">전진</button>
-									<button id="btnBackward"  type="button" class="btn btn-info" onclick="backtire('change', 'backward','${backtireSpeed}' ) " style="margin-bottom: 5px;">후진</button>
-									<br/>
-									<button id="btnSpeed0" onclick="backtire('change',' ${backtireDirection}', '0')" style="color: black;">0</button>
-									<button id="btnSpeed1" onclick="backtire('change', ' ${backtireDirection}', '1')" style="color: black;">1</button>
-									<button id="btnSpeed2" onclick="backtire('change', ' ${backtireDirection}', '2')" style="color: black;">2</button>
-									<button id="btnSpeed3" onclick="backtire('change', ' ${backtireDirection}', '3')" style="color: black;">3</button>
-									<button id="btnSpeed4" onclick="backtire('change', ' ${backtireDirection}', '4')" style="color: black;">4</button>
-									<button id="btnSpeed5" onclick="backtire('change', ' ${backtireDirection}', '5')" style="color: black;">5</button>
-									<button id="btnSpeed6" onclick="backtire('change', ' ${backtireDirection}', '6')" style="color: black;">6</button>
-									<button id="btnSpeed7" onclick="backtire('change', ' ${backtireDirection}', '7')" style="color: black;">7</button>
-									<button id="btnSpeed8" onclick="backtire('change', ' ${backtireDirection}', '8')" style="color: black;">8</button>
-									<button id="btnSpeed9" onclick="backtire('change', ' ${backtireDirection}', '9')" style="color: black;">9</button>
-									<button id="btnSpeed10" onclick="backtire('change', ' ${backtireDirection}', '10')" style="color: black;">10</button>
-								</div>                                      
-							</div> 
-						</div>
-					</div>          
-					<div class="row">
-						<div class="col-lg-6"> 
-							<div id="thermistorSensorChartContainer" style="height:230px; margin-top: 20px; border:1px solid white;"></div>
-						</div>
-						<div class="col-lg-6"> 
-							<div id="trackingSensorChartContainer" style="height:230px; margin-top: 20px; border:1px solid white;"></div>
-						</div> 
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div>
-						<div class="row">
-							<div class="col-lg-12">
-								<div id="ultrasonicSensorChartContainer" style="height:270px; border:1px solid white;"></div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-12">
-								<div id="photoresistorSensorChartContainer" style="height:270px; margin-top: 15px; border:1px solid white;"></div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-12">
-								<div id="gasSensorChartContainer" style="height:270px; margin-top: 15px; border:1px solid white;"></div>
-							</div>
-						</div>                   
-					</div>
-				</div>
-			</div>
-		</div>
+		<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
 	</body>
 </html>

@@ -17,7 +17,10 @@
 		
 		<script src="<%=application.getContextPath()%>/resources/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="<%=application.getContextPath()%>/resources/highcharts/code/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
+		<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+		
 		<script src="https://use.fontawesome.com/b36942a4d5.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
@@ -30,6 +33,7 @@
 		<script src="<%=application.getContextPath()%>/resources/js/camera.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/activebuzzer.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/laseremitter.js"></script>
+		<script src="<%=application.getContextPath()%>/resources/js/backtiregauge.js"></script>
 				
 		<script src="<%=application.getContextPath()%>/resources/js/showsensorchart.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/thermistorsensorvalue.js"></script>
@@ -45,7 +49,8 @@
 				if("${laseremitterStatus}" == "on") {
 					$("#laseronoff").removeAttr("checked");
 				}
-			});
+				setSpeedGaugeDefault("${speed}");
+			})
 		</script>
 		<style>
 			.bannerhr {
@@ -90,6 +95,9 @@
 			    background-color: #4CAF50;
 			    color: white;
 			}
+			.highcharts-yaxis-grid .highcharts-grid-line {
+				display: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -117,27 +125,27 @@
 					</div>
 					<div class="row" style="position:relative;background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;margin:0px;">
 						<div class="row" style="margin:0px;">
-							<div id="hoverTemperature" onmouseover="showThermistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
+							<div id="hoverTemperature" onmouseup="showThermistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-thermometer-three-quarters"  aria-hidden="true"></i> Temperature</span>
              					<div id="divTemperature" style="text-align:center;font-size:32px;">0</div>
 							</div>
-							<div id="hoverDistance" onmouseover="showUltrasonicSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
+							<div id="hoverDistance" onmouseup="showUltrasonicSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-exchange" aria-hidden="true"></i> Distance</span>
              					<div id="divDistance" style="text-align:center;font-size:32px;">0</div>
 							</div>
-							<div id="hoverPhoto" onmouseover="showPhotoresistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
+							<div id="hoverPhoto" onmouseup="showPhotoresistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Brightness</span>
              					<div id="divPhoto" style="text-align:center;font-size:32px;">0</div>
 							</div>
-							<div id="hoverGas" onmouseover="showGasSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
+							<div id="hoverGas" onmouseup="showGasSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-cloud"  aria-hidden="true"></i> Gas Con.</span>
              					<div id="divGas" style="text-align:center;font-size:32px;">0</div>
 							</div>
-							<div id="hoverTracking" onmouseover="showTrackingSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
+							<div id="hoverTracking" onmouseup="showTrackingSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-adjust" aria-hidden="true"></i> Tracking</span>
              					<div id="divTracking" style="height:30px;background-color:black;margin-top:10px;"></div>
 							</div>
-							<div onmouseover="showClearSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
+							<div onmouseup="showClearSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-window-close" aria-hidden="true"></i> Clear</span>
              					<div id="divClear" style="text-align:center;font-size:16px;"></div>
 							</div>
@@ -160,7 +168,10 @@
 					<div class="row" style="margin:0px;">
 						<div class="col-md-6">
 							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:240px;"></div>
+								<div style="height:400px;">
+									<div id="container-speed" style="height:280px;"></div>
+									<div id="backtirespeedup" onmouseover="speedup(${speed})" onmouseout="stopspeedup()" style="background-color:gray;height:100px;font-size:30px;">${speed}</div>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
