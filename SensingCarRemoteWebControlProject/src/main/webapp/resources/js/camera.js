@@ -4,7 +4,7 @@ function camera(command,leftright,updown,flag) {
 	console.log(leftright);
 	console.log(updown);
 	$.ajax({
-		url:"http://" + location.host + "/SensingCarRemoteWebControlProject/camera",
+		url: "http://" + location.host + "/SensingCarRemoteWebControlProject/camera",
 		data: json,
 		method: "post",
 		success: function(data) {

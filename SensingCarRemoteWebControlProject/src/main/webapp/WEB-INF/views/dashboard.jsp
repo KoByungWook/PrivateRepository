@@ -8,8 +8,13 @@
 		<meta name=viewport
 			content="width=device-width initial-scale=1 user-scalable=no">
 		<title>Home</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
 		<link href="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<link href="<%=application.getContextPath()%>/resources/custom_css/inputrange.css" rel="stylesheet" type="text/css" />
+		<link href="<%=application.getContextPath()%>/resources/custom_css/switch.css" rel="stylesheet" type="text/css" />
+		<link href="<%=application.getContextPath()%>/resources/custom_css/lcd.css" rel="stylesheet" type="text/css" />
+		
 		<script src="<%=application.getContextPath()%>/resources/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="<%=application.getContextPath()%>/resources/highcharts/code/highcharts.js"></script>
@@ -23,6 +28,8 @@
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Contrail+One" />
 			
 		<script src="<%=application.getContextPath()%>/resources/js/camera.js"></script>
+		<script src="<%=application.getContextPath()%>/resources/js/activebuzzer.js"></script>
+		<script src="<%=application.getContextPath()%>/resources/js/laseremitter.js"></script>
 				
 		<script src="<%=application.getContextPath()%>/resources/js/showsensorchart.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/thermistorsensorvalue.js"></script>
@@ -30,6 +37,16 @@
 		<script src="<%=application.getContextPath()%>/resources/js/trackingsensorvalue.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/ultrasonicsensorvalue.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/gassensorvalue.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				if("${buzzerStatus}" == "on") {
+					$("#buzzeronoff").removeAttr("checked");
+				};
+				if("${laseremitterStatus}" == "on") {
+					$("#laseronoff").removeAttr("checked");
+				}
+			});
+		</script>
 		<style>
 			.bannerhr {
 				height: 1px;
@@ -39,6 +56,12 @@
 				border: none;
 				margin-top: 12px;
 				margin-bottom: 12px;
+			}
+			hr {
+				height: 2px;
+				color: #cccccc;
+				background-color: #cccccc;
+				border: none;
 			}
 			.topnav {
 			  overflow: hidden;
@@ -92,35 +115,35 @@
 						<h2 style="color:#000066;">RealTime Data</h2>
 						<hr/>
 					</div>
-					<div class="row" style="position:relative;background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+					<div class="row" style="position:relative;background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;margin:0px;">
 						<div class="row" style="margin:0px;">
 							<div id="hoverTemperature" onmouseover="showThermistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:18px;"><i class="fa fa-thermometer-three-quarters"  aria-hidden="true"></i> Temperature</span>
+								<span style="font-size:17px;"><i class="fa fa-thermometer-three-quarters"  aria-hidden="true"></i> Temperature</span>
              					<div id="divTemperature" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverDistance" onmouseover="showUltrasonicSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:18px;"><i class="fa fa-exchange" aria-hidden="true"></i> Distance</span>
+								<span style="font-size:17px;"><i class="fa fa-exchange" aria-hidden="true"></i> Distance</span>
              					<div id="divDistance" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverPhoto" onmouseover="showPhotoresistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:18px;"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Brightness</span>
+								<span style="font-size:17px;"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Brightness</span>
              					<div id="divPhoto" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverGas" onmouseover="showGasSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:18px;"><i class="fa fa-cloud"  aria-hidden="true"></i> Gas Con.</span>
+								<span style="font-size:17px;"><i class="fa fa-cloud"  aria-hidden="true"></i> Gas Con.</span>
              					<div id="divGas" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverTracking" onmouseover="showTrackingSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:18px;"><i class="fa fa-adjust" aria-hidden="true"></i> Tracking</span>
+								<span style="font-size:17px;"><i class="fa fa-adjust" aria-hidden="true"></i> Tracking</span>
              					<div id="divTracking" style="height:30px;background-color:black;margin-top:10px;"></div>
 							</div>
 							<div onmouseover="showClearSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
-								<span style="font-size:18px;"><i class="fa fa-window-close" aria-hidden="true"></i> Clear</span>
+								<span style="font-size:17px;"><i class="fa fa-window-close" aria-hidden="true"></i> Clear</span>
              					<div id="divClear" style="text-align:center;font-size:16px;"></div>
 							</div>
 						</div>
 					</div>
-					<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+					<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;margin:0px;">
 						<div style="height:320px;">
 							<div id="chartContainer" style="height:320px;text-align:center;font-size:30px;color:gray;">
 								<br/><br/>Please put your mouse<br/>To the data that you want to see in the chart.
@@ -134,7 +157,7 @@
 						<h2 style="color:#000066;">Driving Control</h2>
 						<hr/>
 					</div>
-					<div class="row">
+					<div class="row" style="margin:0px;">
 						<div class="col-md-6">
 							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
 								<div style="height:240px;"></div>
@@ -161,11 +184,11 @@
 							<h2 style="color:#000066;">Camera Control</h2>
 							<hr/>
 						</div>
-						<div class="row">
+						<div class="row" style="margin:0px;">
 							<div class="col-md-6">
 								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-									<div style="height:300px;text-align:center;padding-top:30px;">
-										<img src="${cameraUrl}" style="height:85%"/>
+									<div style="height:300px;text-align:center;padding-top:15px;">
+										<img src="${cameraUrl}" style="height:85%;"/>
 									</div>
 								</div>
 							</div>
@@ -173,14 +196,14 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-											<div style="height:300px;">
+											<div style="height:300px;padding-right:25px">
 												<div class="row" style="margin:0px;padding-top:15px;">
-													<div class="col-md-6">
-														<span style="font-size:24px;padding:10px;"><i class="fa fa-arrows-h" aria-hidden="true"></i> LR-Angle</span>
+													<div class="col-md-6" style="text-align:center;border-right:2px solid gray;">
+														<span style="font-size:28px;padding:10px;"><i class="fa fa-arrows-h" aria-hidden="true"></i> LR-Angle</span>
              											<div id="leftrightAngle" style="text-align:center;font-size:48px;">${leftright}º</div>
 													</div>
-													<div class="col-md-6">
-														<span style="font-size:24px;padding:10px;"><i class="fa fa-arrows-v" aria-hidden="true"></i> UD-Angle</span>
+													<div class="col-md-6" style="text-align:center;">
+														<span style="font-size:28px;padding:10px;"><i class="fa fa-arrows-v" aria-hidden="true"></i> UD-Angle</span>
              											<div id="updownAngle" style="text-align:center;font-size:48px;">${updown}º</div>
 													</div>
 												</div>
@@ -212,7 +235,42 @@
 						</div>
 						<div class="col-md-12">
 							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:300px;"></div>
+								<div style="height:300px;padding-top:3px;">
+									<div class="row">
+										<div class="col-md-7" style="text-align:center;padding-top:10px">
+											<span style="font-size:30px;padding:10px;"><i class="fa fa-volume-up" aria-hidden="true"></i> Buzzer</span>
+             								<div id="divBuzzer" style="text-align:center;font-size:52px;">${buzzerStatus}</div>
+										</div>
+										<div class="col-md-5">
+											<div class="round">
+												<input type="checkbox" id="buzzeronoff" name="onoff" onclick="buzzer()" checked/>
+													<div class="back">
+														<label class="but" for="buzzeronoff">
+															<span class="on">I</span><span class="off">0</span>
+														</label>
+													<div class="led"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row" style="margin-top:10px;">
+										<div class="col-md-7" style="text-align:center;padding-top:10px">
+											<span style="font-size:28px;padding:10px;"><i class="fa fa-bolt" aria-hidden="true"></i> LaserEmitter</span>
+             								<div id="divLaser" style="text-align:center;font-size:52px;">${laseremitterStatus}</div>
+										</div>
+										<div class="col-md-5">
+											<div class="round">
+												<input type="checkbox" id="laseronoff" name="onoff" onclick="laser()" checked/>
+													<div class="back">
+														<label class="but" for="laseronoff">
+															<span class="on">I</span><span class="off">0</span>
+														</label>
+													<div class="led"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -224,9 +282,10 @@
 							<h2 style="color:#000066;">RGB LED Control</h2>
 							<hr/>
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-12" style="margin:0px;">
 							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:240px;"></div>
+								<div style="height:240px;">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -235,9 +294,15 @@
 							<h2 style="color:#000066;">LCD Display Control</h2>
 							<hr/>
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-12" style="margin:0px;">
 							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:240px;"></div>
+								<div style="height:240px;">
+									<form>
+									  <input placeholder="line0" type="text" required="">
+									  <input placeholder="line1" type="text" required="">
+									  <button>Submit</button>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
