@@ -126,11 +126,13 @@
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+			
 		</dependency>
 	
 		<!-- Oracle JDBC Driver -->
@@ -173,11 +175,11 @@
 			<artifactId>spring-websocket</artifactId>
 			<version>4.3.8.RELEASE</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-websocket</artifactId>
 			<version>8.0.44</version>
-		</dependency>  
+		</dependency> -->
 		 
 		<!-- JSON -->
 		<dependency>

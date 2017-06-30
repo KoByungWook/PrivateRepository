@@ -33,7 +33,7 @@ public class GasSensorHandler extends TextWebSocketHandler implements Applicatio
 	@PostConstruct
 	public void init() {
 		coapClient = new CoapClient();
-		coapClient.setURI("coap://192.168.43.166/gassensor");
+		coapClient.setURI("coap://192.168.3.44/gassensor");
 		coapObserveRelation = coapClient.observe(new CoapHandler() {			
 			@Override
 			public void onLoad(CoapResponse response) {

@@ -14,6 +14,8 @@
 		<link href="<%=application.getContextPath()%>/resources/custom_css/inputrange.css" rel="stylesheet" type="text/css" />
 		<link href="<%=application.getContextPath()%>/resources/custom_css/switch.css" rel="stylesheet" type="text/css" />
 		<link href="<%=application.getContextPath()%>/resources/custom_css/lcd.css" rel="stylesheet" type="text/css" />
+		<link href="<%=application.getContextPath()%>/resources/custom_css/bulb.css" rel="stylesheet" type="text/css" />
+		<link href="<%=application.getContextPath()%>/resources/custom_css/button.css" rel="stylesheet" type="text/css" />
 		
 		<script src="<%=application.getContextPath()%>/resources/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
@@ -34,7 +36,9 @@
 		<script src="<%=application.getContextPath()%>/resources/js/activebuzzer.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/laseremitter.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/backtiregauge.js"></script>
-				
+		<script src="<%=application.getContextPath()%>/resources/js/backtire.js"></script>
+		<script src="<%=application.getContextPath()%>/resources/js/fronttire.js"></script>	
+			
 		<script src="<%=application.getContextPath()%>/resources/js/showsensorchart.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/thermistorsensorvalue.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/photoresistorsensorvalue.js"></script>
@@ -44,7 +48,7 @@
 		<script type="text/javascript">
 			$(function(){
 				if("${buzzerStatus}" == "on") {
-					$("#buzzeronoff").removeAttr("checked");
+					$("#buzzeronoff").removeAttr("checked", "checked");
 				};
 				if("${laseremitterStatus}" == "on") {
 					$("#laseronoff").removeAttr("checked");
@@ -114,8 +118,25 @@
 			<div style="font-size:50px;color:white;text-align:center;margin-top:80px;">SensingCar Remote Control Board</div>
 			<div style="font-size:25px;color:white;text-align:center;margin-top:10px;">IoT Engineer Training Course SpringFramework Project</div>
 		</div>
-			
-		<div class="container-fluid" style="font-family:Contrail One;width:70%;">
+
+		<div id="bulb" class='wrapper' style="height: 100px; width: 200px; opacity:0;">
+			<div class='lightbulb'>
+				<div class='head'>
+					<div class='wire'></div>
+				</div>
+				<div class='body'>
+					<div class='el'>
+						<div class='el__one'></div>
+						<div class='el__two'></div>
+						<div class='el__three'></div>
+						<div class='el__five'></div>
+						<div class='el__six'></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="container-fluid" style="font-family:Contrail One;width:70%;">
 			<div class="row">
 			
 				<div id="realTimeData" class="col-md-12" style="margin-top:30px;">
@@ -135,7 +156,7 @@
 							</div>
 							<div id="hoverPhoto" onmouseup="showPhotoresistorSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Brightness</span>
-             					<div id="divPhoto" style="text-align:center;font-size:32px;">0</div>
+             					<div id="divBrightness" style="text-align:center;font-size:32px;">0</div>
 							</div>
 							<div id="hoverGas" onmouseup="showGasSensorChart()" class="col-md-2" style="height:80px;padding-top:10px;">
 								<span style="font-size:17px;"><i class="fa fa-cloud"  aria-hidden="true"></i> Gas Con.</span>
@@ -160,29 +181,62 @@
 					</div>
 				</div>
 				
-				<div id="driving" class="col-md-12" style="margin-bottom:30px;">
-					<div>
-						<h2 style="color:#000066;">Driving Control</h2>
-						<hr/>
-					</div>
-					<div class="row" style="margin:0px;">
-						<div class="col-md-6">
-							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:400px;">
-									<div id="container-speed" style="height:280px;"></div>
-									<div id="backtirespeedup" onmouseover="speedup(${speed})" onmouseout="stopspeedup()" style="background-color:gray;height:100px;font-size:30px;">${speed}</div>
+				<div class="row">
+					<div id="driving" class="col-md-9" style="margin-bottom:30px;">
+						<div>
+							<h2 style="color:#000066;">Driving Control</h2>
+							<hr/>
+						</div>
+						<div class="row" style="margin:0px;">
+							<div class="col-md-6">
+								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+									<div class="col-md-7" style="padding-left:30px;">
+										<div id="container-speed" style="height:280px;"></div>
+									</div>
+									<div class="row" style="margin:0px;text-align:center;height:140px;padding:20px 10px 20px 10px;border-right:2px solid gray;">
+										<span style="font-size:24px;padding:10px;"><i class="fa fa-bolt" aria-hidden="true"></i> Direction</span>
+	             						<div id="divDirection" style="text-align:center;font-size:48px;">${direction}</div>
+									</div>
+									<div class="row" style="margin:0px;text-align:center;height:140px;padding:20px;border-right:2px solid gray;">
+										<span style="font-size:24px;padding:10px;"><i class="fa fa-bolt" aria-hidden="true"></i> Angle</span>
+	             						<div id="divFronttireAngle" style="text-align:center;font-size:50px;">${fronttireAngle}º</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;margin-top:5px;">
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-4"></div>
+											<div class="col-md-4"><a class="button go" onclick="backtireDirection('forward','${speed}')"></a></div>
+											<div class="col-md-4"></div>
+										</div>
+										<div class="row">
+											<div class="col-md-4"><a id="fronttireleft" class="button left" onclick="fronttire('${fronttireAngle}','-5')"></a></div>
+											<div class="col-md-4"></div>
+											<div class="col-md-4"><a id="fronttirerignt" class="button right" onclick="fronttire('${fronttireAngle}','5')"></a></div>
+										</div>
+										<div class="row">
+											<div class="col-md-4"></div>
+											<div class="col-md-4"><a class="button back" onclick="backtireDirection('backward','${speed}')"></a></div>
+											<div class="col-md-4"></div>
+										</div>
+									</div>
+									
+									
+									
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-										<div style="height:120px;"></div>
-									</div>
-									<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-										<div style="height:120px;"></div>
-									</div>	
+					</div>
+					<div id="ultrasonicangle" class="col-md-3" style="margin-bottom:30px;">
+						<div>
+							<h2 style="color:#000066;">RGB LED Control</h2>
+							<hr/>
+						</div>
+						<div class="col-md-12" style="margin:0px;">
+							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+								<div style="height:240px;">
 								</div>
 							</div>
 						</div>
@@ -254,7 +308,7 @@
 										</div>
 										<div class="col-md-5">
 											<div class="round">
-												<input type="checkbox" id="buzzeronoff" name="onoff" onclick="buzzer()" checked/>
+												<input type="checkbox" id="buzzeronoff" name="onoff" onclick="buzzer()" checked="checked"/>
 													<div class="back">
 														<label class="but" for="buzzeronoff">
 															<span class="on">I</span><span class="off">0</span>

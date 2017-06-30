@@ -38,6 +38,8 @@ function showThermistorSensorChart(sensor) {
 	$("#hoverPhoto").css("box-shadow","none");
 	$("#hoverGas").css("box-shadow","none");
 	$("#hoverTracking").css("box-shadow","none");
+	
+	$("#bulb").attr("style","opacity:0");
 }
 function showGasSensorChart() {
 	sensorChart = new Highcharts.Chart({
@@ -74,6 +76,8 @@ function showGasSensorChart() {
 	$("#hoverPhoto").css("box-shadow","none");
 	$("#hoverGas").css("box-shadow", "5px 5px 10px gray inset");
 	$("#hoverTracking").css("box-shadow","none");
+	
+	$("#bulb").attr("style","opacity:0");
 }
 
 function showPhotoresistorSensorChart() {
@@ -111,6 +115,8 @@ function showPhotoresistorSensorChart() {
 	$("#hoverPhoto").css("box-shadow", "5px 5px 10px gray inset");
 	$("#hoverGas").css("box-shadow","none");
 	$("#hoverTracking").css("box-shadow","none");
+	
+	$("#bulb").attr("style","opacity:1");
 }
 
 function showUltrasonicSensorChart() {
@@ -150,6 +156,8 @@ function showUltrasonicSensorChart() {
 	$("#hoverPhoto").css("box-shadow", "none");
 	$("#hoverGas").css("box-shadow","none");
 	$("#hoverTracking").css("box-shadow","none");
+	
+	$("#bulb").attr("style","opacity:0");
 }
 
 function showTrackingSensorChart() {
@@ -189,6 +197,8 @@ function showTrackingSensorChart() {
 	$("#hoverPhoto").css("box-shadow", "none");
 	$("#hoverGas").css("box-shadow","none");
 	$("#hoverTracking").css("box-shadow","5px 5px 10px gray inset");
+	
+	$("#bulb").attr("style","opacity:0");
 }
 
 function showClearSensorChart() {
@@ -204,6 +214,8 @@ function showClearSensorChart() {
 	$("#hoverPhoto").css("box-shadow", "none");
 	$("#hoverGas").css("box-shadow","none");
 	$("#hoverTracking").css("box-shadow","none");
+	
+	$("#bulb").css("opacity",0);
 }
 
 function requestThermistorSensorData() {
@@ -275,3 +287,4 @@ function requestTrackingSensorData() {
 		series.addPoint([data.time, data.tracking], true, shift);
 	};
 }
+
