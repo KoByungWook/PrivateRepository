@@ -97,7 +97,8 @@ $(function() {
 	});
 });
 
-var speedupIntervalId;
+var speedIntervalId;
+var direction;
 var speed;
 var point;
 
@@ -107,39 +108,85 @@ function setSpeedGaugeDefault(defaultspeed) {
 	point.update(Number(defaultspeed));
 }
 
-function speedup(tempspeed) {
-	speed = tempspeed;
-	speedupIntervalId = setInterval(keepspeedup, 100);
-//	console.log("초기" + speedupIntervalId);
-//	speedupIntervalId = setInterval(test, 100);
-//	console.log("초기" + speedupIntervalId);
+function stopspeedchange() {
+	clearInterval(speedIntervalId);
+	speedIntervalId = null;
 }
 
-function stopspeedup() {
-	console.log("클리어 전" + speedupIntervalId);
-	clearInterval(speedupIntervalId);
-	console.log("클리어 후" + speedupIntervalId);
-	speedupIntervalId = null;
-}
-
-//function test() {
-//	console.log("test");
-//}
-
-function keepspeedup() {
-	speed = speed + 20;
-	if(speed > 4095) {
-		speed = 4095;
-	}
-	var json = {"command":"change", "direction":"forward", "speed":speed};
+function speedzero(tempdirection) {
+	direction = tempdirection;
+	speed = 0;
+	var json = {"command":"change", "direction":direction, "speed":"0"};
 	$.ajax({
 		url:"http://" + location.host + "/SensingCarRemoteWebControlProject/backtire",
 		data: json,
 		method: "post",
 		success: function(data) {
 			if(data.result == "success") {
-				$("#backtirespeedup").attr("onmousedown","speedup(" + speed + ")");
-				$("#backtirespeedupvalue").html(speed);
+				$("#backtirespeedup").attr("onmousedown","speedup('" + data.direction + "','" + data.speed + "')");
+				$("#backtirespeeddown").attr("onmousedown","speeddown('" + data.direction + "','" + data.speed + "')");
+				$("#backtirego").attr("onclick","backtiredirection('forward','" + data.speed + "')");
+				$("#backtireback").attr("onclick","backtiredirection('backward','" + data.speed + "')");
+				point = chartSpeed.series[0].points[0];
+				point.update(speed);
+			}
+		}
+	});
+}
+
+function speedup(tempdirection, tempspeed) {
+	speed = tempspeed;
+	direction = tempdirection;
+	speedIntervalId = setInterval(keepspeedup, 100);
+}
+
+function keepspeedup() {
+	speed = speed - (-20);
+	console.log(speed);
+	if(speed > 4095) {
+		speed = 4095;
+	}
+	var json = {"command":"change", "direction":direction, "speed":speed};
+	$.ajax({
+		url:"http://" + location.host + "/SensingCarRemoteWebControlProject/backtire",
+		data: json,
+		method: "post",
+		success: function(data) {
+			if(data.result == "success") {
+				$("#backtirespeedup").attr("onmousedown","speedup('" + data.direction + "','" + data.speed + "')");
+				$("#backtirespeeddown").attr("onmousedown","speeddown('" + data.direction + "','" + data.speed + "')");
+				$("#backtirego").attr("onclick","backtiredirection('forward','" + data.speed + "')");
+				$("#backtireback").attr("onclick","backtiredirection('backward','" + data.speed + "')");
+				point = chartSpeed.series[0].points[0];
+				point.update(speed);
+			}
+		}
+	});
+}
+
+function speeddown(tempdirection, tempspeed) {
+	speed = tempspeed;
+	direction = tempdirection;
+	speedIntervalId = setInterval(keepspeeddown, 100);
+}
+
+function keepspeeddown() {
+	speed = speed - 200;
+	console.log(speed);
+	if(speed < 0) {
+		speed = 0;
+	}
+	var json = {"command":"change", "direction":direction, "speed":speed};
+	$.ajax({
+		url:"http://" + location.host + "/SensingCarRemoteWebControlProject/backtire",
+		data: json,
+		method: "post",
+		success: function(data) {
+			if(data.result == "success") {
+				$("#backtirespeedup").attr("onmousedown","speedup('" + data.direction + "','" + data.speed + "')");
+				$("#backtirespeeddown").attr("onmousedown","speeddown('" + data.direction + "','" + data.speed + "')");
+				$("#backtirego").attr("onclick","backtiredirection('forward','" + data.speed + "')");
+				$("#backtireback").attr("onclick","backtiredirection('backward','" + data.speed + "')");
 				point = chartSpeed.series[0].points[0];
 				point.update(speed);
 			}

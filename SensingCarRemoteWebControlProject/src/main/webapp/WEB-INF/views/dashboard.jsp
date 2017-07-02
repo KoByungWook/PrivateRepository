@@ -16,6 +16,8 @@
 		<link href="<%=application.getContextPath()%>/resources/custom_css/lcd.css" rel="stylesheet" type="text/css" />
 		<link href="<%=application.getContextPath()%>/resources/custom_css/bulb.css" rel="stylesheet" type="text/css" />
 		<link href="<%=application.getContextPath()%>/resources/custom_css/button.css" rel="stylesheet" type="text/css" />
+		<link href="<%=application.getContextPath()%>/resources/custom_css/button2.css" rel="stylesheet" type="text/css" />
+		<link href="<%=application.getContextPath()%>/resources/custom_css/rgb.css" rel="stylesheet" type="text/css" />
 		
 		<script src="<%=application.getContextPath()%>/resources/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script src="<%=application.getContextPath()%>/resources/bootstrap-3.3.7/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
@@ -33,11 +35,15 @@
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Contrail+One" />
 			
 		<script src="<%=application.getContextPath()%>/resources/js/camera.js"></script>
+		<script src="<%=application.getContextPath()%>/resources/js/lcd.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/activebuzzer.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/laseremitter.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/backtiregauge.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/backtire.js"></script>
-		<script src="<%=application.getContextPath()%>/resources/js/fronttire.js"></script>	
+		<script src="<%=application.getContextPath()%>/resources/js/fronttire.js"></script>
+		<script src="<%=application.getContextPath()%>/resources/js/ultrasonicsensor.js"></script>		
+		<script src="<%=application.getContextPath()%>/resources/js/rgb.js"></script>
+		<script src="<%=application.getContextPath()%>/resources/js/rgbimpl.js"></script>
 			
 		<script src="<%=application.getContextPath()%>/resources/js/showsensorchart.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/thermistorsensorvalue.js"></script>
@@ -108,7 +114,7 @@
 		<div class="topnav">
 		  <a href="#top">TOP</a>
 		  <a href="#realTimeData">RealTime Data</a>
-		  <a href="#driving">Driving Control</a>
+		  <a href="#driving">Driving & Ultrasonic Control</a>
 		  <a href="#camera">Camera & Toggle Control</a>
 		  <a href="#rgb">RGB & LCD Control</a>
 		</div>
@@ -191,52 +197,65 @@
 							<div class="col-md-6">
 								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
 									<div class="col-md-7" style="padding-left:30px;">
-										<div id="container-speed" style="height:280px;"></div>
+										<div id="container-speed" style="height:300px;"></div>
 									</div>
-									<div class="row" style="margin:0px;text-align:center;height:140px;padding:20px 10px 20px 10px;border-right:2px solid gray;">
+									<div class="row" style="margin:0px;text-align:center;height:150px;padding:20px 10px 20px 10px;border-right:2px solid gray;">
 										<span style="font-size:24px;padding:10px;"><i class="fa fa-bolt" aria-hidden="true"></i> Direction</span>
 	             						<div id="divDirection" style="text-align:center;font-size:48px;">${direction}</div>
 									</div>
-									<div class="row" style="margin:0px;text-align:center;height:140px;padding:20px;border-right:2px solid gray;">
+									<div class="row" style="margin:0px;text-align:center;height:150px;padding:20px;border-right:2px solid gray;">
 										<span style="font-size:24px;padding:10px;"><i class="fa fa-bolt" aria-hidden="true"></i> Angle</span>
 	             						<div id="divFronttireAngle" style="text-align:center;font-size:50px;">${fronttireAngle}º</div>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;margin-top:5px;">
+								<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
 									<div class="col-md-6">
-										<div class="row">
+										<div class="row" style="height:100px;padding-top:5px;">
 											<div class="col-md-4"></div>
-											<div class="col-md-4"><a class="button go" onclick="backtireDirection('forward','${speed}')"></a></div>
+											<div class="col-md-4"><a class="button go" id="backtirego" onclick="backtireDirection('forward','${speed}')"></a></div>
 											<div class="col-md-4"></div>
 										</div>
-										<div class="row">
-											<div class="col-md-4"><a id="fronttireleft" class="button left" onclick="fronttire('${fronttireAngle}','-5')"></a></div>
+										<div class="row" style="height:100px;">
+											<div class="col-md-4"><a id="fronttireleft" class="button left" onclick="fronttire('${fronttireAngle}','decrease')"></a></div>
 											<div class="col-md-4"></div>
-											<div class="col-md-4"><a id="fronttirerignt" class="button right" onclick="fronttire('${fronttireAngle}','5')"></a></div>
+											<div class="col-md-4"><a id="fronttireright" class="button right" onclick="fronttire('${fronttireAngle}','increase')"></a></div>
 										</div>
-										<div class="row">
+										<div class="row" style="height:100px;padding-bottom:5px;">
 											<div class="col-md-4"></div>
-											<div class="col-md-4"><a class="button back" onclick="backtireDirection('backward','${speed}')"></a></div>
+											<div class="col-md-4"><a class="button backward" id="backtireback" onclick="backtireDirection('backward','${speed}')"></a></div>
 											<div class="col-md-4"></div>
 										</div>
 									</div>
-									
-									
-									
+									<div class="col-md-6" style="padding-left:12%;">
+										<div class="row" style="padding:10px;"><a id="backtirespeedup" class="button2 accelerate" onmousedown="speedup('${direction}','${speed}')" onmouseup="stopspeedchange()"></a></div>
+										<div class="row" style="padding:10px;"><a id="backtirespeedzero" class="button2 zero" style="height:56px;" onclick="speedzero('${direction}')"></a></div>
+										<div class="row" style="padding:10px;"><a id="backtirespeeddown" class="button2 break" onmousedown="speeddown('${direction}','${speed}')" onmouseup="stopspeedchange()"></a></div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div id="ultrasonicangle" class="col-md-3" style="margin-bottom:30px;">
 						<div>
-							<h2 style="color:#000066;">RGB LED Control</h2>
+							<h2 style="color:#000066;">Ultrasonic Control</h2>
 							<hr/>
 						</div>
 						<div class="col-md-12" style="margin:0px;">
 							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:240px;">
+								<div style="height:300px;">
+									<div class="col-md-12" style="text-align:center;padding-top:30px;height:150px;margin-bottom:50px;">
+										<span style="font-size:36px;padding:10px;"><i class="fa fa-bullseye" aria-hidden="true"></i> US-Angle</span>
+          								<div id="ultrasonicleftrightAngle" style="text-align:center;font-size:60px;">${ultrasonicsensorAngle}º</div>
+									</div>
+									<div class="row" style="margin:0px;text-align:center;height:80px;padding:20px;">
+										<i class="fa fa-arrow-left fa-2x" aria-hidden="true" style="display:inline-block;"></i>
+										<input id="ultrasonicLeftRight" type="range" min="10" max="170" step="1" 
+										   value="${ultrasonicsensorAngle}" onchange="ultrasonicsensor('change',this.value)"
+										   style="width:75%;display:inline-block;margin:7px;padding-bottom:5px;"/>
+										<i class="fa fa-arrow-right fa-2x" aria-hidden="true" style="display:inline-block;"></i>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -341,44 +360,60 @@
 					</div>
 				</div>
 				
-				<div class="row">
-					<div id="rgb" class="col-md-5" style="margin-bottom:30px;">
-						<div>
-							<h2 style="color:#000066;">RGB LED Control</h2>
-							<hr/>
-						</div>
-						<div class="col-md-12" style="margin:0px;">
-							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:240px;">
-								</div>
-							</div>
-						</div>
+				<div id="lcd" class="col-md-7" style="margin-bottom:30px;float:left;">
+					<div>
+						<h2 style="color:#000066;">LCD Display Control</h2>
+						<hr/>
 					</div>
-					<div id="lcd" class="col-md-7" style="margin-bottom:30px;">
-						<div>
-							<h2 style="color:#000066;">LCD Display Control</h2>
-							<hr/>
-						</div>
-						<div class="col-md-12" style="margin:0px;">
-							<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
-								<div style="height:240px;">
-									<form>
-									  <input placeholder="line0" type="text" required="">
-									  <input placeholder="line1" type="text" required="">
-									  <button>Submit</button>
-									</form>
+					<div class="col-md-12" style="margin:0px;">
+						<div class="row" style="background-color:#ffffff;border:1px solid #f8f8f8;border-radius:5px;">
+							<div style="height:240px;">
+								<div class="row">
+									<div class="col-md-6" style="padding-top:15px;">
+										<div class="row" style="margin:0px;height:80px;padding:20px 10px 0px 10px;">
+											<span style="font-size:28px;padding:10px;display:inline-block;"><i class="fa fa-bolt" aria-hidden="true"></i> Line0</span>
+		             						<div id="outputline0" style="text-align:center;font-size:36px;display:inline-block;">${lcdline0}</div>
+										</div>
+										<div class="row" style="margin:10px 0px 0px 0px;height:80x;padding:20px 10px 0px 10px;">
+											<span style="font-size:28px;padding:10px;display:inline-block;"><i class="fa fa-bolt" aria-hidden="true"></i> Line1</span>
+		             						<div id="outputline1" style="text-align:center;font-size:36px;display:inline-block;">${lcdline1}</div>
+										</div>
+									</div>
+									<div class="divlcd col-md-6">
+									  <input id="inputline0" class="inputlcd" maxlength="16" placeholder="line0" type="text" required=""/>
+									  <input id="inputline1" class="inputlcd" maxlength="16" placeholder="line1" type="text" required=""/>
+									  <button class="buttonlcd" onclick="lcd()">Send</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div id="rgb" style="width:40%;margin-bottom:30px;float:left;">
+					<div>
+						<h2 style="color:#000066;">RGB LED Control</h2>
+						<hr/>
+					</div>
+					<div style="padding-left:12%">
+						<div id="color-palette"></div>
+						<div id="color-info"></div>
+						<div id="picker" class="block">
+							<div class="ui-color-picker" data-topic="picker" data-mode="HSL"></div>
+							<div id="picker-samples" sample-id="master"></div>	
+							<div id="controls">
+								<div id="void-sample" class="icon"></div>
+							</div>
+						</div>
+						<div id="canvas" data-tutorial="drop"></div>
+					</div>
+				</div>
+				
 			</div>
 		</div>
-		
 		<div style="width:100%;background-color:black;text-align:center;margin-top:20px;">
 			<div style="height:70px;padding-top:20px;background-color:black;color:white;text-align:center;font-size:18px;">
 				© 2017 KOSA. All Rights Reserved | Design by IoTCourse#1.Group4
 			</div>
-		</div>
+		</div>		
 	</body>
 </html>
