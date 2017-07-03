@@ -13,16 +13,18 @@ import java.io.IOException;
 public class Button {
 	//Field
 	private GpioPinDigitalInput gpioPinDigitalInput;
+	
 	//Constructor
 	public Button(Pin buttonPinNo) {
 		GpioController gpioController = GpioFactory.getInstance();
 		gpioPinDigitalInput = gpioController.provisionDigitalInputPin(buttonPinNo);
-		gpioPinDigitalInput.setShutdownOptions(true);		//입력모드를 해제, 입력도 아닌 출력도 아닌 상태
+		gpioPinDigitalInput.setShutdownOptions(true);
 	}
 	
 	public void setGpioPinListenerDigital(GpioPinListenerDigital listener) {
 		gpioPinDigitalInput.addListener(listener);
 	}
+
 	//Method
 	public static void main(String[] args) throws IOException {
 		Button button = new Button(RaspiPin.GPIO_00);
@@ -31,15 +33,13 @@ public class Button {
 			public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
 				if(event.getState() == PinState.HIGH) {
 					System.out.println("High");
-					
 				} else {
 					System.out.println("Low");
 				}
 			}
-			
 		});
 		
-		System.out.println("ready....");
+		System.out.println("Ready...");
 		System.in.read();
 	}
 }

@@ -11,12 +11,14 @@ public class ActiveBuzzer {
 	//Field
 	private GpioPinDigitalOutput buzzerPin;
 	private String status = "off";
+	
 	//Constructor
 	public ActiveBuzzer(Pin buzzerPinNo) {
 		GpioController gpioController = GpioFactory.getInstance();
 		buzzerPin = gpioController.provisionDigitalOutputPin(buzzerPinNo, PinState.HIGH);
 		buzzerPin.setShutdownOptions(false, PinState.HIGH);
 	}
+	
 	//Method
 	public void on() {
 		buzzerPin.low();
@@ -25,20 +27,20 @@ public class ActiveBuzzer {
 	
 	public void off() {
 		buzzerPin.high();
-		status = "off";	
+		status = "off";
 	}
 
 	public String getStatus() {
 		return status;
 	}
 	
-	public static void main(String[] args) throws InterruptedException {
-		ActiveBuzzer test = new ActiveBuzzer(RaspiPin.GPIO_24);
+	public static void main(String[] args) throws Exception {
+		ActiveBuzzer test = new ActiveBuzzer(RaspiPin.GPIO_00);
 		for(int i=0; i<5; i++) {
 			test.on();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			test.off();
-			Thread.sleep(200);
+			Thread.sleep(1000);
 		}
 	}
 }

@@ -13,9 +13,13 @@ public class ThermistorSensorBuzzerTest {
 		
 		while(true) {
 			if(sensor.getValue() > 28.0) {
-				buzzer.on();
+				if(buzzer.getStatus().equals("off")) {
+					buzzer.on();
+				}
 			} else {
-				buzzer.off();
+				if(buzzer.getStatus().equals("on")) {
+					buzzer.off();
+				}
 			}
 		}
 	}

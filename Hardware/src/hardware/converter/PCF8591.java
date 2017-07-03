@@ -23,26 +23,26 @@ public class PCF8591 {
 	
 	//Method
 	public int analogRead() throws Exception {
-		I2CBus i2CBus = I2CFactory.getInstance(I2CBus.BUS_1);
-		I2CDevice i2CDevice = i2CBus.getDevice(i2cAddress);
-		i2CDevice.read(ainNo);	//dummy read
-		analogVal = i2CDevice.read(ainNo); //(0~255)
+		I2CBus i2cBus = I2CFactory.getInstance(I2CBus.BUS_1);
+		I2CDevice i2cDevice = i2cBus.getDevice(i2cAddress);
+		i2cDevice.read(ainNo); //dummy read
+		analogVal = i2cDevice.read(ainNo); //0~255
 		return analogVal;
 	}
 	
 	public void analogWrite(byte value) throws Exception {
-		I2CBus i2CBus = I2CFactory.getInstance(I2CBus.BUS_1);
-		I2CDevice i2CDevice = i2CBus.getDevice(i2cAddress);
-		i2CDevice.write(AIN0, value);
+		I2CBus i2cBus = I2CFactory.getInstance(I2CBus.BUS_1);
+		I2CDevice i2cDevice = i2cBus.getDevice(i2cAddress);
+		i2cDevice.write(AIN0, value);
 	}
 	
 	public static void main(String[] args) throws Exception {
 		PCF8591 test = new PCF8591(0x48, AIN0);
 		while(true) {
-			//아날로그 값
+			//아날로그 값 읽기
 			int value = test.analogRead();
 			System.out.println(value);
-			//아날로그값 출력
+			//아날로그 값 출력
 			test.analogWrite((byte)value);
 			Thread.sleep(200);
 		}
