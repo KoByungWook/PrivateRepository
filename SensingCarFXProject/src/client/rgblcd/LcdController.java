@@ -30,9 +30,9 @@ public class LcdController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        Font font = Font.loadFont(getClass().getResource("../fonts/5x8_lcd.ttf").toExternalForm(), 20);
-//        line0.setFont(font);
-//        line1.setFont(font);
+        Font font = Font.loadFont(getClass().getResource("../fonts/5x8_lcd.ttf").toExternalForm(), 20);
+        line0.setFont(font);
+        line1.setFont(font);
 
         //line0.setStyle("-fx-font-family: Lilly; -fx-font-size: 20;");
  

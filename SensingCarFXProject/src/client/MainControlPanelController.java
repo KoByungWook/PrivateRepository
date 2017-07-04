@@ -1,6 +1,5 @@
 package client;
 
-import client.camera.CameraLodingController;
 import client.camera.camerapackage.ViewerCanvas;
 import client.driving.MotorGaugeController;
 import java.io.IOException;
@@ -9,8 +8,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
