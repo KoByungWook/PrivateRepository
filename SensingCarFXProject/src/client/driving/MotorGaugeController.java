@@ -1,9 +1,8 @@
 package client.driving;
 
 import client.SensorValue;
+import client.chart.AppMain;
 import eu.hansolo.medusa.Gauge;
-import java.util.Random;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,13 +14,9 @@ import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.coap.MediaTypeRegistry;
@@ -39,6 +34,7 @@ public class MotorGaugeController extends Application {
     private Button btn2;
     private Button btn3;
     private Button btn4;
+	private Button btnDisplayReturn;
     private String jsonS;
     private String jsonA;
     private SensorValue sensorValue;
@@ -60,7 +56,7 @@ public class MotorGaugeController extends Application {
         btn2 = new Button();
         btn3 = new Button();
         btn4 = new Button();
-
+		btnDisplayReturn = new Button();
         coapClientS.setURI("coap://192.168.3.44/backtire");
         coapClientA.setURI("coap://192.168.3.44/fronttire");
 
@@ -121,6 +117,7 @@ public class MotorGaugeController extends Application {
             }
         });
         btn4.setOnAction(e -> handleBtnBreak(e));
+		btnDisplayReturn.setOnAction(e -> handleBtnDisplayReturn(e));
     }
 
     @Override
@@ -132,6 +129,7 @@ public class MotorGaugeController extends Application {
         btn2.setText("backward");
         btn3.setText("Accel");
         btn4.setText("Break");
+		btnDisplayReturn.setText("return");
         //pane.setStyle("-fx-background-image: url('../images/background1.jpeg')");
         btn1.setPrefWidth(150);
         btn1.setPrefHeight(40);
@@ -141,6 +139,10 @@ public class MotorGaugeController extends Application {
         btn3.setPrefHeight(40);
         btn4.setPrefWidth(130);
         btn4.setPrefHeight(40);
+		btnDisplayReturn.setPrefHeight(48);
+		btnDisplayReturn.setPrefHeight(48);
+		btnDisplayReturn.setId("btnDisplayReturn");
+		pane.add(btnDisplayReturn, 0, 1);
         pane1.add(btn1, 0, 0);
         pane1.add(btn2, 0, 1);
         pane2.add(btn3, 0, 0);
@@ -240,8 +242,9 @@ public class MotorGaugeController extends Application {
         speedGauge.getSpeedGauge().setValue(0.0);
         shutDownS();
     }
-
+	
     public static void main(String[] args) throws InterruptedException {
         launch(args);
     }
+
 }

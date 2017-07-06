@@ -28,6 +28,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 import javafx.util.Duration;
+import org.apache.log4j.helpers.Loader;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapHandler;
 import org.eclipse.californium.core.CoapObserveRelation;
@@ -710,6 +711,10 @@ public class MainControlPanelController implements Initializable {
 		Timeline timeline = new Timeline();
 		timeline.getKeyFrames().addAll(frame1, frame2);
 		timeline.play();
+		
+		MotorGaugeController controller = new MotorGaugeController();
+		controller.init();
+		controller.start(AppMain.primaryStage);
 	}
 
 	private void handleVboxCameraPressed() {

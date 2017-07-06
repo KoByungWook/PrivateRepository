@@ -106,7 +106,7 @@ public class HomeController {
 		model.addAttribute("green", jsonObject.getString("green"));
 		model.addAttribute("blue", jsonObject.getString("blue"));
 		// Camera Url
-		model.addAttribute("cameraUrl", "http://localhost:50001?action=stream");
+		model.addAttribute("cameraUrl", "http://192.168.3.44:50001?action=stream");
 
 		return "dashboard";
 	}
