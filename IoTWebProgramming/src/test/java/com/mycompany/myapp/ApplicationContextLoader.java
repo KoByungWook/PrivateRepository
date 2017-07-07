@@ -4,13 +4,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-@RunWith(SpringJUnit4ClassRunner.class)			//testingÀ»  Á¦°øÇÏ´Â ½ÇÇà Å¬·¡½º, junutrunner ¾²¸é ¾î³ëÅ×ÀÌ¼Ç ÀÎ½Ä ºÒ°¡, µû¶ó¼­ ½ºÇÁ¸µÀÌ Á¦°øÇÏ´Â °Í ¾¸
-@ContextConfiguration({							//½ºÇÁ¸µ ¼³Á¤ÆÄÀÏÀ» ¾Ë·ÁÁØ´Ù
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({
 	"file:WebContent/WEB-INF/spring/applicationContext.xml",
 	"file:WebContent/WEB-INF/spring/dispatcher-servlet.xml"
 })
-//@WebAppConfiguration() -> À¥ ÄÁÅÙÃ÷°¡ src/main/webapp/WEB-INF ¹Ø¿¡ Á¸ÀçÇØ¾ß ÇÔ
+//@WebAppConfiguration() => ì›¹ì»¨í…íŠ¸ê°€ src/main/webapp ì— ì¡´ì¬(STS)
 @WebAppConfiguration("WebContent")
 public class ApplicationContextLoader {
-
 }

@@ -9,28 +9,25 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
-	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- @어노테이션을 이용해서 개발할 수 있도록 설정 -->
 	<annotation-driven />
 
-	<!-- 어떤 패키지부터 @어노테이션을 찾아서 쓸 것인지 -->
+	<!-- Controller 가 필요없는 정적 리소스 폴더 설정 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- 컨트롤러가 리턴한 View이름을 jsp로 매핑 -->
+	<!-- 컨트롤러가 리턴한 뷰이름을 JSP로 매핑 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- multipart로 파일이 업로드 될 때 해석하기 위한 설정 -->
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-		
-	<!-- 어떤 패키지부터 @어노테이션을 찾아서 쓸 것인지 -->
+	<!-- 어떤 패키지부터 @어노테이션을 찾아서 사용할 건지 설정 -->
 	<context:component-scan base-package="com.mycompany.myapp" />
 	
-	<!-- AOP 설정 -->
-	<aop:aspectj-autoproxy/>
+	<!-- 멀티파트로 파일이 업로드될때 해석하기 위한 설정 -->
+	<beans:bean id="multipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
+	<!-- AOP 설정 -->
+	<aop:aspectj-autoproxy/>	
 </beans:beans>

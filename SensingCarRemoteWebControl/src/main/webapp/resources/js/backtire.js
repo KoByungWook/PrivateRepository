@@ -8,21 +8,21 @@ function backtire(command, direction, speed) {
 		success: function(data) {
 			if(data.result == "success") {
 				$("#backtireStatus").html("direction=" + data.direction + "; speed=" + data.speed);
-				
-				$("#btnDirectionForward").attr("onclick", "backtire('change', 'forward', '" + data.speed + "')");
-				$("#btnDirectionBackward").attr("onclick", "backtire('change', 'backward', '" + data.speed + "')");
+
+				$("#btnForward").attr("onclick", "backtire('change', 'forward', '" + data.speed + "')");
+				$("#btnBackward").attr("onclick", "backtire('change', 'backward', '" + data.speed + "')");
 				
 				$("#btnSpeed0").attr("onclick", "backtire('change', '" + data.direction + "', '0')");
-				$("#btnSpeed900").attr("onclick", "backtire('change', '" + data.direction + "', '900')");
-				$("#btnSpeed1200").attr("onclick", "backtire('change', '" + data.direction + "', '1200')");
-				$("#btnSpeed1550").attr("onclick", "backtire('change', '" + data.direction + "', '1550')");
-				$("#btnSpeed1900").attr("onclick", "backtire('change', '" + data.direction + "', '1900')");
-				$("#btnSpeed2250").attr("onclick", "backtire('change', '" + data.direction + "', '2250')");
-				$("#btnSpeed2600").attr("onclick", "backtire('change', '" + data.direction + "', '2600')");
-				$("#btnSpeed2950").attr("onclick", "backtire('change', '" + data.direction + "', '2950')");
-				$("#btnSpeed3300").attr("onclick", "backtire('change', '" + data.direction + "', '3300')");
-				$("#btnSpeed3650").attr("onclick", "backtire('change', '" + data.direction + "', '3650')");
-				$("#btnSpeed4000").attr("onclick", "backtire('change', '" + data.direction + "', '4000')");
+				$("#btnSpeed1").attr("onclick", "backtire('change', '" + data.direction + "', '2295')");
+				$("#btnSpeed2").attr("onclick", "backtire('change', '" + data.direction + "', '2495')");
+				$("#btnSpeed3").attr("onclick", "backtire('change', '" + data.direction + "', '2695')");
+				$("#btnSpeed4").attr("onclick", "backtire('change', '" + data.direction + "', '2895')");
+				$("#btnSpeed5").attr("onclick", "backtire('change', '" + data.direction + "', '3095')");
+				$("#btnSpeed6").attr("onclick", "backtire('change', '" + data.direction + "', '3295')");
+				$("#btnSpeed7").attr("onclick", "backtire('change', '" + data.direction + "', '3495')");
+				$("#btnSpeed8").attr("onclick", "backtire('change', '" + data.direction + "', '3695')");
+				$("#btnSpeed9").attr("onclick", "backtire('change', '" + data.direction + "', '3895')");
+				$("#btnSpeed10").attr("onclick", "backtire('change', '" + data.direction + "', '4095')");
 			}
 		}
 	});

@@ -3,32 +3,38 @@ $(function() {
 	trackingSensorChart = new Highcharts.Chart({
 		chart: {
 			renderTo:"trackingSensorChartContainer",
-			type:"line",
+			type:"spline",
 			events: {
 				load: requestTrackingSensorData
 			}
 		},
-		colors: ['black'],
+		colors: ['green'],
 		title: {
-			text: "trackingSensor"
+			text: "TrackingSensor(라인감지센서)"
 		},
 		xAxis: {
 			type: "datetime",
 			tickPixelInterval: 100,
-			maxZoom: 20*1000
+			minRange: 20*1000
 		},
 		yAxis: {
-			minPadding: 0.2,
-			maxPadding: 0.2,
 			title: {
-				text: "tracking",
+				text: "감지",
 				margin: 30
 			}
 		},
 		series: [{
-			name: "tracking",
+			name: "감지",
 			data: []
-		}]
+		}],
+		//마커(점)이 없어지는 현상 방지
+		plotOptions: {
+	        series: {
+	            marker: {
+	                enabled: true
+	            }
+	        }
+	    }
 	});
 });
 
@@ -41,3 +47,9 @@ function requestTrackingSensorData() {
 		series.addPoint([data.time, data.tracking], true, shift);
 	};
 }
+
+
+
+
+
+

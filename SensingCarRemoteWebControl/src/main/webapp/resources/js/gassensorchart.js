@@ -3,14 +3,14 @@ $(function() {
 	gasSensorChart = new Highcharts.Chart({
 		chart: {
 			renderTo:"gasSensorChartContainer",
-			type:"line",
+			type:"spline",
 			events: {
 				load: requestGasSensorData
 			}
 		},
-		colors: ['green'],
+		colors: ['yellow'],
 		title: {
-			text: "gasSensor"
+			text: "GasSensor(가스센서)"
 		},
 		xAxis: {
 			type: "datetime",
@@ -19,14 +19,22 @@ $(function() {
 		},
 		yAxis: {
 			title: {
-				text: "gas",
+				text: "가스",
 				margin: 30
 			}
 		},
 		series: [{
-			name: "gas",
+			name: "가스",
 			data: []
-		}]
+		}],
+		//마커(점)이 없어지는 현상 방지
+		plotOptions: {
+	        series: {
+	            marker: {
+	                enabled: true
+	            }
+	        }
+	    }
 	});
 });
 
@@ -39,4 +47,9 @@ function requestGasSensorData() {
 		series.addPoint([data.time, data.gas], true, shift);
 	};
 }
+
+
+
+
+
 

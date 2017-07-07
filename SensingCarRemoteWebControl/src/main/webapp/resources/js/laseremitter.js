@@ -1,16 +1,13 @@
-function buzzer(command, status) {
-	
+function laseremitter(command, status) {
 	var json = {"command":command, "status":status};
-	
 	$.ajax({
-		url:"http://" + location.host + "/SensingCarRemoteWebControl/buzzer",
+		url:"http://" + location.host + "/SensingCarRemoteWebControl/laseremitter",
 		data: json,
 		method: "post",
 		success: function(data) {
 			if(data.result == "success") {
-				$("#buzzerStatus").html(data.status);
+				$("#laseremitterStatus").html(data.status);
 			}
 		}
 	});
-	
 }

@@ -3,14 +3,14 @@ $(function() {
 	photoresistorSensorChart = new Highcharts.Chart({
 		chart: {
 			renderTo:"photoresistorSensorChartContainer",
-			type:"line",
+			type:"spline",
 			events: {
 				load: requestPhotoresistorSensorData
 			}
 		},
 		colors: ['white'],
 		title: {
-			text: "PhotoresistorSensor"
+			text: "PhotoresistorSensor(조도센서)"
 		},
 		xAxis: {
 			type: "datetime",
@@ -19,14 +19,22 @@ $(function() {
 		},
 		yAxis: {
 			title: {
-				text: "brightness",
+				text: "조도",
 				margin: 30
 			}
 		},
 		series: [{
-			name: "photoresistor",
+			name: "조도",
 			data: []
-		}]
+		}],
+		//마커(점)이 없어지는 현상 방지
+		plotOptions: {
+	        series: {
+	            marker: {
+	                enabled: true
+	            }
+	        }
+	    }
 	});
 });
 
@@ -39,4 +47,9 @@ function requestPhotoresistorSensorData() {
 		series.addPoint([data.time, data.photoresistor], true, shift);
 	};
 }
+
+
+
+
+
 

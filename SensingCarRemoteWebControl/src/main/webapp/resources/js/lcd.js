@@ -9,7 +9,7 @@ function lcd(command) {
 		method: "post",
 		success: function(data) {
 			if(data.result == "success") {
-				$("#lcdStatus").html("<br/>line0: " + data.line0 + "<br/>line1: " + data.line1);
+				$("#lcdStatus").html("<br/>line0=" + data.line0 + "<br/>line1=" + data.line1);
 			}
 		}
 	});

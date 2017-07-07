@@ -3,6 +3,7 @@ package com.mycompany.myapplication;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -12,12 +13,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
 import org.apache.commons.lang.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -29,6 +40,11 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private LocationManager locationManager;
+    private SupportMapFragment mapFragment;
+    private GoogleMap googleMap;
+    private List<LatLng> listLocation = new ArrayList<>();
+    private Polyline polyline;
+    private LatLng currLatlng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "위도: " + latitude);
             Log.i(TAG, "경도: " + longitude);
             locationManager.removeUpdates(locationListener);
+            showMap(latitude, longitude);
         }
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -115,5 +132,61 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, e.toString());
             }
         });
+    }
+
+    private void showMap(double latitude, double longitude) {
+        currLatlng = new LatLng(latitude, longitude);
+
+        //지도를 드로잉하기 위한 코드드
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currLatlng, 16));
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        checkPermission();
+        googleMap.setMyLocationEnabled(true);
+
+        //경로를 드로잉하기 위한 코드
+        listLocation.clear();
+        listLocation.add(currLatlng);
+
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                listLocation.add(latLng);
+                drawingPath();
+            }
+        });
+    }
+
+    public void handleBtnMap(View view) {
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                MainActivity.this.googleMap = googleMap;
+                handleBtnCurrentLocation(null);
+            }
+        });
+    }
+
+    public void handleBtnCurrLocationReturn(View v) {
+        listLocation.add(currLatlng);
+        drawingPath();
+    }
+
+    public void handleBtnPathRemove(View v) {
+        listLocation.clear();
+        listLocation.add(currLatlng);
+        polyline.remove();
+    }
+
+    private void drawingPath() {
+        if(polyline != null) {
+            polyline.remove();
+        }
+        LatLng[] paths = new LatLng[listLocation.size()];
+        PolylineOptions polylineOptions = new PolylineOptions()
+                .add(listLocation.toArray(paths))
+                .width(10)
+                .color(Color.RED);
+        polyline = googleMap.addPolyline(polylineOptions);
     }
 }

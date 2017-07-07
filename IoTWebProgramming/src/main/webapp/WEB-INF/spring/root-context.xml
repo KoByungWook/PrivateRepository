@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	<!-- Connection Pool(DataSource) -->
+	<!-- Connection Pool(DataSource) 설정 -->
 	<bean name="dataSource"
-		  class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			  class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
 		<property name="user" value="iotuser"/>
@@ -17,28 +17,27 @@
 		<property name="acquireIncrement" value="1"/>
 		<property name="minPoolSize" value="1"/>
 	</bean>
-	
-	<!-- JDBC Template 설정 -->
+
+	<!-- JdbcTemplate 설정 -->
 	<bean name="jdbcTemplate"
-		  class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"/>  
+			  class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource"  ref="dataSource"/>		  
 	</bean>
 	
-	
-	<!--  MyBatis 설정 -->
-	
+	<!-- MyBatis 설정 -->
 	<bean name="sqlSessionFactory"
-		  class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-		<property name="mapperLocations" value="/WEB-INF/mybatis/*.xml"></property>	  
+			class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="/WEB-INF/mybatis/*.xml"/>
 	</bean>
 	<bean name="sqlSessionTemplate"
-		  class="org.mybatis.spring.SqlSessionTemplate">
+			class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	
 	<!-- Transaction 설정 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager"
+			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	<tx:annotation-driven/>

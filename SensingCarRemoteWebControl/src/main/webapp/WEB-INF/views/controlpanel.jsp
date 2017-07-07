@@ -29,7 +29,7 @@
 	</head>
 
 	<body style="background-color: black;">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-8">
 					<div id="title" style="height:50px; margin:20px 0px; color: white; text-align: center; font-size: 30px; font-style: italic; font-weight: bold;">

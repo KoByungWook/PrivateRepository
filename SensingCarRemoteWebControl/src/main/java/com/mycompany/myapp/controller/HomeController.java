@@ -104,7 +104,8 @@ public class HomeController {
 		jsonObject = new JSONObject(json);
 		model.addAttribute("direction", jsonObject.getString("direction"));
 		model.addAttribute("speed", jsonObject.getString("speed"));
-		model.addAttribute("cameraUrl", "http://192.168.3.44:50001?action=stream");
+		
+		//model.addAttribute("cameraUrl", "http://192.168.3.44:50001?action=stream");
 
 		coapClient.shutdown();
 		return "controlpanel";
@@ -276,15 +277,5 @@ public class HomeController {
 		pw.write(resJson);
 		pw.flush();
 		pw.close();
-	}
-
-	@RequestMapping("/test")
-	public String test() {
-		return "dashboard";
-	}
-
-	@RequestMapping("/test2")
-	public String test2() {
-		return "dashboard2";
 	}
 }
