@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
                 .setVibrate(new long[] {1000, 500, 1000, 500})
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .build();
+
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         nm.notify(1, notification);
     }

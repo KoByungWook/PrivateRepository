@@ -55,7 +55,7 @@ public class MqttPublisher {
 		MqttPublisher publisher = new MqttPublisher();
 		for(int i=1; i<=10000; i++) {
 			publisher.publish("temperature:" + i);
-			Thread.sleep(1);
+			Thread.sleep(1000);
 		}
 		publisher.shutdown();
 	}

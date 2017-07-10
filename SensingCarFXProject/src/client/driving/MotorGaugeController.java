@@ -1,7 +1,6 @@
 package client.driving;
 
 import client.SensorValue;
-import client.chart.AppMain;
 import eu.hansolo.medusa.Gauge;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -14,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -117,7 +115,7 @@ public class MotorGaugeController extends Application {
             }
         });
         btn4.setOnAction(e -> handleBtnBreak(e));
-		btnDisplayReturn.setOnAction(e -> handleBtnDisplayReturn(e));
+		//btnDisplayReturn.setOnAction(e -> handleBtnDisplayReturn(e));
     }
 
     @Override

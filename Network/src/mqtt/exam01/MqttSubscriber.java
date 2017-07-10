@@ -30,7 +30,7 @@ public class MqttSubscriber {
 	//Constructor
 	public MqttSubscriber() throws MqttException{
 		//MQTT 클라이언트 생성
-		mqttClient = new MqttClient("tcp://192.168.3.127:1883", MqttClient.generateClientId());
+		mqttClient = new MqttClient("tcp://192.168.3.138:1883", MqttClient.generateClientId());
 		//통신 결과에 따라 실행할 콜백 객체 생성
 		mqttClient.setCallback(mqttCallback);
 		//MQTT 브로커와 연결
