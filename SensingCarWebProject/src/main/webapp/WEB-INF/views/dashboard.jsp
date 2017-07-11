@@ -110,7 +110,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body style="overflow:hidden;background-color:transparent;">
 		<div class="topnav">
 		  <a href="#top">TOP</a>
 		  <a href="#realTimeData">RealTime Data</a>
