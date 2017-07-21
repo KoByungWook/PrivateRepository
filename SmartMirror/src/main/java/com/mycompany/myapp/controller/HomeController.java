@@ -12,12 +12,6 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home() {
-		return "home";
+		return "mirror";
 	}
-	
-	@RequestMapping("/weather")
-	public String weather() {
-		return "weather";
-	}
-	
 }

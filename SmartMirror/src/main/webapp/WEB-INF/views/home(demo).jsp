@@ -142,7 +142,7 @@
 		  	Hi Team4
 		  </div>
 		
-		  <div data-role="main" class="ui-content">
+		  <div data-role="content" class="ui-content">
 		    
 		  </div>
 		
