@@ -14,6 +14,26 @@
 		<script src="<%=application.getContextPath()%>/resources/js/responsivevoice.js"></script>
 		<script src="<%=application.getContextPath()%>/resources/js/checkscript.js"></script>
 		<script type="text/javascript" src="http://code.responsivevoice.org/responsivevoice.js"></script>
+		<!-- Rss news -->
+		<script>
+			function news() {
+				$.ajax({
+					type : "post",
+					url : "http://" + location.host + "/SmartMirrorProject/news",
+					success : function(data) {
+						var list = data.titleList;
+						var i = 0;
+						setInterval(function(){
+							$("#rss").html(list[i].title);
+							i++;
+							if(i == list.length) {
+								i = 0;
+							}
+						}, 2000);
+					}
+				});
+			}
+		</script>
 		<!-- Clock -->
 		<script src="<%=application.getContextPath()%>/resources/js/clock.js"></script>
 		<link href="<%=application.getContextPath()%>/resources/css/clock.css" rel="stylesheet" type="text/css" />
@@ -22,5 +42,7 @@
 	</head>
 	<body>
 		<div id="content"></div>
+		<div id="rss"></div>
+		<button onclick="news()"></button>
 	</body>
 </html>

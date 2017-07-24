@@ -1,10 +1,10 @@
 function openCalander() {
 	$.ajax({
 	    type : "GET",
-	    url : "resources/content/calander.jsp",
+	    url : "/SmartMirrorProject/calander",
 	    dataType : "text",
 	    error : function() {
-	      alert('통신실패!!');
+	      alert('error');
 	    },
 	    success : function(data) {
 	      $('#content').html(data);
