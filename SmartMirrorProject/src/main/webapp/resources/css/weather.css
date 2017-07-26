@@ -1,37 +1,33 @@
-
 #currentWeather {
 	color: white;
 	font-size: 2vw;
+	vertical-align: middle;
 }
 
 #weekdaysWeather {
 	color: white;
-	margin-left: 10px;
 }
 
 #weatherLocation {
-	padding-left: 17px;
 	color: white;
-	font-size: 4vw;
+	font-size: 3vw;
+	margin: 0px;
 }
 
 #weatherHeader {
+	font-size: 1.2vw;
 	color: white;
 }
 
 #icon {
-	display: inline-block;
+	display: inline;
 }
+
 #temperature {
-	display: inline-block;
-	font-size: 3vw;
-	vertical-align: middle;
+	display: inline;
+	font-size: 2.5vw;
 }
 
 #summary {
-	padding-left: 5px;
+	font-size: 2.5vw;
 }
-
-#weatherHeader {
-	padding-left: 30px;
-} 

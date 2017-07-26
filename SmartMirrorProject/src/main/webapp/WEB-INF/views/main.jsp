@@ -43,6 +43,7 @@
 		<style>
 			body {
 				background-color: black;
+				overflow: hidden;
 			}
 		</style>
 	</head>
@@ -54,12 +55,12 @@
 					<div id="weather">
 						<p id="weatherLocation">Seoul</p>
 						<div id="currentWeather">
-							<span><canvas id="icon" width="40px" height="40px"></canvas></span>
-							<span id="temperature"></span>
+							<canvas id="icon" width="80px" height="80px"></canvas>
+							<div id="temperature"></div>
 							<div id="summary"></div>
 						</div>
 					</div>
-					<p id="weatherHeader">Weekly Weather</p>
+					<p id="weatherHeader"><img src="<%=application.getContextPath()%>/resources/images/weather.png" style="display:inline;width:2vw;height:2vw;"/>Weekly Weather</p>
 					<div id="weekdaysWeather">
 						<div>
 							<span id="weekday1"></span>
@@ -112,10 +113,10 @@
 						</ul>
 					</div>
 					<!-- rssfeed -->
-					<div id="rssheader"><img src="<%=application.getContextPath()%>/resources/images/newspaper.png" style="display:inline;width:2vw;height:2vw;margin:0.3vw 0.3vw 0.6vw 0.3vw;">Today's Headline</div>
+					<p id="rssheader"><img src="<%=application.getContextPath()%>/resources/images/newspaper.png" style="display:inline;width:2vw;height:2vw;margin:0.3vw 0.3vw 0.6vw 0.3vw;"/>Today's Headline</p>
 					<div id="rssfeed"></div>
 					<!-- schedule -->
-					<div id="scheduleheader"><img src="<%=application.getContextPath()%>/resources/images/calendar.png" style="display:inline;width:2vw;height:2vw;margin:0.3vw 0.3vw 0.6vw 0.3vw;">Schedule</div>
+					<p id="scheduleheader"><img src="<%=application.getContextPath()%>/resources/images/calendar.png" style="display:inline;width:2vw;height:2vw;margin:0.3vw 0.3vw 0.6vw 0.3vw;"/>Schedule</p>
 					<div id="schedule"></div>
 				</div>
 			</div>
