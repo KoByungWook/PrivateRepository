@@ -9,12 +9,12 @@ function weatherDefault() {
 		success : function(data) {
 			$('#temperature').html(data.temp + "°");
 			$('#summary').html(data.summary);
-			$('#tempMax1').html(data.tempMax1 + " / ");
-			$('#tempMax2').html(data.tempMax2 + " / ");
-			$('#tempMax3').html(data.tempMax3 + " / ");
-			$('#tempMax4').html(data.tempMax4 + " / ");
-			$('#tempMax5').html(data.tempMax5 + " / ");
-			$('#tempMax6').html(data.tempMax6 + " / ");
+			$('#tempMax1').html(data.tempMax1);
+			$('#tempMax2').html(data.tempMax2);
+			$('#tempMax3').html(data.tempMax3);
+			$('#tempMax4').html(data.tempMax4);
+			$('#tempMax5').html(data.tempMax5);
+			$('#tempMax6').html(data.tempMax6);
 			$('#tempMin1').html(data.tempMin1);
 			$('#tempMin2').html(data.tempMin2);
 			$('#tempMin3').html(data.tempMin3);
@@ -278,12 +278,12 @@ function refresh() {
 		success : function(data) {
 			$('#temperature').html(data.temp + "°");
 			$('#summary').html(data.summary);
-			$('#tempMax1').html(data.tempMax1 + " / ");
-			$('#tempMax2').html(data.tempMax2 + " / ");
-			$('#tempMax3').html(data.tempMax3 + " / ");
-			$('#tempMax4').html(data.tempMax4 + " / ");
-			$('#tempMax5').html(data.tempMax5 + " / ");
-			$('#tempMax6').html(data.tempMax6 + " / ");
+			$('#tempMax1').html(data.tempMax1);
+			$('#tempMax2').html(data.tempMax2);
+			$('#tempMax3').html(data.tempMax3);
+			$('#tempMax4').html(data.tempMax4);
+			$('#tempMax5').html(data.tempMax5);
+			$('#tempMax6').html(data.tempMax6);
 			$('#tempMin1').html(data.tempMin1);
 			$('#tempMin2').html(data.tempMin2);
 			$('#tempMin3').html(data.tempMin3);

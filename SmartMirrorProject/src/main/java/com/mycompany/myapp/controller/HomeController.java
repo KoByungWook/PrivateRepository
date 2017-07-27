@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.github.dvdme.ForecastIOLib.FIOCurrently;
 import com.github.dvdme.ForecastIOLib.FIODaily;
 import com.github.dvdme.ForecastIOLib.FIODataPoint;
+import com.github.dvdme.ForecastIOLib.FIOHourly;
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 import com.mycompany.myapp.util.Feed;
 import com.mycompany.myapp.util.FeedMessage;
@@ -74,11 +75,12 @@ public class HomeController {
 		fio.getForecast("37.56621515784935", "126.98049545288086");
 
 		FIOCurrently currently = new FIOCurrently(fio);
+		FIOHourly hourly = new FIOHourly(fio);
 
 		FIODataPoint fdp = currently.get();
 		double temp = fdp.temperature();
 		String icon = fdp.icon();
-		String summary = fdp.summary().substring(1, fdp.summary().length()-1);
+		String summary = hourly.getSummary();
 		String iconR = icon.substring(1, icon.length() - 1);
 		
 		FIODaily daily = new FIODaily(fio);

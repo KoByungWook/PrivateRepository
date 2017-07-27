@@ -26,3 +26,7 @@ function openMap() {
 	    }
 	  });
 }
+
+function close() {
+	$('#content').empty();
+}

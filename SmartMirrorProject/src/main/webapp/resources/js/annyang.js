@@ -185,7 +185,6 @@
       };
 
       recognition.onsoundstart = function() {
-        invokeCallbacks(callbacks.soundstart);
     	console.log("soundstart");
       };
 
@@ -210,7 +209,7 @@
           break;
         }
       };
-
+      
       recognition.onend = function() {
     	console.log("end");
         isListening = false;

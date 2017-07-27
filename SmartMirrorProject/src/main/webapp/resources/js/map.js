@@ -1,11 +1,13 @@
 var map;
 var geocoder;
 var address;
+var currzoom;
 
 function initMap() {
     var uluru = {lat: 37.4950883, lng: 127.1223549};
+    currzoom = 14;
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 14,
+      zoom: currzoom,
       center: uluru
     });
     geocoder = new google.maps.Geocoder();
@@ -33,4 +35,30 @@ function geocodeAddress(geocoder, resultsMap) {
       }
     });
   }
+
+function zoomIn() {
+	if(currzoom < 20) {
+		currzoom++;
+		currzoom++;
+		setZoom(currzoom, map);
+	}
+}
+
+function zoomOut() {
+	if(currzoom > 2) {
+		currzoom--;
+		currzoom--;
+		setZoom(currzoom, map);
+	}
+}
+
+function zoomReset() {
+	currzoom = 14;
+	setZoom(currzoom, map);
+}
+
+
+function setZoom(zoom, resultsMap) {
+	resultsMap.setZoom(zoom);
+}
 
