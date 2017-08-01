@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="25B133B6-FC23-B50D-0BD8-8468782EABCB" name="product">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:51:58 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="pno" id="F39571DB-C02E-FC69-CA37-3F74FFCEA650">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:53:03 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pname" id="1D11AD37-8886-2E95-99CD-51EC0E2FE302">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:53:03 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7E4258E5-9B82-9D9F-42DD-2C152BAE29A8" name="product_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:53:03 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F39571DB-C02E-FC69-CA37-3F74FFCEA650"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

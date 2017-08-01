@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="72310385-7CFD-B7D8-E0E6-63EE9B7E7157">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:22:29 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

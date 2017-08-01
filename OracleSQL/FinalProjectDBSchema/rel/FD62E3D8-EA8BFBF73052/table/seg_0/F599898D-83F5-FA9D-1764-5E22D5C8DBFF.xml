@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F599898D-83F5-FA9D-1764-5E22D5C8DBFF" name="order_item">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:58:34 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="orders_ono" id="6D22B6DE-555A-40E1-B11D-244244347FA0">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:59:29 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CF8A5AEF-862D-4407-D69F-720DC63EC343" referredColumn="D4EAECF3-885C-DBF9-F145-A1C2EE0A73E0"/>
+</associations>
+</Column>
+<Column name="product_pno" id="3179D795-6BE4-051B-2EEA-8763C960B852">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 02:00:18 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EF38FB4E-3C75-2846-A10F-C34393B1D76F" referredColumn="F39571DB-C02E-FC69-CA37-3F74FFCEA650"/>
+</associations>
+</Column>
+<Column name="oamount" id="BFA1A885-1FA0-CE3E-E18D-5DD7D64F9570">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 02:00:51 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CA75BDFB-BBB3-4EFF-A6D9-EED557FBBB0E" name="order_item_orders_FK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:59:29 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6D22B6DE-555A-40E1-B11D-244244347FA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E391B301-FB94-EF61-718A-62D56F1C65AC" name="order_item_product_FK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 02:00:18 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3179D795-6BE4-051B-2EEA-8763C960B852"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

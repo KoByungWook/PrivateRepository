@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="18F550C4-B302-E731-90AE-F542D00258FF" name="member">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:29:56 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="mid" id="035572D2-A6EC-C04B-C06A-54094C7A247B">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:32:43 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mname" id="CB499291-3B32-3591-3E20-9FB4359AAF78">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:32:43 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mpassword" id="D56CC1AA-1395-2BB7-E2D6-CB2A309D5C57">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:32:43 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0B4EA9AE-21CE-AACB-18F8-1F4DC4D7FB2F" name="member_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:38:50 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="035572D2-A6EC-C04B-C06A-54094C7A247B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

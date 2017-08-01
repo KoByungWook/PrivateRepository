@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2258399A-8B2E-7320-005B-3E4231201BDE" name="member">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:22:46 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="mid" id="516EE33F-FFF5-B386-BD18-29D77D5B26E1">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:23:50 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="mname" id="17297784-5F6B-E111-1377-8130DCF8CC17">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:24:26 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="36CBA817-9688-0421-AFC8-BF76522516E5" name="member_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:23:50 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="516EE33F-FFF5-B386-BD18-29D77D5B26E1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

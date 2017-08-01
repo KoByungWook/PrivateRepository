@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="FinalProjectDBSchema" id="1B365AAE-D566-F7B4-78CE-D6BF5B9EF966" version="3.5">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:27:37 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>1B365AAE-D566-F7B4-78CE-D6BF5B9EF966</designId>
+</OSDM_Design>

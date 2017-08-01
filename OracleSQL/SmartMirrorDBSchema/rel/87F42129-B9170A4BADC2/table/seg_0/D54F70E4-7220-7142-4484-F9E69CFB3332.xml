@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D54F70E4-7220-7142-4484-F9E69CFB3332" name="thermistor">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:35:32 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<ordsAlias>table_12</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ttime" id="82FC292B-14CF-9ADA-E924-EC4A0A1C3004">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:36:05 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tvalue" id="78EC68D4-1446-054A-EAA7-61B8C7DC90BB">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:36:05 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>

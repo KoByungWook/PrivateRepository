@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="ADB7A297-1517-4BC0-4A35-826D43F575F9" name="hobby">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:20:05 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="mid" id="7B26A2C6-1174-E906-908B-EF71DB388342">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:20:36 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="623104FC-B73B-CB5B-ECCF-7E518A1AEDC8" referredColumn="035572D2-A6EC-C04B-C06A-54094C7A247B"/>
+</associations>
+</Column>
+<Column name="hobby" id="F9DDF931-F994-2277-F416-D386CFD3B52D">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:21:32 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F46BCDE0-E21E-D99F-934B-0EBDD23A472A" name="hobby_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:22:43 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7B26A2C6-1174-E906-908B-EF71DB388342"/>
+<colUsage columnID="F9DDF931-F994-2277-F416-D386CFD3B52D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="80C01BD0-921A-2723-C3FD-F2CDDB73D372" name="hobby_member_FK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:20:36 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7B26A2C6-1174-E906-908B-EF71DB388342"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

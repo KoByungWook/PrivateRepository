@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E38045FA-12BD-7EB2-6837-F3A713232F00" name="orders">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:54:04 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ono" id="D4EAECF3-885C-DBF9-F145-A1C2EE0A73E0">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:55:59 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="member_mid" id="6204FFA1-1C31-6FA2-6A91-CD09790803D6">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:54:32 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E6CE31D6-A749-5BF6-ED46-D31F6E290D89" referredColumn="035572D2-A6EC-C04B-C06A-54094C7A247B"/>
+</associations>
+</Column>
+<Column name="odate" id="6EE5C371-05BA-4360-7187-78773E9F6E1E">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:56:47 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B602C059-C8E7-100F-C542-94AE88DDC304" name="orders_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:55:59 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D4EAECF3-885C-DBF9-F145-A1C2EE0A73E0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7A60A106-9071-8191-C115-6056006EFB55" name="orders_member_FK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 01:54:32 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6204FFA1-1C31-6FA2-6A91-CD09790803D6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

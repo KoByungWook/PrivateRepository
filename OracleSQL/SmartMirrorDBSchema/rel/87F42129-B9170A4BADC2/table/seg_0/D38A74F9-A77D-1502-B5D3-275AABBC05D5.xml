@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D38A74F9-A77D-1502-B5D3-275AABBC05D5" name="photo">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:28:08 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="pno" id="C41FA043-AD40-B73A-E398-21563BB49C42">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:28:31 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="member_mid" id="A2B7A08F-CAA7-31D4-BDDA-DBCC79022277">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:28:37 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8FD49297-9843-346B-6FF1-436B486B19E7" referredColumn="516EE33F-FFF5-B386-BD18-29D77D5B26E1"/>
+</associations>
+</Column>
+<Column name="poriginalfilename" id="C50C11C0-11B0-CAE9-5953-61DDB71BB6C1">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:29:03 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="psavedfilename" id="EF5E050E-DD5A-0741-0006-E8F70443BF50">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:29:26 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pfilecontent" id="C068C385-59FC-9957-BE36-2072BF96DDFE">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:29:53 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="18034E2C-4111-3274-A937-FF5AB1D1A292" name="photo_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:28:31 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C41FA043-AD40-B73A-E398-21563BB49C42"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B978F016-52DC-9771-4821-13343D8BB080" name="photo_member_FK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:28:37 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A2B7A08F-CAA7-31D4-BDDA-DBCC79022277"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

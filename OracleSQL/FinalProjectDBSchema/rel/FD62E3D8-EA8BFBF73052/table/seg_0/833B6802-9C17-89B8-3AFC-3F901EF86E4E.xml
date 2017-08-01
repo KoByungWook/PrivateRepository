@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="833B6802-9C17-89B8-3AFC-3F901EF86E4E" name="board">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:30:38 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<ordsAlias>table_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="bno" id="D13E7E89-867F-D9EC-81A6-97A9AE686D5E">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:42:27 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="btitle" id="E80FD67F-3219-1B2D-7794-86E16F9852DA">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:42:27 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="bcontent" id="7A2EFE23-BD09-B94D-709E-4BDBA5335ADA">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:42:27 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="writer" id="7FE43D71-501B-5594-8637-6D65B94E1BF9">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:45:22 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AAF2743D-399D-C45E-658B-DB37287FE99A" referredColumn="035572D2-A6EC-C04B-C06A-54094C7A247B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CBE37F3C-40A7-6639-5CCE-77B545D2AB90" name="board_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:42:27 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D13E7E89-867F-D9EC-81A6-97A9AE686D5E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2FA646A4-FDA4-9C16-002F-64EBC0032626" name="board_member_FK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 00:45:22 UTC</createdTime>
+<ownerDesignName>FinalProjectDBSchema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7FE43D71-501B-5594-8637-6D65B94E1BF9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

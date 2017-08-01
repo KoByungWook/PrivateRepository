@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="41BCBBB1-30C3-8C20-0ED2-482EF61BDC4E" name="schedule">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:24:40 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="sno" id="3C6B0983-621C-17E7-6ECB-EFB043723CBD">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:25:06 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="member_mid" id="D9989184-53D0-A0D2-A8E9-62F09F9BF91A">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:25:12 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9A0019D3-CD38-5FE5-D0FF-4AA84B2AA372" referredColumn="516EE33F-FFF5-B386-BD18-29D77D5B26E1"/>
+</associations>
+</Column>
+<Column name="sdate" id="F87C3ADA-E9BD-F984-7C6B-88526AB3B048">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:25:39 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="scontent" id="C1E205D7-EFE9-85F2-9C03-1564EE77ABFF">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:25:57 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EB6CFD6E-E5FA-2B6E-1488-3A9D33D9A491" name="schedule_PK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:25:06 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C6B0983-621C-17E7-6ECB-EFB043723CBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D8B84FBE-D70E-644B-D706-562E683F7250" name="schedule_member_FK">
+<createdBy>Administrator</createdBy>
+<createdTime>2017-07-31 05:25:12 UTC</createdTime>
+<ownerDesignName>SmartMirrorDBSchema</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9989184-53D0-A0D2-A8E9-62F09F9BF91A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
