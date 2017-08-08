@@ -48,7 +48,11 @@ public class HomeController {
 		music.setMfilepath(realPath);
 		LOGGER.info(realPath);
 		
-		File file = new File(realPath + filename);
+		//raspberry pi WAS
+		File file = new File(realPath + "/" + filename);
+		
+		//PC WAS
+		//File file = new File(realPath + filename);
 		music.getMattach().transferTo(file);
 		
 		service.musicUpload(music);
