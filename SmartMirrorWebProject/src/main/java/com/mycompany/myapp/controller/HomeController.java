@@ -28,8 +28,9 @@ public class HomeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 	private List<FeedMessage> list;	
 	
-	@RequestMapping("/")
+	@RequestMapping("/main")
 	public String home() {
+		System.out.println("main");
 		return "main";
 	}
 

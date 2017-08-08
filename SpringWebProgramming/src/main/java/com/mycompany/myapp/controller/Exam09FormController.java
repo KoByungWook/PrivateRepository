@@ -71,28 +71,21 @@ public class Exam09FormController {
 	public void download(
 			HttpServletResponse response,
 			@RequestHeader("User-Agent") String userAgent) throws Exception{
-		//�쓳�떟 HTTP �뿤�뜑�뻾 異붽�
-		//1)�뙆�씪�쓽 �씠由�(�샃�뀡)
 		String fileName = "媛��뒪.png";
 		String encodingFileName;
 		if(userAgent.contains("MSIE") || userAgent.contains("Trident") || userAgent.contains("Edge")) {
 			encodingFileName = URLEncoder.encode(fileName, "UTF-8");
-//			System.out.println(encodingFileName);
 		} else {
-			encodingFileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
-//			System.out.println(encodingFileName);					
+			encodingFileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");					
 		}
 		
 		response.addHeader("Content-Disposition", "attachment; filename=\"" + encodingFileName + "\"");
-		//2)�뙆�씪�쓽 醫낅쪟
 		response.addHeader("Content-Type", "image/png");
-		//2* 釉뚮씪�슦���뿉 �뵲瑜� �씤肄붾뵫 諛⑸쾿
-		//3)�뙆�씪�쓽 �겕湲�(�샃�뀡)
+		
 		File file = new File(servletContext.getRealPath("/WEB-INF/upload/penguins.jpg"));
 		long fileSize = file.length();
 		response.addHeader("Content-Length", String.valueOf(fileSize));
-		//媛��뒫�븯硫� �꽭 媛� �떎 �꽔�뼱以� 寃�
-		//�쓳�떟 HTTP 蹂몃Ц�뿉 �뙆�씪 �뜲�씠�꽣瑜� 異쒕젰
+		
 		OutputStream os = response.getOutputStream();
 		FileInputStream fis = new FileInputStream(file);
 		FileCopyUtils.copy(fis, os);

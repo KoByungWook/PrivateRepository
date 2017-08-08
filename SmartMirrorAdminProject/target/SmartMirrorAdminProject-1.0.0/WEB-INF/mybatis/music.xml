@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="music">
+	<insert id="insert" parameterType="com.mycompany.myapp.dto.Music">
+		<selectKey keyProperty="mno" resultType="int" order="AFTER">
+			select music_mno_seq.currval from dual
+		</selectKey>
+			insert into music
+			(mno, moriginalfilename)
+			values
+			(music_mno_seq.nextval, #{moriginalfilename})
+	</insert>
+</mapper>
