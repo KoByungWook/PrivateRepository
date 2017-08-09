@@ -23,8 +23,8 @@ public class DaoImpl implements Dao {
         PreparedStatement pstmt = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.173:3306/smartmirror" , "iot1_mirror", "iot12345");
-            pstmt = connection.prepareStatement("insert into music(mfilename,mfilepath) values(?,?);");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.3.43:3306/smartmirror" , "iot1_mirror", "iot12345");
+            pstmt = connection.prepareStatement("insert into musicpc(mfilename,mfilepath) values(?,?);");
             
             String filename = music.getMfilename();
             String filepath = music.getMfilepath();

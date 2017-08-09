@@ -44,15 +44,16 @@ public class HomeController {
 		String filename = music.getMfilename();
 		LOGGER.info(filename);
 		
-		String realPath = servletContext.getRealPath("/resources/music/");
+		//String realPath = servletContext.getRealPath("/resources/music/");
+		String realPath = "C://Temp/";
 		music.setMfilepath(realPath);
 		LOGGER.info(realPath);
 		
 		//raspberry pi WAS
-		File file = new File(realPath + "/" + filename);
+		//File file = new File(realPath + "/" + filename);
 		
 		//PC WAS
-		//File file = new File(realPath + filename);
+		File file = new File(realPath + filename);
 		music.getMattach().transferTo(file);
 		
 		service.musicUpload(music);
